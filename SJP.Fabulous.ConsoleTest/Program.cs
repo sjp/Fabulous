@@ -6,6 +6,9 @@ namespace SJP.Fabulous.ConsoleTest
     {
         static void Main(string[] args)
         {
+            var x = RgbColor.FromHex("afc");
+            var y = RgbColor.FromHex("#aa0001");
+
             Fabulous.WriteLine("test message");
 
             Fabulous.WriteLine(new FabulousText(new RgbColor(0,0,0), new RgbColor(0,1,1), TextDecoration.None, "hello"));
@@ -13,8 +16,8 @@ namespace SJP.Fabulous.ConsoleTest
             Fabulous.WriteLine(new FabulousText(new RgbColor(0, 0, 0), new RgbColor(0, 1, 1), TextDecoration.None, "hello") + "combine test");
 
             var a1 = Fabulous
-                .Foreground(new RgbColor(12, 12, 13))
-                .Background(new RgbColor(12, 12, 14))
+                .Rgb(12, 12, 13)
+                .BgHex("#333")
                 .Text("abc");
             var a2 = "def";
             var a3 = Fabulous

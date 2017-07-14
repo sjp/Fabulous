@@ -71,6 +71,8 @@ namespace SJP.Fabulous
         }
     }
 
+    // TODO VIRT TERM PROCESSING supported in build 14393
+
     public enum ConsoleColorMode
     {
         None,
