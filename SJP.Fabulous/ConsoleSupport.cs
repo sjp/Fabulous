@@ -32,7 +32,6 @@ namespace SJP.Fabulous
             }
         }
 
-
         private static bool WindowsVersionSupportsTrueColor
         {
             get

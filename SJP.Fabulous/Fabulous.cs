@@ -6,7 +6,6 @@ using System.Globalization;
 
 namespace SJP.Fabulous
 {
-
     public static class Fabulous
     {
         public static FabulousText Foreground(RgbColor foreColor)
@@ -23,7 +22,6 @@ namespace SJP.Fabulous
         {
             return new FabulousText(new RgbColor(192, 192, 192), new RgbColor(0, 0, 0), TextDecoration.None, text);
         }
-
 
         // FG styling
         public static FabulousText Rgb(byte red, byte green, byte blue)
@@ -166,7 +164,17 @@ namespace SJP.Fabulous
         {
             FabulousText fragment = text;
             FabulousTextCollection collection = fragment;
+            Write(collection);
+        }
 
+        public static void Write(FabulousText fragment)
+        {
+            FabulousTextCollection collection = fragment;
+            Write(collection);
+        }
+
+        public static void Write(FabulousTextCollection collection)
+        {
             foreach (var f in collection.Fragments)
             {
                 // write style;
@@ -183,55 +191,17 @@ namespace SJP.Fabulous
             }
         }
 
-        public static void Write(FabulousText fragment)
-        {
-
-        }
-
-        public static void Write(FabulousTextCollection fragment)
-        {
-
-        }
-
         public static void WriteLine(string text)
         {
             FabulousText fragment = text;
             FabulousTextCollection collection = fragment;
-
-            foreach (var f in collection.Fragments)
-            {
-                // write style;
-                var originalForeColor = Console.ForegroundColor;
-                var originalBackColor = Console.BackgroundColor;
-
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.BackgroundColor = ConsoleColor.White;
-
-                Console.WriteLine(f.Text);
-
-                Console.ForegroundColor = originalForeColor;
-                Console.BackgroundColor = originalBackColor;
-            }
+            WriteLine(collection);
         }
 
         public static void WriteLine(FabulousText fragment)
         {
             FabulousTextCollection collection = fragment;
-
-            foreach (var f in collection.Fragments)
-            {
-                // write style;
-                var originalForeColor = Console.ForegroundColor;
-                var originalBackColor = Console.BackgroundColor;
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.BackgroundColor = ConsoleColor.Green;
-
-                Console.WriteLine(f.Text);
-
-                Console.ForegroundColor = originalForeColor;
-                Console.BackgroundColor = originalBackColor;
-            }
+            WriteLine(collection);
         }
 
         public static void WriteLine(FabulousTextCollection collection)
@@ -245,11 +215,13 @@ namespace SJP.Fabulous
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.BackgroundColor = ConsoleColor.DarkMagenta;
 
-                Console.WriteLine(f.Text);
+                Console.Write(f.Text);
 
                 Console.ForegroundColor = originalForeColor;
                 Console.BackgroundColor = originalBackColor;
             }
+
+            Console.Write("\r\n");
         }
     }
 
@@ -271,6 +243,9 @@ namespace SJP.Fabulous
 
         public string Text { get; }
 
+        public void Write() => Fabulous.Write(this);
+
+        public void WriteLine() => Fabulous.WriteLine(this);
 
         // FG styling
         public FabulousText Rgb(byte red, byte green, byte blue)
@@ -427,22 +402,6 @@ namespace SJP.Fabulous
 
             return new FabulousText(fragment.ForegroundColor, fragment.BackgroundColor, fragment.Decorations, text);
         }
-
-        public static void Write(this FabulousText fragment)
-        {
-            if (fragment == null)
-                throw new ArgumentNullException(nameof(fragment));
-
-            Fabulous.Write(fragment);
-        }
-
-        public static void WriteLine(this FabulousText fragment)
-        {
-            if (fragment == null)
-                throw new ArgumentNullException(nameof(fragment));
-
-            Fabulous.WriteLine(fragment);
-        }
     }
 
     public class FabulousTextCollection : IEnumerable<FabulousText>
@@ -458,6 +417,10 @@ namespace SJP.Fabulous
         }
 
         public IEnumerable<FabulousText> Fragments { get; }
+
+        public void Write() => Fabulous.Write(this);
+
+        public void WriteLine() => Fabulous.WriteLine(this);
 
         public static implicit operator FabulousTextCollection(string text)
         {
@@ -496,9 +459,6 @@ namespace SJP.Fabulous
 
     // hex, bghex,
     // rgb, bgrgb
-
-
-
     public enum FabColors
     {
         Black,
@@ -552,14 +512,9 @@ namespace SJP.Fabulous
 
             var inputLength = hex.Length;
 
-            byte r;
             var rStr = string.Empty;
-
-            byte g;
             var gStr = string.Empty;
-
-            byte b;
-            string bStr = string.Empty;
+            var bStr = string.Empty;
 
             if (inputLength == 3)
             {
@@ -575,9 +530,9 @@ namespace SJP.Fabulous
             }
 
             var isValidHex = true;
-            isValidHex &= byte.TryParse(rStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out r);
-            isValidHex &= byte.TryParse(gStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out g);
-            isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out b);
+            isValidHex &= byte.TryParse(rStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte r);
+            isValidHex &= byte.TryParse(gStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte g);
+            isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte b);
 
             if (!isValidHex)
                 throw new ArgumentException("hex string contains invalid hex characters", nameof(hex));
@@ -585,6 +540,142 @@ namespace SJP.Fabulous
             return new RgbColor(r, g, b);
         }
 
-        private static ISet<char> _hexChars = new HashSet<char>(new[] { 'A', 'B', 'C', 'D', 'E', 'F' });
+        private readonly static ISet<char> _hexChars = new HashSet<char>(new[] { 'A', 'B', 'C', 'D', 'E', 'F' });
+    }
+
+    public static class AnsiModifiers
+    {
+        public static ConsoleStyle Reset { get; } = new ConsoleStyle(0, 0);
+
+        // 21 isn't widely supported and 22 does the same thing
+        public static ConsoleStyle Bold { get; } = new ConsoleStyle(1, 22);
+
+        public static ConsoleStyle Dim { get; } = new ConsoleStyle(2, 22);
+
+        public static ConsoleStyle Italic { get; } = new ConsoleStyle(3, 23);
+
+        public static ConsoleStyle Underline { get; } = new ConsoleStyle(4, 24);
+
+        public static ConsoleStyle Inverse { get; } = new ConsoleStyle(7, 27);
+
+        public static ConsoleStyle Hidden { get; } = new ConsoleStyle(8, 28);
+
+        public static ConsoleStyle Strikethrough { get; } = new ConsoleStyle(9, 29);
+    }
+
+    public static class Ansi256ColorMap
+    {
+        public static ConsoleStyle ForegroundFlags = new ConsoleStyle(31, 39);
+
+        public static ConsoleStyle BackgroundFlags = new ConsoleStyle(41, 49);
+
+        public static class Foreground
+        {
+            public static int Black { get; } = 30;
+
+            public static int Red { get; } = 31;
+
+            public static int Green { get; } = 32;
+
+            public static int Yellow { get; } = 33;
+
+            public static int Blue { get; } = 34;
+
+            public static int Magenta { get; } = 35;
+
+            public static int Cyan { get; } = 36;
+
+            public static int White { get; } = 37;
+
+            public static int Gray { get; } = 90;
+
+            public static int RedBright { get; } = 91;
+
+            public static int GreenBright { get; } = 92;
+
+            public static int YellowBright { get; } = 93;
+
+            public static int BlueBright { get; } = 94;
+
+            public static int MagentaBright { get; } = 95;
+
+            public static int CyanBright { get; } = 96;
+
+            public static int WhiteBright { get; } = 97;
+        }
+
+        public static class Background
+        {
+            public static int Black { get; } = 40;
+
+            public static int Red { get; } = 41;
+
+            public static int Green { get; } = 42;
+
+            public static int Yellow { get; } = 43;
+
+            public static int Blue { get; } = 44;
+
+            public static int Magenta { get; } = 45;
+
+            public static int Cyan { get; } = 46;
+
+            public static int White { get; } = 47;
+
+            public static int Gray { get; } = 100;
+
+            public static int RedBright { get; } = 101;
+
+            public static int GreenBright { get; } = 102;
+
+            public static int YellowBright { get; } = 103;
+
+            public static int BlueBright { get; } = 104;
+
+            public static int MagentaBright { get; } = 105;
+
+            public static int CyanBright { get; } = 106;
+
+            public static int WhiteBright { get; } = 107;
+        }
+
+        // TODO add Grey for Gray (Queen's English)
+    }
+
+    public struct ConsoleStyle
+    {
+        public ConsoleStyle(int start, int close)
+        {
+            Start = start;
+            Close = close;
+        }
+
+        public int Start { get; }
+
+        public int Close { get; }
+    }
+
+    public class AnsiSimpleConsoleWriter
+    {
+        public AnsiSimpleConsoleWriter()
+        {
+
+        }
+    }
+
+    public class AnsiEnhancedConsoleWriter
+    {
+        public AnsiEnhancedConsoleWriter()
+        {
+
+        }
+    }
+
+    public class AnsiFullConsoleWriter
+    {
+        public AnsiFullConsoleWriter()
+        {
+
+        }
     }
 }
