@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-//using ColorMine;
+using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
     public static class Fabulous
     {
-        public static FabulousText Foreground(RgbColor foreColor)
+        public static FabulousText Foreground(IRgb foreColor)
         {
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
         }
 
-        public static FabulousText Background(RgbColor backColor)
+        public static FabulousText Background(IRgb backColor)
         {
             return new FabulousText(DefaultForeground, backColor, TextDecoration.None, null);
         }
@@ -26,13 +25,13 @@ namespace SJP.Fabulous
         // FG styling
         public static FabulousText Rgb(byte red, byte green, byte blue)
         {
-            var foreColor = new RgbColor(red, green, blue);
+            var foreColor = new Rgb(red, green, blue);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
         }
 
         public static FabulousText Rgb((byte red, byte green, byte blue) values)
         {
-            var foreColor = new RgbColor(values);
+            var foreColor = new Rgb(values);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
         }
 
@@ -41,7 +40,7 @@ namespace SJP.Fabulous
             if (string.IsNullOrWhiteSpace(hex))
                 throw new ArgumentNullException(nameof(hex));
 
-            var foreColor = RgbColor.FromHex(hex);
+            var foreColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
         }
 
@@ -50,55 +49,55 @@ namespace SJP.Fabulous
             if (string.IsNullOrWhiteSpace(keyword))
                 throw new ArgumentNullException(nameof(keyword));
 
-            var foreColor = RgbColor.FromKeyword(keyword);
+            var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
         }
 
-        public static FabulousText Black => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Black => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Red => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Red => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Green => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Green => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Yellow => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Yellow => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Blue => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Blue => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Magenta => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Magenta => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Cyan => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Cyan => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText White => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText White => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
         // bright black
-        public static FabulousText Gray => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Gray => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText Grey => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText Grey => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText RedBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText RedBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText GreenBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText GreenBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText YellowBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText YellowBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText BlueBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText BlueBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText MagentaBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText MagentaBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText CyanBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText CyanBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
-        public static FabulousText WhiteBright => new FabulousText(new RgbColor(0, 0, 0), DefaultBackground, TextDecoration.None, null);
+        public static FabulousText WhiteBright => new FabulousText(new Rgb(0, 0, 0), DefaultBackground, TextDecoration.None, null);
 
         // BG styling
         public static FabulousText BgRgb(byte red, byte green, byte blue)
         {
-            var bgColor = new RgbColor(red, green, blue);
+            var bgColor = new Rgb(red, green, blue);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);
         }
 
         public static FabulousText BgRgb((byte red, byte green, byte blue) values)
         {
-            var bgColor = new RgbColor(values);
+            var bgColor = new Rgb(values);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);
         }
 
@@ -107,7 +106,7 @@ namespace SJP.Fabulous
             if (string.IsNullOrWhiteSpace(hex))
                 throw new ArgumentNullException(nameof(hex));
 
-            var bgColor = RgbColor.FromHex(hex);
+            var bgColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);
         }
 
@@ -116,44 +115,44 @@ namespace SJP.Fabulous
             if (string.IsNullOrWhiteSpace(keyword))
                 throw new ArgumentNullException(nameof(keyword));
 
-            var bgColor = RgbColor.FromKeyword(keyword);
+            var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);
         }
 
-        public static FabulousText BgBlack => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgBlack => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgRed => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgRed => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgGreen => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgGreen => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgYellow => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgYellow => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgBlue => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgBlue => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgMagenta => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgMagenta => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgCyan => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgCyan => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgWhite => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgWhite => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
         // bright black
-        public static FabulousText BgGray => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgGray => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgGrey => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgGrey => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgRedBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgRedBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgGreenBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgGreenBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgYellowBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgYellowBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgBlueBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgBlueBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgMagentaBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgMagentaBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgCyanBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgCyanBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
-        public static FabulousText BgWhiteBright => new FabulousText(DefaultForeground, new RgbColor(0, 0, 0), TextDecoration.None, null);
+        public static FabulousText BgWhiteBright => new FabulousText(DefaultForeground, new Rgb(0, 0, 0), TextDecoration.None, null);
 
         // decorations
         public static FabulousText Blink => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Blink, null);
@@ -312,14 +311,14 @@ namespace SJP.Fabulous
             Console.Write("\r\n");
         }
 
-        private static RgbColor DefaultForeground { get; } = new RgbColor(192, 192, 192);
+        private static IRgb DefaultForeground { get; } = new Rgb(192, 192, 192);
 
-        private static RgbColor DefaultBackground { get; } = new RgbColor(0, 0, 0);
+        private static IRgb DefaultBackground { get; } = new Rgb(0, 0, 0);
     }
 
     public class FabulousText
     {
-        public FabulousText(RgbColor foreColor, RgbColor backColor, TextDecoration decorations, string text)
+        public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, string text)
         {
             ForegroundColor = foreColor;
             BackgroundColor = backColor;
@@ -327,9 +326,9 @@ namespace SJP.Fabulous
             Text = text ?? string.Empty;
         }
 
-        internal RgbColor ForegroundColor { get; }
+        internal IColor ForegroundColor { get; }
 
-        internal RgbColor BackgroundColor { get; }
+        internal IColor BackgroundColor { get; }
 
         internal TextDecoration Decorations { get; }
 
@@ -346,110 +345,110 @@ namespace SJP.Fabulous
         // FG styling
         public FabulousText Rgb(byte red, byte green, byte blue)
         {
-            var foreColor = new RgbColor(red, green, blue);
+            var foreColor = new Rgb(red, green, blue);
             return new FabulousText(foreColor, BackgroundColor, Decorations, Text);
         }
 
         public FabulousText Hex(string hex)
         {
-            var foreColor = RgbColor.FromHex(hex);
+            var foreColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(foreColor, BackgroundColor, Decorations, Text);
         }
 
         public FabulousText Keyword(string keyword)
         {
-            var foreColor = RgbColor.FromKeyword(keyword);
+            var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(foreColor, BackgroundColor, Decorations, Text);
         }
 
-        public FabulousText Black => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Black => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Red => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Red => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Green => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Green => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Yellow => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Yellow => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Blue => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Blue => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Magenta => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Magenta => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Cyan => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Cyan => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText White => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText White => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
         // bright black
-        public FabulousText Gray => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Gray => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText Grey => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText Grey => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText RedBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText RedBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText GreenBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText GreenBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText YellowBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText YellowBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText BlueBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText BlueBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText MagentaBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText MagentaBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText CyanBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText CyanBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
-        public FabulousText WhiteBright => new FabulousText(new RgbColor(192, 192, 192), BackgroundColor, Decorations, Text);
+        public FabulousText WhiteBright => new FabulousText(new Rgb(192, 192, 192), BackgroundColor, Decorations, Text);
 
         // BG styling
         public FabulousText BgRgb(byte red, byte green, byte blue)
         {
-            var bgColor = new RgbColor(red, green, blue);
+            var bgColor = new Rgb(red, green, blue);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text);
         }
 
         public FabulousText BgHex(string hex)
         {
-            var bgColor = RgbColor.FromHex(hex);
+            var bgColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text);
         }
 
         public FabulousText BgKeyword(string keyword)
         {
-            var bgColor = RgbColor.FromKeyword(keyword);
+            var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text);
         }
 
-        public FabulousText BgBlack => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgBlack => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgRed => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgRed => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgGreen => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgGreen => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgYellow => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgYellow => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgBlue => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgBlue => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgMagenta => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgMagenta => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgCyan => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgCyan => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgWhite => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgWhite => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
         // bright black
-        public FabulousText BgGray => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgGray => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgGrey => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgGrey => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgRedBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgRedBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgGreenBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgGreenBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgYellowBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgYellowBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgBlueBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgBlueBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgMagentaBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgMagentaBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgCyanBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgCyanBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
-        public FabulousText BgWhiteBright => new FabulousText(ForegroundColor, new RgbColor(0, 0, 0), Decorations, Text);
+        public FabulousText BgWhiteBright => new FabulousText(ForegroundColor, new Rgb(0, 0, 0), Decorations, Text);
 
         // decorations
         public FabulousText Blink => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Blink, Text);
@@ -468,7 +467,7 @@ namespace SJP.Fabulous
 
         public static implicit operator FabulousText(string text)
         {
-            return new FabulousText(new RgbColor(192, 192, 192), new RgbColor(0, 0, 0), TextDecoration.None, text);
+            return new FabulousText(new Rgb(192, 192, 192), new Rgb(0, 0, 0), TextDecoration.None, text);
         }
 
         public static FabulousTextCollection operator +(FabulousText fragmentA, FabulousText fragmentB)
@@ -479,7 +478,7 @@ namespace SJP.Fabulous
 
     public static class TextFragmentExtensions
     {
-        public static FabulousText Foreground(this FabulousText fragment, RgbColor foreColor)
+        public static FabulousText Foreground(this FabulousText fragment, IColor foreColor)
         {
             if (fragment == null)
                 throw new ArgumentNullException(nameof(fragment));
@@ -487,7 +486,7 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, fragment.BackgroundColor, fragment.Decorations, fragment.Text);
         }
 
-        public static FabulousText Background(this FabulousText fragment, RgbColor backColor)
+        public static FabulousText Background(this FabulousText fragment, IColor backColor)
         {
             if (fragment == null)
                 throw new ArgumentNullException(nameof(fragment));
@@ -580,238 +579,47 @@ namespace SJP.Fabulous
         WhiteBright
     }
 
-    // dummy for now until we get a proper color solution,
-    // i.e. one that can span something like the HCL colorspace for color matching
-    public struct RgbColor
-    {
-        public RgbColor((byte red, byte green, byte blue) values)
-            : this(values.red, values.green, values.blue)
-        {
-        }
-
-        public RgbColor(byte red, byte green, byte blue)
-        {
-            Red = red;
-            Green = green;
-            Blue = blue;
-        }
-
-        public byte Red { get; }
-
-        public byte Green { get; }
-
-        public byte Blue { get; }
-
-        public static RgbColor FromHex(string hex)
-        {
-            if (string.IsNullOrWhiteSpace(hex))
-                throw new ArgumentNullException(nameof(hex));
-
-            if (hex.Length < 3)
-                throw new ArgumentException("hex string does not have enough characters", nameof(hex));
-
-            if (hex.StartsWith("#"))
-                hex = hex.Substring(1);
-
-            if (hex.Length != 3 && hex.Length != 6)
-                throw new ArgumentException("hex string is not the right length, must either be 3 or 6 hexadecimal characters.", nameof(hex));
-
-            var inputLength = hex.Length;
-
-            var rStr = string.Empty;
-            var gStr = string.Empty;
-            var bStr = string.Empty;
-
-            if (inputLength == 3)
-            {
-                rStr = new string(hex[0], 2);
-                gStr = new string(hex[1], 2);
-                bStr = new string(hex[2], 2);
-            }
-            else if (inputLength == 6)
-            {
-                rStr = hex.Substring(0, 2);
-                gStr = hex.Substring(2, 2);
-                bStr = hex.Substring(4, 2);
-            }
-
-            var isValidHex = true;
-            isValidHex &= byte.TryParse(rStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte r);
-            isValidHex &= byte.TryParse(gStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte g);
-            isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte b);
-
-            if (!isValidHex)
-                throw new ArgumentException("hex string contains invalid hex characters", nameof(hex));
-
-            return new RgbColor(r, g, b);
-        }
-
-        public static RgbColor FromKeyword(string keyword)
-        {
-            if (string.IsNullOrWhiteSpace(keyword))
-                throw new ArgumentNullException(nameof(keyword));
-
-            if (!_keywordColors.ContainsKey(keyword))
-                throw new ArgumentOutOfRangeException(nameof(keyword), "Unknown keyword for color: " + keyword);
-
-            return _keywordColors[keyword];
-        }
-
-        private readonly static IReadOnlyDictionary<string, RgbColor> _keywordColors = new Dictionary<string, RgbColor>(StringComparer.OrdinalIgnoreCase)
-        {
-            ["aliceblue"] = new RgbColor(240, 248, 255),
-            ["antiquewhite"] = new RgbColor(250, 235, 215),
-            ["aqua"] = new RgbColor(0, 255, 255),
-            ["aquamarine"] = new RgbColor(127, 255, 212),
-            ["azure"] = new RgbColor(240, 255, 255),
-            ["beige"] = new RgbColor(245, 245, 220),
-            ["bisque"] = new RgbColor(255, 228, 196),
-            ["black"] = new RgbColor(0, 0, 0),
-            ["blanchedalmond"] = new RgbColor(255, 235, 205),
-            ["blue"] = new RgbColor(0, 0, 255),
-            ["blueviolet"] = new RgbColor(138, 43, 226),
-            ["brown"] = new RgbColor(165, 42, 42),
-            ["burlywood"] = new RgbColor(222, 184, 135),
-            ["cadetblue"] = new RgbColor(95, 158, 160),
-            ["chartreuse"] = new RgbColor(127, 255, 0),
-            ["chocolate"] = new RgbColor(210, 105, 30),
-            ["coral"] = new RgbColor(255, 127, 80),
-            ["cornflowerblue"] = new RgbColor(100, 149, 237),
-            ["cornsilk"] = new RgbColor(255, 248, 220),
-            ["crimson"] = new RgbColor(220, 20, 60),
-            ["cyan"] = new RgbColor(0, 255, 255),
-            ["darkblue"] = new RgbColor(0, 0, 139),
-            ["darkcyan"] = new RgbColor(0, 139, 139),
-            ["darkgoldenrod"] = new RgbColor(184, 134, 11),
-            ["darkgray"] = new RgbColor(169, 169, 169),
-            ["darkgreen"] = new RgbColor(0, 100, 0),
-            ["darkgrey"] = new RgbColor(169, 169, 169),
-            ["darkkhaki"] = new RgbColor(189, 183, 107),
-            ["darkmagenta"] = new RgbColor(139, 0, 139),
-            ["darkolivegreen"] = new RgbColor(85, 107, 47),
-            ["darkorange"] = new RgbColor(255, 140, 0),
-            ["darkorchid"] = new RgbColor(153, 50, 204),
-            ["darkred"] = new RgbColor(139, 0, 0),
-            ["darksalmon"] = new RgbColor(233, 150, 122),
-            ["darkseagreen"] = new RgbColor(143, 188, 143),
-            ["darkslateblue"] = new RgbColor(72, 61, 139),
-            ["darkslategray"] = new RgbColor(47, 79, 79),
-            ["darkslategrey"] = new RgbColor(47, 79, 79),
-            ["darkturquoise"] = new RgbColor(0, 206, 209),
-            ["darkviolet"] = new RgbColor(148, 0, 211),
-            ["deeppink"] = new RgbColor(255, 20, 147),
-            ["deepskyblue"] = new RgbColor(0, 191, 255),
-            ["dimgray"] = new RgbColor(105, 105, 105),
-            ["dimgrey"] = new RgbColor(105, 105, 105),
-            ["dodgerblue"] = new RgbColor(30, 144, 255),
-            ["firebrick"] = new RgbColor(178, 34, 34),
-            ["floralwhite"] = new RgbColor(255, 250, 240),
-            ["forestgreen"] = new RgbColor(34, 139, 34),
-            ["fuchsia"] = new RgbColor(255, 0, 255),
-            ["gainsboro"] = new RgbColor(220, 220, 220),
-            ["ghostwhite"] = new RgbColor(248, 248, 255),
-            ["gold"] = new RgbColor(255, 215, 0),
-            ["goldenrod"] = new RgbColor(218, 165, 32),
-            ["gray"] = new RgbColor(128, 128, 128),
-            ["green"] = new RgbColor(0, 128, 0),
-            ["greenyellow"] = new RgbColor(173, 255, 47),
-            ["grey"] = new RgbColor(128, 128, 128),
-            ["honeydew"] = new RgbColor(240, 255, 240),
-            ["hotpink"] = new RgbColor(255, 105, 180),
-            ["indianred"] = new RgbColor(205, 92, 92),
-            ["indigo"] = new RgbColor(75, 0, 130),
-            ["ivory"] = new RgbColor(255, 255, 240),
-            ["khaki"] = new RgbColor(240, 230, 140),
-            ["lavender"] = new RgbColor(230, 230, 250),
-            ["lavenderblush"] = new RgbColor(255, 240, 245),
-            ["lawngreen"] = new RgbColor(124, 252, 0),
-            ["lemonchiffon"] = new RgbColor(255, 250, 205),
-            ["lightblue"] = new RgbColor(173, 216, 230),
-            ["lightcoral"] = new RgbColor(240, 128, 128),
-            ["lightcyan"] = new RgbColor(224, 255, 255),
-            ["lightgoldenrodyellow"] = new RgbColor(250, 250, 210),
-            ["lightgray"] = new RgbColor(211, 211, 211),
-            ["lightgreen"] = new RgbColor(144, 238, 144),
-            ["lightgrey"] = new RgbColor(211, 211, 211),
-            ["lightpink"] = new RgbColor(255, 182, 193),
-            ["lightsalmon"] = new RgbColor(255, 160, 122),
-            ["lightseagreen"] = new RgbColor(32, 178, 170),
-            ["lightskyblue"] = new RgbColor(135, 206, 250),
-            ["lightslategray"] = new RgbColor(119, 136, 153),
-            ["lightslategrey"] = new RgbColor(119, 136, 153),
-            ["lightsteelblue"] = new RgbColor(176, 196, 222),
-            ["lightyellow"] = new RgbColor(255, 255, 224),
-            ["lime"] = new RgbColor(0, 255, 0),
-            ["limegreen"] = new RgbColor(50, 205, 50),
-            ["linen"] = new RgbColor(250, 240, 230),
-            ["magenta"] = new RgbColor(255, 0, 255),
-            ["maroon"] = new RgbColor(128, 0, 0),
-            ["mediumaquamarine"] = new RgbColor(102, 205, 170),
-            ["mediumblue"] = new RgbColor(0, 0, 205),
-            ["mediumorchid"] = new RgbColor(186, 85, 211),
-            ["mediumpurple"] = new RgbColor(147, 112, 219),
-            ["mediumseagreen"] = new RgbColor(60, 179, 113),
-            ["mediumslateblue"] = new RgbColor(123, 104, 238),
-            ["mediumspringgreen"] = new RgbColor(0, 250, 154),
-            ["mediumturquoise"] = new RgbColor(72, 209, 204),
-            ["mediumvioletred"] = new RgbColor(199, 21, 133),
-            ["midnightblue"] = new RgbColor(25, 25, 112),
-            ["mintcream"] = new RgbColor(245, 255, 250),
-            ["mistyrose"] = new RgbColor(255, 228, 225),
-            ["moccasin"] = new RgbColor(255, 228, 181),
-            ["navajowhite"] = new RgbColor(255, 222, 173),
-            ["navy"] = new RgbColor(0, 0, 128),
-            ["oldlace"] = new RgbColor(253, 245, 230),
-            ["olive"] = new RgbColor(128, 128, 0),
-            ["olivedrab"] = new RgbColor(107, 142, 35),
-            ["orange"] = new RgbColor(255, 165, 0),
-            ["orangered"] = new RgbColor(255, 69, 0),
-            ["orchid"] = new RgbColor(218, 112, 214),
-            ["palegoldenrod"] = new RgbColor(238, 232, 170),
-            ["palegreen"] = new RgbColor(152, 251, 152),
-            ["paleturquoise"] = new RgbColor(175, 238, 238),
-            ["palevioletred"] = new RgbColor(219, 112, 147),
-            ["papayawhip"] = new RgbColor(255, 239, 213),
-            ["peachpuff"] = new RgbColor(255, 218, 185),
-            ["peru"] = new RgbColor(205, 133, 63),
-            ["pink"] = new RgbColor(255, 192, 203),
-            ["plum"] = new RgbColor(221, 160, 221),
-            ["powderblue"] = new RgbColor(176, 224, 230),
-            ["purple"] = new RgbColor(128, 0, 128),
-            ["rebeccapurple"] = new RgbColor(102, 51, 153),
-            ["red"] = new RgbColor(255, 0, 0),
-            ["rosybrown"] = new RgbColor(188, 143, 143),
-            ["royalblue"] = new RgbColor(65, 105, 225),
-            ["saddlebrown"] = new RgbColor(139, 69, 19),
-            ["salmon"] = new RgbColor(250, 128, 114),
-            ["sandybrown"] = new RgbColor(244, 164, 96),
-            ["seagreen"] = new RgbColor(46, 139, 87),
-            ["seashell"] = new RgbColor(255, 245, 238),
-            ["sienna"] = new RgbColor(160, 82, 45),
-            ["silver"] = new RgbColor(192, 192, 192),
-            ["skyblue"] = new RgbColor(135, 206, 235),
-            ["slateblue"] = new RgbColor(106, 90, 205),
-            ["slategray"] = new RgbColor(112, 128, 144),
-            ["slategrey"] = new RgbColor(112, 128, 144),
-            ["snow"] = new RgbColor(255, 250, 250),
-            ["springgreen"] = new RgbColor(0, 255, 127),
-            ["steelblue"] = new RgbColor(70, 130, 180),
-            ["tan"] = new RgbColor(210, 180, 140),
-            ["teal"] = new RgbColor(0, 128, 128),
-            ["thistle"] = new RgbColor(216, 191, 216),
-            ["tomato"] = new RgbColor(255, 99, 71),
-            ["turquoise"] = new RgbColor(64, 224, 208),
-            ["violet"] = new RgbColor(238, 130, 238),
-            ["wheat"] = new RgbColor(245, 222, 179),
-            ["white"] = new RgbColor(255, 255, 255),
-            ["whitesmoke"] = new RgbColor(245, 245, 245),
-            ["yellow"] = new RgbColor(255, 255, 0),
-            ["yellowgreen"] = new RgbColor(154, 205, 50)
-        };
-    }
-
     public static class AnsiModifiers
     {
+        public static class ConsoleColors
+        {
+            public static IRgb Black => new Rgb(0, 0, 0);
+
+            public static IRgb DarkBlue => new Rgb(0, 0, 139);
+
+            public static IRgb DarkGreen => new Rgb(0, 100, 0);
+
+            public static IRgb DarkCyan => new Rgb(0, 139, 139);
+
+            public static IRgb DarkRed => new Rgb(139, 0, 0);
+
+            public static IRgb DarkMagenta => new Rgb(139, 0, 139);
+
+            public static IRgb DarkYellow => new Rgb(215, 195, 42);
+
+            public static IRgb DarkGray => new Rgb(128, 128, 128);
+
+            public static IRgb DarkGrey => new Rgb(128, 128, 128);
+
+            public static IRgb Gray => new Rgb(169, 169, 169);
+
+            public static IRgb Grey => new Rgb(169, 169, 169);
+
+            public static IRgb Blue => new Rgb(0, 0, 255);
+
+            public static IRgb Green => new Rgb(0, 128, 0);
+
+            public static IRgb Cyan => new Rgb(0, 255, 255);
+
+            public static IRgb Red => new Rgb(255, 0, 0);
+
+            public static IRgb Magenta => new Rgb(255, 0, 255);
+
+            public static IRgb Yellow => new Rgb(255, 255, 0);
+
+            public static IRgb White => new Rgb(255, 255, 255);
+        }
+
         public static ConsoleStyle Reset { get; } = new ConsoleStyle(0, 0);
 
         // 21 isn't widely supported and 22 does the same thing

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
     public static class ConsoleDefaults
     {
-        public static RgbColor ForegroundColor => new RgbColor(192, 192, 192);
+        public static IRgb ForegroundColor => new Rgb(192, 192, 192);
 
-        public static RgbColor BackgroundColor => new RgbColor(0, 0, 0);
+        public static IRgb BackgroundColor => new Rgb(0, 0, 0);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous.ConsoleTest
 {
@@ -6,14 +7,14 @@ namespace SJP.Fabulous.ConsoleTest
     {
         private static void Main(string[] args)
         {
-            var x = RgbColor.FromHex("afc");
-            var y = RgbColor.FromHex("#aa0001");
+            var x = Rgb.FromHex("afc");
+            var y = Rgb.FromHex("#aa0001");
 
             Fabulous.WriteLine("test message");
 
-            Fabulous.WriteLine(new FabulousText(new RgbColor(0,0,0), new RgbColor(0,1,1), TextDecoration.None, "hello"));
+            Fabulous.WriteLine(new FabulousText(new Rgb(0,0,0), new Rgb(0,1,1), TextDecoration.None, "hello"));
 
-            Fabulous.WriteLine(new FabulousText(new RgbColor(0, 0, 0), new RgbColor(0, 1, 1), TextDecoration.None, "hello") + "combine test");
+            Fabulous.WriteLine(new FabulousText(new Rgb(0, 0, 0), new Rgb(0, 1, 1), TextDecoration.None, "hello") + "combine test");
 
             var a1 = Fabulous
                 .Rgb(12, 12, 13)
@@ -21,8 +22,8 @@ namespace SJP.Fabulous.ConsoleTest
                 .Text("abc");
             var a2 = "def";
             var a3 = Fabulous
-                .Foreground(new RgbColor(12, 12, 13))
-                .Background(new RgbColor(12, 12, 14))
+                .Foreground(new Rgb(12, 12, 13))
+                .Background(new Rgb(12, 12, 14))
                 .Text("ghi");
             Fabulous.WriteLine(a1 + a2 + a3);
 
@@ -41,7 +42,6 @@ namespace SJP.Fabulous.ConsoleTest
             Console.WriteLine();
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey(true);
-
         }
     }
 }
