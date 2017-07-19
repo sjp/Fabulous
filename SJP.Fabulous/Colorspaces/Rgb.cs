@@ -4,6 +4,15 @@ using System.Globalization;
 
 namespace SJP.Fabulous.Colorspaces
 {
+    public interface IRgb : IColor
+    {
+        byte Red { get; }
+
+        byte Green { get; }
+
+        byte Blue { get; }
+    }
+
     public struct Rgb : IRgb
     {
         public Rgb((byte red, byte green, byte blue) values)
@@ -65,7 +74,7 @@ namespace SJP.Fabulous.Colorspaces
             isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte b);
 
             if (!isValidHex)
-                throw new ArgumentException("hex string contains invalid hex characters", nameof(hex));
+                throw new ArgumentException("Hex string contains invalid hexadecimal characters.", nameof(hex));
 
             return new Rgb(r, g, b);
         }
