@@ -68,6 +68,27 @@ namespace SJP.Fabulous
 #endif
             }
         }
+
+        private static long WindowsBuildNumber => _windowsBuildNumberLoader.Value;
+
+        private static long GetWindowsBuildNumber()
+        {
+#if NETFX
+            using (var hklmKey = Registry.LocalMachine)
+            using (var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
+            {
+                if (subKey != null)
+                {
+                    var buildNumberStr = Convert.ToString(subKey.GetValue("CurrentBuildNumber"));
+                    if (buildNumberStr != null && long.TryParse(buildNumberStr, out var buildNumber))
+                        return buildNumber;
+                }
+            }
+#endif
+            return 0;
+        }
+
+        private readonly static Lazy<long> _windowsBuildNumberLoader = new Lazy<long>(GetWindowsBuildNumber);
     }
 
     // TODO VIRT TERM PROCESSING supported in build 14393

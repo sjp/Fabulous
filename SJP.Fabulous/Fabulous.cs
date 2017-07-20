@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
@@ -169,6 +170,8 @@ namespace SJP.Fabulous
 
         public static FabulousText Strikethrough => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Strikethrough, false, null);
 
+        #region Writer methods
+
         public static void Write(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -289,6 +292,368 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        public static void WriteError(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteError();
+        }
+
+        public static void WriteError(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteError();
+        }
+
+        public static void WriteError(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteError(args);
+        }
+
+        public static void WriteError(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            writer.WriteError();
+        }
+
+        public static void WriteError(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            writer.WriteError(args);
+        }
+
+        public static void WriteError(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            writer.WriteError();
+        }
+
+        public static void WriteError(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            writer.WriteError(args);
+        }
+
+        public static void WriteErrorLine(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteErrorLine();
+        }
+
+        public static void WriteErrorLine(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteErrorLine();
+        }
+
+        public static void WriteErrorLine(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            writer.WriteLine(args);
+        }
+
+        public static void WriteErrorLine(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            writer.WriteLine();
+        }
+
+        public static void WriteErrorLine(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            writer.WriteLine(args);
+        }
+
+        public static void WriteErrorLine(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            writer.WriteLine();
+        }
+
+        public static void WriteErrorLine(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            writer.WriteLine(args);
+        }
+
+        public static Task WriteAsync(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteAsync();
+        }
+
+        public static Task WriteAsync(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteAsync();
+        }
+
+        public static Task WriteAsync(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteAsync(args);
+        }
+
+        public static Task WriteAsync(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteAsync();
+        }
+
+        public static Task WriteAsync(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteAsync(args);
+        }
+
+        public static Task WriteAsync(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteAsync();
+        }
+
+        public static Task WriteAsync(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteAsync(args);
+        }
+
+        public static Task WriteLineAsync(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteLineAsync();
+        }
+
+        public static Task WriteLineAsync(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteLineAsync();
+        }
+
+        public static Task WriteLineAsync(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteLineAsync(args);
+        }
+
+        public static Task WriteLineAsync(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteLineAsync();
+        }
+
+        public static Task WriteLineAsync(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteLineAsync(args);
+        }
+
+        public static Task WriteLineAsync(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteLineAsync();
+        }
+
+        public static Task WriteLineAsync(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteLineAsync(args);
+        }
+
+        public static Task WriteErrorAsync(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorAsync();
+        }
+
+        public static Task WriteErrorAsync(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorAsync();
+        }
+
+        public static Task WriteErrorAsync(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorAsync(args);
+        }
+
+        public static Task WriteErrorAsync(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteErrorAsync();
+        }
+
+        public static Task WriteErrorAsync(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteErrorAsync(args);
+        }
+
+        public static Task WriteErrorAsync(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorAsync();
+        }
+
+        public static Task WriteErrorAsync(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorAsync(args);
+        }
+
+        public static Task WriteErrorLineAsync(object obj)
+        {
+            FabulousText fragment = obj?.ToString();
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorLineAsync();
+        }
+
+        public static Task WriteErrorLineAsync(string text)
+        {
+            FabulousText fragment = text;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorLineAsync();
+        }
+
+        public static Task WriteErrorLineAsync(string format, params object[] args)
+        {
+            FabulousText fragment = format;
+            FabulousTextCollection collection = fragment;
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorLineAsync(args);
+        }
+
+        public static Task WriteErrorLineAsync(FabulousText fragment)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteErrorLineAsync();
+        }
+
+        public static Task WriteErrorLineAsync(FabulousText fragment, params object[] args)
+        {
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
+            var writer = GetConsoleWriter(fragment);
+            return writer.WriteErrorLineAsync(args);
+        }
+
+        public static Task WriteErrorLineAsync(FabulousTextCollection collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorLineAsync();
+        }
+
+        public static Task WriteErrorLineAsync(FabulousTextCollection collection, params object[] args)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var writer = GetConsoleWriter(collection);
+            return writer.WriteErrorLineAsync(args);
+        }
+
+        #endregion Writer methods
+
         private static IRgb DefaultForeground { get; } = new Rgb(192, 192, 192);
 
         private static IRgb DefaultBackground { get; } = new Rgb(0, 0, 0);
@@ -305,15 +670,19 @@ namespace SJP.Fabulous
             switch (consoleSupport)
             {
                 case ConsoleColorMode.Basic:
-                    return WindowsConsole.IsWindows && !WindowsConsole.IsVirtualTerminalProcessingEnabled()
-                        ? new StandardConsoleWriter(collection) as IConsoleWriter
-                        : new AnsiSimpleConsoleWriter(collection) as IConsoleWriter;
+                    if (WindowsConsole.IsWindows && !WindowsConsole.IsVirtualTerminalProcessingEnabled())
+                        return new StandardConsoleWriter(collection);
+
+                    var basicAnsi = new AnsiSimpleStringBuilder(collection);
+                    return new AnsiConsoleWriter(basicAnsi.ToAnsiString());
                 case ConsoleColorMode.Enhanced:
-                    return new AnsiEnhancedConsoleWriter(collection);
+                    var enhancedText = new AnsiEnhancedStringBuilder(collection);
+                    return new AnsiConsoleWriter(enhancedText.ToAnsiString());
                 case ConsoleColorMode.Full:
-                    return new AnsiFullConsoleWriter(collection);
+                    var fullText = new AnsiFullStringBuilder(collection);
+                    return new AnsiConsoleWriter(fullText.ToAnsiString());
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(consoleSupport), "Unknown console support level " + consoleSupport.ToString());
+                    throw new ArgumentOutOfRangeException(nameof(consoleSupport), "Unknown console support level: " + consoleSupport.ToString());
             }
         }
     }

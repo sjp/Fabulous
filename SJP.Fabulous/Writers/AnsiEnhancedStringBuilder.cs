@@ -62,49 +62,6 @@ namespace SJP.Fabulous
             return builder.ToString();
         }
 
-        public string ToAnsiString(params object[] args)
-        {
-            var builder = new StringBuilder();
-
-            foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
-            {
-                var fgAnsiColor = GetAnsiColor(text.ForegroundColor.ToRgb());
-                var bgAnsiColor = GetAnsiColor(text.BackgroundColor.ToRgb());
-
-                var fgStart = ForegroundColorOpen + fgAnsiColor.ToString() + "m";
-                var bgStart = BackgroundColorOpen + bgAnsiColor.ToString() + "m";
-
-                if (text.ConsoleReset)
-                    builder.Append(Reset);
-
-                builder.Append(fgStart);
-                builder.Append(bgStart);
-
-                var styles = AnsiStyles.GetAnsiStyles(text.Decorations);
-                foreach (var style in styles)
-                {
-                    var ansiStyle = Escape + "[" + style.Start.ToString() + "m";
-                    builder.Append(ansiStyle);
-                }
-
-                builder.Append(text.Text);
-                builder.Append(BackgroundColorClose);
-                builder.Append(ForegroundColorClose);
-
-                foreach (var style in styles)
-                {
-                    var ansiStyle = Escape + "[" + style.Close.ToString() + "m";
-                    builder.Append(ansiStyle);
-                }
-
-                if (text.ConsoleReset)
-                    builder.Append(Reset);
-                Console.Write(builder.ToString());
-            }
-
-            return builder.ToString();
-        }
-
         protected static int GetAnsiColor(IRgb rgb)
         {
             if (rgb == null)
