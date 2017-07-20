@@ -17,7 +17,7 @@ namespace SJP.Fabulous
             return result;
         }
 
-        private static IReadOnlyDictionary<TextDecoration, ConsoleStyle> _decorations = new Dictionary<TextDecoration, ConsoleStyle>
+        private readonly static IReadOnlyDictionary<TextDecoration, ConsoleStyle> _decorations = new Dictionary<TextDecoration, ConsoleStyle>
         {
             [TextDecoration.Blink] = new ConsoleStyle(5, 25),
             [TextDecoration.Bold] = new ConsoleStyle(1, 22),

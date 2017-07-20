@@ -12,6 +12,4 @@
 
         public int Close { get; }
     }
-
-    
 }
