@@ -1,6 +1,8 @@
 ﻿#if PINVOKE
 using System;
 using System.Runtime.InteropServices;
+#else
+using System;
 #endif
 
 namespace SJP.Fabulous
@@ -48,18 +50,17 @@ namespace SJP.Fabulous
         public static bool IsVirtualTerminalProcessingEnabled() => false;
 #endif
 
-        public static bool IsWindows
+        public static bool IsWindows => _isWindows.Value;
+
+        private readonly static Lazy<bool> _isWindows = new Lazy<bool>(() =>
         {
-            get
-            {
 #if RUNTIME_INFORMATION
-                return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 #elif NETFX
-                return Environment.OSVersion.Platform == PlatformID.Win32NT;
+            return Environment.OSVersion.Platform == PlatformID.Win32NT;
 #else
-                return false;
+            return false;
 #endif
-            }
-        }
+        });
     }
 }
