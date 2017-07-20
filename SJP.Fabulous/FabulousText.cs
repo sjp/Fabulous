@@ -160,7 +160,6 @@ namespace SJP.Fabulous
             return new FabulousTextCollection(fragmentA, fragmentB);
         }
 
-
         #region IConsoleWriter
 
         public void Write() => Fabulous.Write(this);
