@@ -33,15 +33,6 @@ namespace SJP.Fabulous.ConsoleTest
             var standard = new StandardConsoleWriter(a1 + a2 + a3);
             standard.WriteLine();
 
-            var simple = new AnsiSimpleConsoleWriter(a1 + a2 + a3);
-            simple.WriteLine();
-
-            var enhanced = new AnsiEnhancedConsoleWriter(a1 + a2 + a3);
-            enhanced.WriteLine();
-
-            var full = new AnsiFullConsoleWriter(a1 + a2 + a3);
-            full.WriteLine();
-
             Console.WriteLine();
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey(true);
