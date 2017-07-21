@@ -7,6 +7,8 @@ namespace SJP.Fabulous.ConsoleTest
     {
         private static void Main(string[] args)
         {
+            var aklsdjl = Environment.GetEnvironmentVariables().Contains("PATH");
+
             var a1 = Fabulous
                 .Rgb(255, 0, 0)
                 .BgHex("#00f")

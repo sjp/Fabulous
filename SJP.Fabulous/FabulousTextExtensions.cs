@@ -9,6 +9,8 @@ namespace SJP.Fabulous
         {
             if (fragment == null)
                 throw new ArgumentNullException(nameof(fragment));
+            if (foreColor == null)
+                throw new ArgumentNullException(nameof(foreColor));
 
             return new FabulousText(foreColor, fragment.BackgroundColor, fragment.Decorations, fragment.ConsoleReset, fragment.Text);
         }
@@ -17,6 +19,8 @@ namespace SJP.Fabulous
         {
             if (fragment == null)
                 throw new ArgumentNullException(nameof(fragment));
+            if (backColor == null)
+                throw new ArgumentNullException(nameof(backColor));
 
             return new FabulousText(fragment.ForegroundColor, backColor, fragment.Decorations, fragment.ConsoleReset, fragment.Text);
         }

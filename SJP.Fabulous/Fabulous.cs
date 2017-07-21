@@ -8,11 +8,17 @@ namespace SJP.Fabulous
     {
         public static FabulousText Foreground(IRgb foreColor)
         {
+            if (foreColor == null)
+                throw new ArgumentNullException(nameof(foreColor));
+
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
         public static FabulousText Background(IRgb backColor)
         {
+            if (backColor == null)
+                throw new ArgumentNullException(nameof(backColor));
+
             return new FabulousText(DefaultForeground, backColor, TextDecoration.None, false, null);
         }
 
@@ -654,9 +660,9 @@ namespace SJP.Fabulous
 
         #endregion Writer methods
 
-        private static IRgb DefaultForeground { get; } = new Rgb(192, 192, 192);
+        private static IRgb DefaultForeground { get; } = ConsoleColors.White;
 
-        private static IRgb DefaultBackground { get; } = new Rgb(0, 0, 0);
+        private static IRgb DefaultBackground { get; } = ConsoleColors.Black;
 
         private static IConsoleWriter GetConsoleWriter(FabulousTextCollection collection)
         {

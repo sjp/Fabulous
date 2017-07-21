@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SJP.Fabulous.Colorspaces;
+using EnumsNET;
 
 namespace SJP.Fabulous
 {
@@ -10,6 +11,10 @@ namespace SJP.Fabulous
         {
             ForegroundColor = foreColor ?? throw new ArgumentNullException(nameof(foreColor));
             BackgroundColor = backColor ?? throw new ArgumentNullException(nameof(backColor));
+
+            if (!decorations.IsValid())
+                throw new ArgumentException($"The { nameof(TextDecoration) } provided must be a valid enum.", nameof(decorations));
+
             Decorations = decorations;
             ConsoleReset = reset;
             Text = text ?? string.Empty;
@@ -26,6 +31,8 @@ namespace SJP.Fabulous
         public string Text { get; }
 
         // FG styling
+        public FabulousText Rgb((byte red, byte green, byte blue) values)=> Rgb(values.red, values.green, values.blue);
+
         public FabulousText Rgb(byte red, byte green, byte blue)
         {
             var foreColor = new Rgb(red, green, blue);
@@ -34,12 +41,18 @@ namespace SJP.Fabulous
 
         public FabulousText Hex(string hex)
         {
+            if (string.IsNullOrWhiteSpace(hex))
+                throw new ArgumentNullException(nameof(hex));
+
             var foreColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(foreColor, BackgroundColor, Decorations, ConsoleReset, Text);
         }
 
         public FabulousText Keyword(string keyword)
         {
+            if (string.IsNullOrWhiteSpace(keyword))
+                throw new ArgumentNullException(nameof(keyword));
+
             var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(foreColor, BackgroundColor, Decorations, ConsoleReset, Text);
         }
@@ -80,6 +93,8 @@ namespace SJP.Fabulous
         public FabulousText WhiteBright => new FabulousText(ConsoleColors.WhiteBright, BackgroundColor, Decorations, ConsoleReset, Text);
 
         // BG styling
+        public FabulousText BgRgb((byte red, byte green, byte blue) values) => BgRgb(values.red, values.green, values.blue);
+
         public FabulousText BgRgb(byte red, byte green, byte blue)
         {
             var bgColor = new Rgb(red, green, blue);
@@ -150,13 +165,15 @@ namespace SJP.Fabulous
 
         public FabulousText Strikethrough => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Strikethrough, ConsoleReset, Text);
 
-        public static implicit operator FabulousText(string text)
-        {
-            return new FabulousText(new Rgb(192, 192, 192), new Rgb(0, 0, 0), TextDecoration.None, false, text);
-        }
+        public static implicit operator FabulousText(string text) => new FabulousText(ConsoleColors.White, ConsoleColors.Black, TextDecoration.None, false, text);
 
         public static FabulousTextCollection operator +(FabulousText fragmentA, FabulousText fragmentB)
         {
+            if (fragmentA == null)
+                throw new ArgumentNullException(nameof(fragmentA));
+            if (fragmentB == null)
+                throw new ArgumentNullException(nameof(fragmentB));
+
             return new FabulousTextCollection(fragmentA, fragmentB);
         }
 

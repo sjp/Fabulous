@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EnumsNET;
 
@@ -8,6 +9,9 @@ namespace SJP.Fabulous
     {
         public static IEnumerable<ConsoleStyle> GetAnsiStyles(TextDecoration decorations)
         {
+            if (!decorations.IsValid())
+                throw new ArgumentException($"The { nameof(TextDecoration) } provided must be a valid enum.", nameof(decorations));
+
             var result = new List<ConsoleStyle>();
 
             var validDecorations = decorations.GetFlags().Where(d => d != TextDecoration.None);
