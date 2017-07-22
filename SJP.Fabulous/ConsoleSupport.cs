@@ -2,10 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using EnumsNET;
-
-#if NETFX
 using Microsoft.Win32;
-#endif
 
 namespace SJP.Fabulous
 {
@@ -136,18 +133,19 @@ namespace SJP.Fabulous
                     // try enable ANSI
                     WindowsConsole.EnableVirtualTerminalProcessing();
                     if (!WindowsConsole.IsVirtualTerminalProcessingEnabled())
-                        return ConsoleColorMode.Basic;
+                        return ConsoleColorMode.Standard;
 
-                    return WindowsVersionSupportsTrueColor
-                        ? ConsoleColorMode.Full
-                        : ConsoleColorMode.Enhanced;
+                    if (WindowsVersionSupportsTrueColor)
+                        return ConsoleColorMode.Full;
+
+                    if (WindowsVersionSupportsEnhancedColor)
+                        return ConsoleColorMode.Enhanced;
+
+                    return ConsoleColorMode.Standard;
                 }
 
-                // TODO: check for true color somehow...
-                //       don't know how to do it on Windows yet, but apparently it is supported in an insiders build
-                return WindowsVersionSupportsTrueColor
-                    ? ConsoleColorMode.Full
-                    : ConsoleColorMode.Enhanced;
+                // TODO: check support for Linux/Mac ANSI
+                return ConsoleColorMode.Basic;
             }
         }
 
@@ -209,7 +207,6 @@ namespace SJP.Fabulous
 
         private static long GetWindowsBuildNumber()
         {
-#if NETFX
             using (var hklmKey = Registry.LocalMachine)
             using (var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
             {
@@ -220,7 +217,7 @@ namespace SJP.Fabulous
                         return buildNumber;
                 }
             }
-#endif
+
             return 0;
         }
 
