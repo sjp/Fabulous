@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using EnumsNET;
 using Microsoft.Win32;
+using SysEnv = System.Environment;
 
 namespace SJP.Fabulous
 {
@@ -13,12 +14,14 @@ namespace SJP.Fabulous
             get => _colorLevel;
             set
             {
-                if (!value.IsDefined())
+                if (!value.IsValid())
                     throw new ArgumentException($"The { nameof(ConsoleColorMode) } object is not set to a valid value.", nameof(ColorLevel));
 
                 _colorLevel = value;
             }
         }
+
+        public static IEnvironmentVariableProvider Environment => new EnvironmentVariableProvider();
 
         private static ConsoleColorMode _colorLevel = GetSupportedColorMode();
 
@@ -49,12 +52,13 @@ namespace SJP.Fabulous
         {
             get
             {
-                var ci = Environment.GetEnvironmentVariable("CI");
-                if (ci != null)
+                var env = Environment;
+                if (env.HasEnvironmentVariable("CI"))
                 {
-                    return ci == "Travis"
-                        || Environment.GetEnvironmentVariable("TRAVIS") != null
-                        || Environment.GetEnvironmentVariable("CIRCLECI") != null;
+                    var ciValue = env.GetEnvironmentVariable("CI");
+                    return ciValue == "Travis"
+                        || env.HasEnvironmentVariable("TRAVIS")
+                        || env.HasEnvironmentVariable("CIRCLECI");
                 }
 
                 return false;
@@ -65,11 +69,8 @@ namespace SJP.Fabulous
         {
             get
             {
-                var tcVersion = Environment.GetEnvironmentVariable("TEAMCITY_VERSION");
-                if (tcVersion == null)
-                    return false;
-
-                return Regex.IsMatch(tcVersion, @"^(9\.(0*[1-9]\d*)\.|\d{2,}\.)");
+                return Environment.TryGetEnvironmentVariable("TEAMCITY_VERSION", out var tcVersion)
+                    && Regex.IsMatch(tcVersion, @"^(9\.(0*[1-9]\d*)\.|\d{2,}\.)");
             }
         }
 
@@ -77,22 +78,21 @@ namespace SJP.Fabulous
         {
             get
             {
-                var termProgramVersion = Environment.GetEnvironmentVariable("TERM_PROGRAM_VERSION");
-                if (termProgramVersion == null)
-                    return ConsoleColorMode.None;
-
-                switch (termProgramVersion)
+                if (Environment.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out var termProgramVersion))
                 {
-                    case "iTerm.app":
-                        var pieces = termProgramVersion.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-                        var majorVersionText = pieces[0];
-                        if (!int.TryParse(majorVersionText, out var majorVersion))
-                            return ConsoleColorMode.None;
-                        return majorVersion >= 3 ? ConsoleColorMode.Full : ConsoleColorMode.Enhanced;
-                    case "Hyper":
-                        return ConsoleColorMode.Full;
-                    case "Apple_Terminal":
-                        return ConsoleColorMode.Enhanced;
+                    switch (termProgramVersion)
+                    {
+                        case "iTerm.app":
+                            var pieces = termProgramVersion.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                            var majorVersionText = pieces[0];
+                            if (!int.TryParse(majorVersionText, out var majorVersion))
+                                return ConsoleColorMode.None;
+                            return majorVersion >= 3 ? ConsoleColorMode.Full : ConsoleColorMode.Enhanced;
+                        case "Hyper":
+                            return ConsoleColorMode.Full;
+                        case "Apple_Terminal":
+                            return ConsoleColorMode.Enhanced;
+                    }
                 }
 
                 return ConsoleColorMode.None;
@@ -103,8 +103,8 @@ namespace SJP.Fabulous
         {
             get
             {
-                var term = Environment.GetEnvironmentVariable("TERM");
-                if (term == null)
+                var env = Environment;
+                if (!env.TryGetEnvironmentVariable("TERM", out var term))
                     return ConsoleColorMode.None;
 
                 if (Regex.IsMatch(term, "^(screen|xterm)-256(?:color)?"))
@@ -113,8 +113,7 @@ namespace SJP.Fabulous
                 if (Regex.IsMatch(term, "^screen|^xterm|^vt100|color|ansi|cygwin|linux", RegexOptions.IgnoreCase))
                     return ConsoleColorMode.Basic;
 
-                var colorTerm = Environment.GetEnvironmentVariable("COLORTERM");
-                if (colorTerm != null)
+                if (!env.HasEnvironmentVariable("COLORTERM"))
                     return ConsoleColorMode.Basic;
 
                 if (term == "dumb")
@@ -154,19 +153,19 @@ namespace SJP.Fabulous
             get
             {
 #if NETFX
-                if (Environment.OSVersion.Version.Major > 6)
+                if (SysEnv.OSVersion.Version.Major > 6)
                     return true;
-                if (Environment.OSVersion.Version.Major < 6)
+                if (SysEnv.OSVersion.Version.Major < 6)
                     return false;
 
-                if (Environment.OSVersion.Version.Minor > 2)
+                if (SysEnv.OSVersion.Version.Minor > 2)
                     return true;
-                if (Environment.OSVersion.Version.Minor < 2)
+                if (SysEnv.OSVersion.Version.Minor < 2)
                     return false;
 
-                if (Environment.OSVersion.Version.Build > 9200)
+                if (SysEnv.OSVersion.Version.Build > 9200)
                     return true;
-                if (Environment.OSVersion.Version.Build < 9200)
+                if (SysEnv.OSVersion.Version.Build < 9200)
                     return false;
 
                 return WindowsBuildNumber >= 14931;
@@ -181,19 +180,19 @@ namespace SJP.Fabulous
             get
             {
 #if NETFX
-                if (Environment.OSVersion.Version.Major > 6)
+                if (SysEnv.OSVersion.Version.Major > 6)
                     return true;
-                if (Environment.OSVersion.Version.Major < 6)
+                if (SysEnv.OSVersion.Version.Major < 6)
                     return false;
 
-                if (Environment.OSVersion.Version.Minor > 2)
+                if (SysEnv.OSVersion.Version.Minor > 2)
                     return true;
-                if (Environment.OSVersion.Version.Minor < 2)
+                if (SysEnv.OSVersion.Version.Minor < 2)
                     return false;
 
-                if (Environment.OSVersion.Version.Build > 9200)
+                if (SysEnv.OSVersion.Version.Build > 9200)
                     return true;
-                if (Environment.OSVersion.Version.Build < 9200)
+                if (SysEnv.OSVersion.Version.Build < 9200)
                     return false;
 
                 return WindowsBuildNumber >= 10586;
