@@ -17,6 +17,7 @@ namespace SJP.Fabulous.ConsoleTest
             var a3 = Fabulous
                 .Foreground(new Rgb(0, 0, 0))
                 .Background(new Rgb(0, 255, 0))
+                .Strikethrough
                 .Text("ghi");
             Fabulous.WriteLine(a1 + a2 + a3);
 

@@ -2,8 +2,14 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using EnumsNET;
+#if NETFX
 using Microsoft.Win32;
 using SysEnv = System.Environment;
+#endif
+#if RUNTIME_INFORMATION
+using System.Runtime.InteropServices;
+#endif
+
 
 namespace SJP.Fabulous
 {
@@ -202,10 +208,11 @@ namespace SJP.Fabulous
             }
         }
 
-        private static long WindowsBuildNumber => _windowsBuildNumberLoader.Value;
+        private static long WindowsBuildNumber => _windowsBuildNumber.Value;
 
         private static long GetWindowsBuildNumber()
         {
+#if NETFX
             using (var hklmKey = Registry.LocalMachine)
             using (var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
             {
@@ -216,13 +223,22 @@ namespace SJP.Fabulous
                         return buildNumber;
                 }
             }
+#elif RUNTIME_INFORMATION
+            var osDesc = RuntimeInformation.OSDescription ?? string.Empty;
+            if (osDesc.IndexOf("Windows", StringComparison.OrdinalIgnoreCase) < 0)
+                return 0;
 
+            var pieces = osDesc.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            var lastPiece = pieces[pieces.Length - 1];
+            if (long.TryParse(lastPiece, out var buildNumber))
+                return buildNumber;
+#endif
             return 0;
         }
 
         private static bool IsConsoleApp => _isConsoleApp.Value;
 
-        private readonly static Lazy<long> _windowsBuildNumberLoader = new Lazy<long>(GetWindowsBuildNumber);
+        private readonly static Lazy<long> _windowsBuildNumber = new Lazy<long>(GetWindowsBuildNumber);
 
         private readonly static Lazy<bool> _isConsoleApp = new Lazy<bool>(() => Console.OpenStandardInput() != Stream.Null);
     }

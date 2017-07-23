@@ -4,15 +4,6 @@ using System.Globalization;
 
 namespace SJP.Fabulous.Colorspaces
 {
-    public interface IRgb : IColor
-    {
-        byte Red { get; }
-
-        byte Green { get; }
-
-        byte Blue { get; }
-    }
-
     public struct Rgb : IRgb
     {
         public Rgb((byte red, byte green, byte blue) values)
@@ -41,13 +32,13 @@ namespace SJP.Fabulous.Colorspaces
                 throw new ArgumentNullException(nameof(hex));
 
             if (hex.Length < 3)
-                throw new ArgumentException("hex string does not have enough characters", nameof(hex));
+                throw new ArgumentException("Hex string does not have enough characters. Must be either 3 or 6 hexadecimal digits.", nameof(hex));
 
             if (hex.StartsWith("#"))
                 hex = hex.Substring(1);
 
             if (hex.Length != 3 && hex.Length != 6)
-                throw new ArgumentException("hex string is not the right length, must either be 3 or 6 hexadecimal characters.", nameof(hex));
+                throw new ArgumentException("Hex string is not the correct length. Must either be 3 or 6 hexadecimal characters.", nameof(hex));
 
             var inputLength = hex.Length;
 
@@ -69,12 +60,12 @@ namespace SJP.Fabulous.Colorspaces
             }
 
             var isValidHex = true;
-            isValidHex &= byte.TryParse(rStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte r);
-            isValidHex &= byte.TryParse(gStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte g);
-            isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte b);
+            isValidHex &= byte.TryParse(rStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var r);
+            isValidHex &= byte.TryParse(gStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var g);
+            isValidHex &= byte.TryParse(bStr, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var b);
 
             if (!isValidHex)
-                throw new ArgumentException("Hex string contains invalid hexadecimal characters.", nameof(hex));
+                throw new ArgumentException("Hex string contains invalid hexadecimal characters. Hex string is: " + hex, nameof(hex));
 
             return new Rgb(r, g, b);
         }

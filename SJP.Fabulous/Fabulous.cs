@@ -34,11 +34,7 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
-        public static FabulousText Rgb((byte red, byte green, byte blue) values)
-        {
-            var foreColor = new Rgb(values);
-            return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
-        }
+        public static FabulousText Rgb((byte red, byte green, byte blue) values) => Rgb(values.red, values.green, values.blue);
 
         public static FabulousText Hex(string hex)
         {
@@ -100,11 +96,7 @@ namespace SJP.Fabulous
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, false, null);
         }
 
-        public static FabulousText BgRgb((byte red, byte green, byte blue) values)
-        {
-            var bgColor = new Rgb(values);
-            return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, false, null);
-        }
+        public static FabulousText BgRgb((byte red, byte green, byte blue) values) => BgRgb(values.red, values.green, values.blue);
 
         public static FabulousText BgHex(string hex)
         {
@@ -672,7 +664,7 @@ namespace SJP.Fabulous
             if (WindowsConsole.IsWindows)
                 WindowsConsole.EnableVirtualTerminalProcessing();
 
-            var consoleSupport = ConsoleSupport.SupportedColorMode;
+            var consoleSupport = ConsoleColorMode.Full;
             switch (consoleSupport)
             {
                 case ConsoleColorMode.Basic:
