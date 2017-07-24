@@ -5,8 +5,19 @@ using EnumsNET;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Represents a styled piece of text.
+    /// </summary>
     public class FabulousText : IConsoleWriter
     {
+        /// <summary>
+        /// Creates a styled piece of text.
+        /// </summary>
+        /// <param name="foreColor">The foreground color to use.</param>
+        /// <param name="backColor">The background color to use.</param>
+        /// <param name="decorations">The decorations to be applied to the text.</param>
+        /// <param name="reset">Whether to reset the console to default styling before and after printing the text.</param>
+        /// <param name="text">The text to be styled.</param>
         public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, bool reset, string text)
         {
             ForegroundColor = foreColor ?? throw new ArgumentNullException(nameof(foreColor));
@@ -28,17 +39,36 @@ namespace SJP.Fabulous
 
         internal bool ConsoleReset { get; }
 
+        /// <summary>
+        /// The text that will be styled.
+        /// </summary>
         public string Text { get; }
 
-        // FG styling
+        /// <summary>
+        /// Styles the text with a new foreground color in the RGB colorspace.
+        /// </summary>
+        /// <param name="values">A tuple containing RGB color components.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public FabulousText Rgb((byte red, byte green, byte blue) values)=> Rgb(values.red, values.green, values.blue);
 
+        /// <summary>
+        /// Styles the text with a new foreground color in the RGB colorspace.
+        /// </summary>
+        /// <param name="red">The red component of the foreground color</param>
+        /// <param name="green">The green component of the foreground color</param>
+        /// <param name="blue">The blue component of the foreground color</param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public FabulousText Rgb(byte red, byte green, byte blue)
         {
             var foreColor = new Rgb(red, green, blue);
             return new FabulousText(foreColor, BackgroundColor, Decorations, ConsoleReset, Text);
         }
 
+        /// <summary>
+        /// Styles the text with a new foreground color as defined by a hexadecimal string in the RGB colorspace.
+        /// </summary>
+        /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public FabulousText Hex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -48,6 +78,11 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, BackgroundColor, Decorations, ConsoleReset, Text);
         }
 
+        /// <summary>
+        /// Styles the text with a new foreground color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public FabulousText Keyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -57,116 +92,270 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, BackgroundColor, Decorations, ConsoleReset, Text);
         }
 
-        public FabulousText Black => new FabulousText(ConsoleColors.Black, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a black foreground color.
+        /// </summary>
+        public FabulousText Black => new FabulousText(RgbConsoleColor.Black, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Red => new FabulousText(ConsoleColors.DarkRed, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a red foreground color.
+        /// </summary>
+        public FabulousText Red => new FabulousText(RgbConsoleColor.DarkRed, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Green => new FabulousText(ConsoleColors.DarkGreen, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a green foreground color.
+        /// </summary>
+        public FabulousText Green => new FabulousText(RgbConsoleColor.DarkGreen, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Yellow => new FabulousText(ConsoleColors.DarkYellow, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a yellow foreground color.
+        /// </summary>
+        public FabulousText Yellow => new FabulousText(RgbConsoleColor.DarkYellow, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Blue => new FabulousText(ConsoleColors.DarkBlue, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a blue foreground color.
+        /// </summary>
+        public FabulousText Blue => new FabulousText(RgbConsoleColor.DarkBlue, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Magenta => new FabulousText(ConsoleColors.DarkMagenta, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a magenta foreground color.
+        /// </summary>
+        public FabulousText Magenta => new FabulousText(RgbConsoleColor.DarkMagenta, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Cyan => new FabulousText(ConsoleColors.DarkCyan, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a cyan foreground color.
+        /// </summary>
+        public FabulousText Cyan => new FabulousText(RgbConsoleColor.DarkCyan, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText White => new FabulousText(ConsoleColors.White, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a white foreground color.
+        /// </summary>
+        public FabulousText White => new FabulousText(RgbConsoleColor.White, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        // bright black
-        public FabulousText Gray => new FabulousText(ConsoleColors.DarkGrey, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a gray foreground color.
+        /// </summary>
+        public FabulousText Gray => new FabulousText(RgbConsoleColor.DarkGrey, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText Grey => new FabulousText(ConsoleColors.DarkGrey, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a grey foreground color.
+        /// </summary>
+        public FabulousText Grey => new FabulousText(RgbConsoleColor.DarkGrey, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText RedBright => new FabulousText(ConsoleColors.Red, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright red foreground color.
+        /// </summary>
+        public FabulousText RedBright => new FabulousText(RgbConsoleColor.Red, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText GreenBright => new FabulousText(ConsoleColors.Green, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright green foreground color.
+        /// </summary>
+        public FabulousText GreenBright => new FabulousText(RgbConsoleColor.Green, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText YellowBright => new FabulousText(ConsoleColors.Yellow, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright yellow foreground color.
+        /// </summary>
+        public FabulousText YellowBright => new FabulousText(RgbConsoleColor.Yellow, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText BlueBright => new FabulousText(ConsoleColors.Blue, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright blue foreground color.
+        /// </summary>
+        public FabulousText BlueBright => new FabulousText(RgbConsoleColor.Blue, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText MagentaBright => new FabulousText(ConsoleColors.Magenta, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright magenta foreground color.
+        /// </summary>
+        public FabulousText MagentaBright => new FabulousText(RgbConsoleColor.Magenta, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText CyanBright => new FabulousText(ConsoleColors.Cyan, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright cyan foreground color.
+        /// </summary>
+        public FabulousText CyanBright => new FabulousText(RgbConsoleColor.Cyan, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        public FabulousText WhiteBright => new FabulousText(ConsoleColors.WhiteBright, BackgroundColor, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright white foreground color.
+        /// </summary>
+        public FabulousText WhiteBright => new FabulousText(RgbConsoleColor.WhiteBright, BackgroundColor, Decorations, ConsoleReset, Text);
 
-        // BG styling
+        /// <summary>
+        /// Styles the text with a new background color in the RGB colorspace.
+        /// </summary>
+        /// <param name="values">A tuple containing RGB color components.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public FabulousText BgRgb((byte red, byte green, byte blue) values) => BgRgb(values.red, values.green, values.blue);
 
+        /// <summary>
+        /// Styles the text with a new background color in the RGB colorspace.
+        /// </summary>
+        /// <param name="red">The red component of the background color</param>
+        /// <param name="green">The green component of the background color</param>
+        /// <param name="blue">The blue component of the background color</param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public FabulousText BgRgb(byte red, byte green, byte blue)
         {
             var bgColor = new Rgb(red, green, blue);
             return new FabulousText(ForegroundColor, bgColor, Decorations, ConsoleReset, Text);
         }
 
+        /// <summary>
+        /// Styles the text with a new background color as defined by a hexadecimal string in the RGB colorspace.
+        /// </summary>
+        /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public FabulousText BgHex(string hex)
         {
             var bgColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(ForegroundColor, bgColor, Decorations, ConsoleReset, Text);
         }
 
+        /// <summary>
+        /// Styles the text with a new background color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public FabulousText BgKeyword(string keyword)
         {
             var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(ForegroundColor, bgColor, Decorations, ConsoleReset, Text);
         }
 
-        public FabulousText BgBlack => new FabulousText(ForegroundColor, ConsoleColors.Black, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a black background color.
+        /// </summary>
+        public FabulousText BgBlack => new FabulousText(ForegroundColor, RgbConsoleColor.Black, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgRed => new FabulousText(ForegroundColor, ConsoleColors.DarkRed, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a red background color.
+        /// </summary>
+        public FabulousText BgRed => new FabulousText(ForegroundColor, RgbConsoleColor.DarkRed, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgGreen => new FabulousText(ForegroundColor, ConsoleColors.DarkGreen, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a green background color.
+        /// </summary>
+        public FabulousText BgGreen => new FabulousText(ForegroundColor, RgbConsoleColor.DarkGreen, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgYellow => new FabulousText(ForegroundColor, ConsoleColors.DarkYellow, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a yellow background color.
+        /// </summary>
+        public FabulousText BgYellow => new FabulousText(ForegroundColor, RgbConsoleColor.DarkYellow, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgBlue => new FabulousText(ForegroundColor, ConsoleColors.DarkBlue, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a blue background color.
+        /// </summary>
+        public FabulousText BgBlue => new FabulousText(ForegroundColor, RgbConsoleColor.DarkBlue, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgMagenta => new FabulousText(ForegroundColor, ConsoleColors.DarkMagenta, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a magenta background color.
+        /// </summary>
+        public FabulousText BgMagenta => new FabulousText(ForegroundColor, RgbConsoleColor.DarkMagenta, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgCyan => new FabulousText(ForegroundColor, ConsoleColors.DarkCyan, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a cyan background color.
+        /// </summary>
+        public FabulousText BgCyan => new FabulousText(ForegroundColor, RgbConsoleColor.DarkCyan, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgWhite => new FabulousText(ForegroundColor, ConsoleColors.White, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a white background color.
+        /// </summary>
+        public FabulousText BgWhite => new FabulousText(ForegroundColor, RgbConsoleColor.White, Decorations, ConsoleReset, Text);
 
-        // bright black
-        public FabulousText BgGray => new FabulousText(ForegroundColor, ConsoleColors.Grey, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a gray background color.
+        /// </summary>
+        public FabulousText BgGray => new FabulousText(ForegroundColor, RgbConsoleColor.Grey, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgGrey => new FabulousText(ForegroundColor, ConsoleColors.Grey, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a grey background color.
+        /// </summary>
+        public FabulousText BgGrey => new FabulousText(ForegroundColor, RgbConsoleColor.Grey, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgRedBright => new FabulousText(ForegroundColor, ConsoleColors.Red, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright red background color.
+        /// </summary>
+        public FabulousText BgRedBright => new FabulousText(ForegroundColor, RgbConsoleColor.Red, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgGreenBright => new FabulousText(ForegroundColor, ConsoleColors.Green, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright green background color.
+        /// </summary>
+        public FabulousText BgGreenBright => new FabulousText(ForegroundColor, RgbConsoleColor.Green, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgYellowBright => new FabulousText(ForegroundColor, ConsoleColors.Yellow, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright yellow background color.
+        /// </summary>
+        public FabulousText BgYellowBright => new FabulousText(ForegroundColor, RgbConsoleColor.Yellow, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgBlueBright => new FabulousText(ForegroundColor, ConsoleColors.Blue, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright blue background color.
+        /// </summary>
+        public FabulousText BgBlueBright => new FabulousText(ForegroundColor, RgbConsoleColor.Blue, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgMagentaBright => new FabulousText(ForegroundColor, ConsoleColors.Magenta, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright magenta background color.
+        /// </summary>
+        public FabulousText BgMagentaBright => new FabulousText(ForegroundColor, RgbConsoleColor.Magenta, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgCyanBright => new FabulousText(ForegroundColor, ConsoleColors.Cyan, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright cyan background color.
+        /// </summary>
+        public FabulousText BgCyanBright => new FabulousText(ForegroundColor, RgbConsoleColor.Cyan, Decorations, ConsoleReset, Text);
 
-        public FabulousText BgWhiteBright => new FabulousText(ForegroundColor, ConsoleColors.WhiteBright, Decorations, ConsoleReset, Text);
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bright white background color.
+        /// </summary>
+        public FabulousText BgWhiteBright => new FabulousText(ForegroundColor, RgbConsoleColor.WhiteBright, Decorations, ConsoleReset, Text);
 
-        // decorations
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but will reset the console to default styling before and after printing the text.
+        /// </summary>
         public FabulousText Reset => new FabulousText(ForegroundColor, BackgroundColor, Decorations, true, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but will cause the text to blink when printed.
+        /// </summary>
         public FabulousText Blink => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Blink, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with a bold font weight.
+        /// </summary>
         public FabulousText Bold => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Bold, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with dimmed text.
+        /// </summary>
         public FabulousText Dim => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Dim, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but text styled in italic form.
+        /// </summary>
         public FabulousText Italic => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Italic, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with the text being underlined when printed.
+        /// </summary>
         public FabulousText Underline => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Underline, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with the text concealed when printed.
+        /// </summary>
         public FabulousText Hidden => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Hidden, ConsoleReset, Text);
 
+        /// <summary>
+        /// Returns a new text object that is the same as the current object, but with the text styled with a horizontal strike through the middle of the text.
+        /// </summary>
         public FabulousText Strikethrough => new FabulousText(ForegroundColor, BackgroundColor, Decorations | TextDecoration.Strikethrough, ConsoleReset, Text);
 
-        public static implicit operator FabulousText(string text) => new FabulousText(ConsoleColors.White, ConsoleColors.Black, TextDecoration.None, false, text);
+        /// <summary>
+        /// Initializes text styling from a <see cref="string"/> object.
+        /// </summary>
+        /// <param name="text">Text in the form of a <see cref="string"/> object.</param>
+        public static implicit operator FabulousText(string text) => new FabulousText(RgbConsoleColor.White, RgbConsoleColor.Black, TextDecoration.None, false, text);
 
+        /// <summary>
+        /// Combines two styled text objects.
+        /// </summary>
+        /// <param name="fragmentA">A styled piece of text.</param>
+        /// <param name="fragmentB">A styled piece of text.</param>
+        /// <returns>An object representing a collection of styled text objects.</returns>
         public static FabulousTextCollection operator +(FabulousText fragmentA, FabulousText fragmentB)
         {
             if (fragmentA == null)
@@ -179,36 +368,101 @@ namespace SJP.Fabulous
 
         #region IConsoleWriter
 
+        /// <summary>
+        /// Writes the styled text to the standard output stream.
+        /// </summary>
         public void Write() => Fabulous.Write(this);
 
+        /// <summary>
+        /// Writes using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void Write(params object[] args) => Fabulous.Write(this, args);
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
         public void WriteLine() => Fabulous.WriteLine(this);
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be printed to standard output stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteLine(params object[] args) => Fabulous.WriteLine(this, args);
 
+        /// <summary>
+        /// Writes the styled text to the standard error stream.
+        /// </summary>
         public void WriteError() => Fabulous.WriteError(this);
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteError(params object[] args) => Fabulous.WriteError(this, args);
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
         public void WriteErrorLine() => Fabulous.WriteErrorLine(this);
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteErrorLine(params object[] args) => Fabulous.WriteErrorLine(this, args);
 
+        /// <summary>
+        /// Asynchronously writes the styled text to the standard output stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteAsync() => Fabulous.WriteAsync(this);
 
+        /// <summary>
+        /// Asynchronously writes using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteAsync(params object[] args) => Fabulous.WriteAsync(this, args);
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteLineAsync() => Fabulous.WriteLineAsync(this);
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to standard output stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteLineAsync(params object[] args) => Fabulous.WriteLineAsync(this, args);
 
+        /// <summary>
+        /// Asynchronously writes the styled text to the standard error stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteErrorAsync() => Fabulous.WriteErrorAsync(this);
+
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
 
         public Task WriteErrorAsync(params object[] args) => Fabulous.WriteErrorAsync(this, args);
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteErrorLineAsync() => Fabulous.WriteErrorLineAsync(this);
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public Task WriteErrorLineAsync(params object[] args) => Fabulous.WriteErrorLineAsync(this, args);
 
         #endregion IConsoleWriter

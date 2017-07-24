@@ -5,7 +5,7 @@ using EnumsNET;
 
 namespace SJP.Fabulous
 {
-    public static class AnsiStyles
+    internal static class AnsiStyles
     {
         public static IEnumerable<ConsoleStyle> GetAnsiStyles(TextDecoration decorations)
         {

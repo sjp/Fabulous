@@ -2,16 +2,58 @@
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Defines methods used to provide environment variables.
+    /// </summary>
     public interface IEnvironmentVariableProvider
     {
-        string GetEnvironmentVariable(string variableName);
+        /// <summary>
+        /// Retrieves the value of an environment variable from the current process.
+        /// </summary>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <returns>The value of the environment variable. This will be <b>null</b> if missing.</returns>
+        string GetEnvironmentVariable(string variable);
 
-        bool TryGetEnvironmentVariable(string variableName, out string value);
+        /// <summary>
+        /// Retrieves the value of an environment variable from the current process. The return value indicates whether retrieval was successful.
+        /// </summary>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <param name="value">The value of the environment variable. This will be <b>null</b> if missing.</param>
+        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        bool TryGetEnvironmentVariable(string variable, out string value);
 
-        T GetEnvironmentVariable<T>(string variableName) where T : IConvertible;
+        /// <summary>
+        /// Retrieves the value of an environment variable from the current process to the target type.
+        /// </summary>
+        /// <typeparam name="T">The type of object to return.</typeparam>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <returns>The value of the environment variable as an object of type <typeparamref name="T"/>.</returns>
+        T GetEnvironmentVariable<T>(string variable) where T : IConvertible;
 
-        bool TryGetEnvironmentVariable<T>(string variableName, out T value) where T : IConvertible;
+        /// <summary>
+        /// Retrieves the value of an environment variable from the current process to the target type. The return value indicates whether retrieval and conversion was successful.
+        /// </summary>
+        /// <typeparam name="T">The type of object to return.</typeparam>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <param name="value"></param>
+        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        bool TryGetEnvironmentVariable<T>(string variable, out T value) where T : IConvertible;
 
-        bool HasEnvironmentVariable(string variableName);
+        /// <summary>
+        /// Retrieves the value of an environment variable from the current process to the target type. The return value indicates whether retrieval and conversion was successful.
+        /// </summary>
+        /// <typeparam name="T">The type of object to return.</typeparam>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <param name="formatter">An object that supplies culture-specific formatting information.</param>
+        /// <param name="value"></param>
+        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        bool TryGetEnvironmentVariable<T>(string variable, IFormatProvider formatter, out T value) where T : IConvertible;
+
+        /// <summary>
+        /// Determines whether an environment variable is present.
+        /// </summary>
+        /// <param name="variable">The name of the environment variable.</param>
+        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        bool HasEnvironmentVariable(string variable);
     }
 }

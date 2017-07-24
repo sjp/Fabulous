@@ -10,11 +10,16 @@ using SysEnv = System.Environment;
 using System.Runtime.InteropServices;
 #endif
 
-
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Provides information on determining the level of support that the current console provides.
+    /// </summary>
     public static class ConsoleSupport
     {
+        /// <summary>
+        /// Determines the maximum color level for the current console.
+        /// </summary>
         public static ConsoleColorMode ColorLevel
         {
             get => _colorLevel;
@@ -27,10 +32,14 @@ namespace SJP.Fabulous
             }
         }
 
-        public static IEnvironmentVariableProvider Environment => new EnvironmentVariableProvider();
+        private static IEnvironmentVariableProvider Environment => new EnvironmentVariableProvider();
 
         private static ConsoleColorMode _colorLevel = GetSupportedColorMode();
 
+        /// <summary>
+        /// Retrieves the maximum color level for the current console.
+        /// </summary>
+        /// <returns>A <see cref="ConsoleColorMode"/> object.</returns>
         public static ConsoleColorMode GetSupportedColorMode()
         {
             if (!IsConsoleApp)
@@ -54,7 +63,7 @@ namespace SJP.Fabulous
             return ConsoleColorMode.None;
         }
 
-        public static bool IsAnsiStyledCiEnvironment
+        private static bool IsAnsiStyledCiEnvironment
         {
             get
             {
@@ -71,7 +80,7 @@ namespace SJP.Fabulous
             }
         }
 
-        public static bool IsTeamCityAnsiStyled
+        private static bool IsTeamCityAnsiStyled
         {
             get
             {
@@ -80,7 +89,7 @@ namespace SJP.Fabulous
             }
         }
 
-        public static ConsoleColorMode AnsiStyledTerminalProgram
+        private static ConsoleColorMode AnsiStyledTerminalProgram
         {
             get
             {
@@ -105,7 +114,7 @@ namespace SJP.Fabulous
             }
         }
 
-        public static ConsoleColorMode TermColorMode
+        private static ConsoleColorMode TermColorMode
         {
             get
             {
@@ -129,7 +138,7 @@ namespace SJP.Fabulous
             }
         }
 
-        public static ConsoleColorMode SupportedColorMode
+        private static ConsoleColorMode SupportedColorMode
         {
             get
             {
@@ -240,6 +249,10 @@ namespace SJP.Fabulous
 
         private readonly static Lazy<long> _windowsBuildNumber = new Lazy<long>(GetWindowsBuildNumber);
 
-        private readonly static Lazy<bool> _isConsoleApp = new Lazy<bool>(() => Console.OpenStandardInput() != Stream.Null);
+        private readonly static Lazy<bool> _isConsoleApp = new Lazy<bool>(() =>
+        {
+            using (var stream = Console.OpenStandardInput())
+                return (stream ?? Stream.Null) != Stream.Null;
+        });
     }
 }

@@ -4,8 +4,16 @@ using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Prints and initializes styled text for use in a console.
+    /// </summary>
     public static class Fabulous
     {
+        /// <summary>
+        /// Creates a new <see cref="FabulousText"/> object that has a given foreground color.
+        /// </summary>
+        /// <param name="foreColor">A color defined in the RGB colorspace.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public static FabulousText Foreground(IRgb foreColor)
         {
             if (foreColor == null)
@@ -14,6 +22,11 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
+        /// <summary>
+        /// Creates a new <see cref="FabulousText"/> object that has a given background color.
+        /// </summary>
+        /// <param name="backColor">A color defined in the RGB colorspace.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public static FabulousText Background(IRgb backColor)
         {
             if (backColor == null)
@@ -22,20 +35,38 @@ namespace SJP.Fabulous
             return new FabulousText(DefaultForeground, backColor, TextDecoration.None, false, null);
         }
 
-        public static FabulousText Text(string text)
-        {
-            return new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.None, false, text);
-        }
+        /// <summary>
+        /// Creates a new <see cref="FabulousText"/> object that has text set to a given string.
+        /// </summary>
+        /// <param name="text">A string to be printed that may be styled.</param>
+        /// <returns>A new text object that is the same as the current object, but with the provided string set as the printable text.</returns>
+        public static FabulousText Text(string text) => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.None, false, text);
 
-        // FG styling
+        /// <summary>
+        /// Styles the text with a foreground color in the RGB colorspace.
+        /// </summary>
+        /// <param name="red">The red component of the foreground color</param>
+        /// <param name="green">The green component of the foreground color</param>
+        /// <param name="blue">The blue component of the foreground color</param>
+        /// <returns>A new text object with the given foreground color.</returns>
         public static FabulousText Rgb(byte red, byte green, byte blue)
         {
             var foreColor = new Rgb(red, green, blue);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
+        /// <summary>
+        /// Styles the text with a foreground color in the RGB colorspace.
+        /// </summary>
+        /// <param name="values">A tuple containing RGB color components.</param>
+        /// <returns>A new text object with the given foreground color.</returns>
         public static FabulousText Rgb((byte red, byte green, byte blue) values) => Rgb(values.red, values.green, values.blue);
 
+        /// <summary>
+        /// Styles the text with a foreground color as defined by a hexadecimal string in the RGB colorspace.
+        /// </summary>
+        /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
+        /// <returns>A new text object with the given foreground color.</returns>
         public static FabulousText Hex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -45,6 +76,11 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
+        /// <summary>
+        /// Styles the text with a foreground color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object with the given foreground color.</returns>
         public static FabulousText Keyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -54,50 +90,116 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, false, null);
         }
 
-        public static FabulousText Black => new FabulousText(ConsoleColors.Black, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a black foreground color.
+        /// </summary>
+        public static FabulousText Black => new FabulousText(RgbConsoleColor.Black, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Red => new FabulousText(ConsoleColors.DarkRed, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a red foreground color.
+        /// </summary>
+        public static FabulousText Red => new FabulousText(RgbConsoleColor.DarkRed, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Green => new FabulousText(ConsoleColors.DarkGreen, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a green foreground color.
+        /// </summary>
+        public static FabulousText Green => new FabulousText(RgbConsoleColor.DarkGreen, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Yellow => new FabulousText(ConsoleColors.DarkYellow, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a yellow foreground color.
+        /// </summary>
+        public static FabulousText Yellow => new FabulousText(RgbConsoleColor.DarkYellow, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Blue => new FabulousText(ConsoleColors.DarkBlue, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a blue foreground color.
+        /// </summary>
+        public static FabulousText Blue => new FabulousText(RgbConsoleColor.DarkBlue, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Magenta => new FabulousText(ConsoleColors.DarkMagenta, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a magenta foreground color.
+        /// </summary>
+        public static FabulousText Magenta => new FabulousText(RgbConsoleColor.DarkMagenta, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Cyan => new FabulousText(ConsoleColors.DarkCyan, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a cyan foreground color.
+        /// </summary>
+        public static FabulousText Cyan => new FabulousText(RgbConsoleColor.DarkCyan, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText White => new FabulousText(ConsoleColors.White, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a white foreground color.
+        /// </summary>
+        public static FabulousText White => new FabulousText(RgbConsoleColor.White, DefaultBackground, TextDecoration.None, false, null);
 
-        // bright black
-        public static FabulousText Gray => new FabulousText(ConsoleColors.Grey, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a gray foreground color.
+        /// </summary>
+        public static FabulousText Gray => new FabulousText(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText Grey => new FabulousText(ConsoleColors.Grey, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a grey foreground color.
+        /// </summary>
+        public static FabulousText Grey => new FabulousText(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText RedBright => new FabulousText(ConsoleColors.Red, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright red foreground color.
+        /// </summary>
+        public static FabulousText RedBright => new FabulousText(RgbConsoleColor.Red, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText GreenBright => new FabulousText(ConsoleColors.Green, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright green foreground color.
+        /// </summary>
+        public static FabulousText GreenBright => new FabulousText(RgbConsoleColor.Green, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText YellowBright => new FabulousText(ConsoleColors.Yellow, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright yellow foreground color.
+        /// </summary>
+        public static FabulousText YellowBright => new FabulousText(RgbConsoleColor.Yellow, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText BlueBright => new FabulousText(ConsoleColors.Blue, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright blue foreground color.
+        /// </summary>
+        public static FabulousText BlueBright => new FabulousText(RgbConsoleColor.Blue, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText MagentaBright => new FabulousText(ConsoleColors.Magenta, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright magenta foreground color.
+        /// </summary>
+        public static FabulousText MagentaBright => new FabulousText(RgbConsoleColor.Magenta, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText CyanBright => new FabulousText(ConsoleColors.Cyan, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright cyan foreground color.
+        /// </summary>
+        public static FabulousText CyanBright => new FabulousText(RgbConsoleColor.Cyan, DefaultBackground, TextDecoration.None, false, null);
 
-        public static FabulousText WhiteBright => new FabulousText(ConsoleColors.WhiteBright, DefaultBackground, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright white foreground color.
+        /// </summary>
+        public static FabulousText WhiteBright => new FabulousText(RgbConsoleColor.WhiteBright, DefaultBackground, TextDecoration.None, false, null);
 
-        // BG styling
+        /// <summary>
+        /// Styles the text with a background color in the RGB colorspace.
+        /// </summary>
+        /// <param name="red">The red component of the background color</param>
+        /// <param name="green">The green component of the background color</param>
+        /// <param name="blue">The blue component of the background color</param>
+        /// <returns>A new text object with the given background color.</returns>
         public static FabulousText BgRgb(byte red, byte green, byte blue)
         {
             var bgColor = new Rgb(red, green, blue);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, false, null);
         }
 
+        /// <summary>
+        /// Styles the text with a background color in the RGB colorspace.
+        /// </summary>
+        /// <param name="values">A tuple containing RGB color components.</param>
+        /// <returns>A new text object with the given background color.</returns>
         public static FabulousText BgRgb((byte red, byte green, byte blue) values) => BgRgb(values.red, values.green, values.blue);
 
+        /// <summary>
+        /// Styles the text with a background color as defined by a hexadecimal string in the RGB colorspace.
+        /// </summary>
+        /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
+        /// <returns>A new text object with the given background color.</returns>
         public static FabulousText BgHex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -107,6 +209,11 @@ namespace SJP.Fabulous
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, false, null);
         }
 
+        /// <summary>
+        /// Styles the text with a background color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object with the given background color.</returns>
         public static FabulousText BgKeyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -116,60 +223,137 @@ namespace SJP.Fabulous
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, false, null);
         }
 
-        public static FabulousText BgBlack => new FabulousText(DefaultForeground, ConsoleColors.Black, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a black background color.
+        /// </summary>
+        public static FabulousText BgBlack => new FabulousText(DefaultForeground, RgbConsoleColor.Black, TextDecoration.None, false, null);
 
-        public static FabulousText BgRed => new FabulousText(DefaultForeground, ConsoleColors.DarkRed, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a red background color.
+        /// </summary>
+        public static FabulousText BgRed => new FabulousText(DefaultForeground, RgbConsoleColor.DarkRed, TextDecoration.None, false, null);
 
-        public static FabulousText BgGreen => new FabulousText(DefaultForeground, ConsoleColors.DarkGreen, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a green background color.
+        /// </summary>
+        public static FabulousText BgGreen => new FabulousText(DefaultForeground, RgbConsoleColor.DarkGreen, TextDecoration.None, false, null);
 
-        public static FabulousText BgYellow => new FabulousText(DefaultForeground, ConsoleColors.DarkYellow, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a yellow background color.
+        /// </summary>
+        public static FabulousText BgYellow => new FabulousText(DefaultForeground, RgbConsoleColor.DarkYellow, TextDecoration.None, false, null);
 
-        public static FabulousText BgBlue => new FabulousText(DefaultForeground, ConsoleColors.DarkBlue, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a blue background color.
+        /// </summary>
+        public static FabulousText BgBlue => new FabulousText(DefaultForeground, RgbConsoleColor.DarkBlue, TextDecoration.None, false, null);
 
-        public static FabulousText BgMagenta => new FabulousText(DefaultForeground, ConsoleColors.DarkMagenta, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a magenta background color.
+        /// </summary>
+        public static FabulousText BgMagenta => new FabulousText(DefaultForeground, RgbConsoleColor.DarkMagenta, TextDecoration.None, false, null);
 
-        public static FabulousText BgCyan => new FabulousText(DefaultForeground, ConsoleColors.DarkCyan, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a cyan background color.
+        /// </summary>
+        public static FabulousText BgCyan => new FabulousText(DefaultForeground, RgbConsoleColor.DarkCyan, TextDecoration.None, false, null);
 
-        public static FabulousText BgWhite => new FabulousText(DefaultForeground, ConsoleColors.White, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a white background color.
+        /// </summary>
+        public static FabulousText BgWhite => new FabulousText(DefaultForeground, RgbConsoleColor.White, TextDecoration.None, false, null);
 
-        // bright black
-        public static FabulousText BgGray => new FabulousText(DefaultForeground, ConsoleColors.Grey, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a gray background color.
+        /// </summary>
+        public static FabulousText BgGray => new FabulousText(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, false, null);
 
-        public static FabulousText BgGrey => new FabulousText(DefaultForeground, ConsoleColors.Grey, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a grey background color.
+        /// </summary>
+        public static FabulousText BgGrey => new FabulousText(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, false, null);
 
-        public static FabulousText BgRedBright => new FabulousText(DefaultForeground, ConsoleColors.Red, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright red background color.
+        /// </summary>
+        public static FabulousText BgRedBright => new FabulousText(DefaultForeground, RgbConsoleColor.Red, TextDecoration.None, false, null);
 
-        public static FabulousText BgGreenBright => new FabulousText(DefaultForeground, ConsoleColors.Green, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright green background color.
+        /// </summary>
+        public static FabulousText BgGreenBright => new FabulousText(DefaultForeground, RgbConsoleColor.Green, TextDecoration.None, false, null);
 
-        public static FabulousText BgYellowBright => new FabulousText(DefaultForeground, ConsoleColors.Yellow, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright yellow background color.
+        /// </summary>
+        public static FabulousText BgYellowBright => new FabulousText(DefaultForeground, RgbConsoleColor.Yellow, TextDecoration.None, false, null);
 
-        public static FabulousText BgBlueBright => new FabulousText(DefaultForeground, ConsoleColors.Blue, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright blue background color.
+        /// </summary>
+        public static FabulousText BgBlueBright => new FabulousText(DefaultForeground, RgbConsoleColor.Blue, TextDecoration.None, false, null);
 
-        public static FabulousText BgMagentaBright => new FabulousText(DefaultForeground, ConsoleColors.Magenta, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright magenta background color.
+        /// </summary>
+        public static FabulousText BgMagentaBright => new FabulousText(DefaultForeground, RgbConsoleColor.Magenta, TextDecoration.None, false, null);
 
-        public static FabulousText BgCyanBright => new FabulousText(DefaultForeground, ConsoleColors.Cyan, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright cyan background color.
+        /// </summary>
+        public static FabulousText BgCyanBright => new FabulousText(DefaultForeground, RgbConsoleColor.Cyan, TextDecoration.None, false, null);
 
-        public static FabulousText BgWhiteBright => new FabulousText(DefaultForeground, ConsoleColors.WhiteBright, TextDecoration.None, false, null);
+        /// <summary>
+        /// Initializes a new text object that has a bright white background color.
+        /// </summary>
+        public static FabulousText BgWhiteBright => new FabulousText(DefaultForeground, RgbConsoleColor.WhiteBright, TextDecoration.None, false, null);
 
-        // decorations
+        /// <summary>
+        /// Initializes a new text object that resets the console to default styling before and after printing the text.
+        /// </summary>
         public static FabulousText Reset => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.None, true, null);
 
+        /// <summary>
+        /// Initializes a new text object that will blink when printed.
+        /// </summary>
         public static FabulousText Blink => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Blink, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be styled with a bold font weight.
+        /// </summary>
         public static FabulousText Bold => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Bold, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be dimmed.
+        /// </summary>
         public static FabulousText Dim => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Dim, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be styled as italic.
+        /// </summary>
         public static FabulousText Italic => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Italic, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be underlined when printed.
+        /// </summary>
         public static FabulousText Underline => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Underline, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be concealed when printed.
+        /// </summary>
         public static FabulousText Hidden => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Hidden, false, null);
 
+        /// <summary>
+        /// Initializes a new text object that will be styled with a horizontal strike through the middle of the text.
+        /// </summary>
         public static FabulousText Strikethrough => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Strikethrough, false, null);
 
         #region Writer methods
 
+        /// <summary>
+        /// Writes the string representation of the object to the standard output stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
         public static void Write(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -178,6 +362,10 @@ namespace SJP.Fabulous
             writer.Write();
         }
 
+        /// <summary>
+        /// Writes the string to the standard output stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
         public static void Write(string text)
         {
             FabulousText fragment = text;
@@ -186,6 +374,11 @@ namespace SJP.Fabulous
             writer.Write();
         }
 
+        /// <summary>
+        /// Writes the text representation of the specified array of objects to the standard output stream using the specified format information.
+        /// </summary>
+        /// <param name="format">A composite format string.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
         public static void Write(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -194,6 +387,10 @@ namespace SJP.Fabulous
             writer.Write(args);
         }
 
+        /// <summary>
+        /// Writes the styled text to the standard output stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
         public static void Write(FabulousText fragment)
         {
             if (fragment == null)
@@ -203,6 +400,11 @@ namespace SJP.Fabulous
             writer.Write();
         }
 
+        /// <summary>
+        /// Writes the text representation of the specified array of objects to the standard output stream using the specified styled text format information.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         public static void Write(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -212,6 +414,10 @@ namespace SJP.Fabulous
             writer.Write(args);
         }
 
+        /// <summary>
+        /// Writes the styled text to the standard output stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
         public static void Write(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -221,6 +427,11 @@ namespace SJP.Fabulous
             writer.Write();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard output stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         public static void Write(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -230,6 +441,10 @@ namespace SJP.Fabulous
             writer.Write(args);
         }
 
+        /// <summary>
+        /// Writes the string representation of the object followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
         public static void WriteLine(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -238,6 +453,10 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the string followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
         public static void WriteLine(string text)
         {
             FabulousText fragment = text;
@@ -246,6 +465,11 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard output stream using the text as the specified format information. The current line terminator will also be printed to the standard output stream afterwards.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
         public static void WriteLine(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -254,6 +478,10 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
         public static void WriteLine(FabulousText fragment)
         {
             if (fragment == null)
@@ -263,6 +491,11 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be printed to the standard output stream afterwards.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public static void WriteLine(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -272,6 +505,10 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
         public static void WriteLine(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -281,6 +518,11 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard output stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         public static void WriteLine(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -290,6 +532,10 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Writes the string representation of the object to the standard error stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
         public static void WriteError(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -298,6 +544,10 @@ namespace SJP.Fabulous
             writer.WriteError();
         }
 
+        /// <summary>
+        /// Writes the string to the standard error stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
         public static void WriteError(string text)
         {
             FabulousText fragment = text;
@@ -306,6 +556,11 @@ namespace SJP.Fabulous
             writer.WriteError();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
         public static void WriteError(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -314,6 +569,10 @@ namespace SJP.Fabulous
             writer.WriteError(args);
         }
 
+        /// <summary>
+        /// Writes the styled text to the standard error stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
         public static void WriteError(FabulousText fragment)
         {
             if (fragment == null)
@@ -323,6 +582,11 @@ namespace SJP.Fabulous
             writer.WriteError();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         public static void WriteError(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -332,6 +596,10 @@ namespace SJP.Fabulous
             writer.WriteError(args);
         }
 
+        /// <summary>
+        /// Writes the styled text to the standard error stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
         public static void WriteError(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -341,6 +609,11 @@ namespace SJP.Fabulous
             writer.WriteError();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         public static void WriteError(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -350,6 +623,10 @@ namespace SJP.Fabulous
             writer.WriteError(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
         public static void WriteErrorLine(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -358,6 +635,10 @@ namespace SJP.Fabulous
             writer.WriteErrorLine();
         }
 
+        /// <summary>
+        /// Writes the string followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="text"></param>
         public static void WriteErrorLine(string text)
         {
             FabulousText fragment = text;
@@ -366,6 +647,11 @@ namespace SJP.Fabulous
             writer.WriteErrorLine();
         }
 
+        /// <summary>
+        /// Writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information. The current line terminator will also be printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
         public static void WriteErrorLine(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -374,6 +660,10 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
         public static void WriteErrorLine(FabulousText fragment)
         {
             if (fragment == null)
@@ -383,6 +673,11 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         public static void WriteErrorLine(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -392,6 +687,10 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
         public static void WriteErrorLine(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -401,6 +700,11 @@ namespace SJP.Fabulous
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         public static void WriteErrorLine(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -410,6 +714,11 @@ namespace SJP.Fabulous
             writer.WriteLine(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the string representation of the object to the standard output stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -418,6 +727,11 @@ namespace SJP.Fabulous
             return writer.WriteAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the text to the standard output stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(string text)
         {
             FabulousText fragment = text;
@@ -426,6 +740,12 @@ namespace SJP.Fabulous
             return writer.WriteAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the string using the text representation of the specified array of objects to the standard output stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -434,6 +754,11 @@ namespace SJP.Fabulous
             return writer.WriteAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text to the standard output stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -443,6 +768,12 @@ namespace SJP.Fabulous
             return writer.WriteAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -452,6 +783,11 @@ namespace SJP.Fabulous
             return writer.WriteAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text to the standard output stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -461,6 +797,12 @@ namespace SJP.Fabulous
             return writer.WriteAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -470,6 +812,11 @@ namespace SJP.Fabulous
             return writer.WriteAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the string representation of the object followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -478,6 +825,11 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(string text)
         {
             FabulousText fragment = text;
@@ -486,6 +838,12 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the string using the text representation of the specified array of objects to the standard output stream using the text as the specified format information. The current line terminator will also be asynchronously printed to the standard output stream afterwards.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -494,6 +852,11 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -503,6 +866,12 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard output stream afterwards.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -512,6 +881,11 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -521,6 +895,12 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard output stream afterwards.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteLineAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -530,6 +910,11 @@ namespace SJP.Fabulous
             return writer.WriteLineAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the string representation of the object to the standard error stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -538,6 +923,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the text to the standard error stream.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(string text)
         {
             FabulousText fragment = text;
@@ -546,6 +936,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -554,6 +950,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text to the standard error stream.
+        /// </summary>
+        /// <param name="fragment"></param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -563,6 +964,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -572,6 +979,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes to the standard error stream.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -581,6 +993,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -590,6 +1008,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the string representation of the object followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="obj">An object to be written to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(object obj)
         {
             FabulousText fragment = obj?.ToString();
@@ -598,6 +1021,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="text">Text to be printed to the console.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(string text)
         {
             FabulousText fragment = text;
@@ -606,6 +1034,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the string using the text representation of the specified array of objects to the standard error stream using the text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="format">A composite string format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="format"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(string format, params object[] args)
         {
             FabulousText fragment = format;
@@ -614,6 +1048,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="fragment">A piece of styled text.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -623,6 +1062,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="fragment">A composite styled text format.</param>
+        /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -632,6 +1077,11 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync(args);
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <param name="collection">A collection of text to be styled.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -641,6 +1091,12 @@ namespace SJP.Fabulous
             return writer.WriteErrorLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes the styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="collection">A collection of composite styled text formats.</param>
+        /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public static Task WriteErrorLineAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -652,9 +1108,9 @@ namespace SJP.Fabulous
 
         #endregion Writer methods
 
-        private static IRgb DefaultForeground { get; } = ConsoleColors.White;
+        private static IRgb DefaultForeground { get; } = RgbConsoleColor.White;
 
-        private static IRgb DefaultBackground { get; } = ConsoleColors.Black;
+        private static IRgb DefaultBackground { get; } = RgbConsoleColor.Black;
 
         private static IConsoleWriter GetConsoleWriter(FabulousTextCollection collection)
         {

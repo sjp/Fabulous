@@ -6,20 +6,37 @@ using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// A console writer that prints and styles text using the styling available in <see cref="Console"/>.
+    /// </summary>
     public class StandardConsoleWriter : IConsoleWriter
     {
+        /// <summary>
+        /// Creates a console writer that performs styling using <see cref="Console"/>.
+        /// </summary>
+        /// <param name="text">A piece of text to be printed.</param>
         public StandardConsoleWriter(FabulousText text)
             : this(new FabulousTextCollection(text))
         {
         }
 
+        /// <summary>
+        /// Creates a console writer that performs styling using <see cref="Console"/>.
+        /// </summary>
+        /// <param name="textCollection">A collection of text to be printed.</param>
         public StandardConsoleWriter(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));
         }
 
+        /// <summary>
+        /// The pieces of text to be printed
+        /// </summary>
         protected FabulousTextCollection TextCollection { get; }
 
+        /// <summary>
+        /// Writes styled text to the standard output stream.
+        /// </summary>
         public void Write()
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -36,6 +53,10 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void Write(params object[] args)
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -52,18 +73,28 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Writes styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
         public void WriteLine()
         {
             Write();
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be printed to standard output stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteLine(params object[] args)
         {
             Write(args);
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Writes styled text to the standard error stream.
+        /// </summary>
         public void WriteError()
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -80,6 +111,10 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteError(params object[] args)
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -96,18 +131,29 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Writes styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
         public void WriteErrorLine()
         {
             WriteError();
             Console.Error.WriteLine();
         }
 
+        /// <summary>
+        /// Writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
         public void WriteErrorLine(params object[] args)
         {
             WriteError(args);
             Console.Error.WriteLine();
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text to the standard output stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteAsync()
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -124,6 +170,11 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteAsync(params object[] args)
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -140,18 +191,31 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text followed by the current line terminator to the standard output stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync()
         {
             await WriteAsync();
             await Console.Out.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to standard output stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync(params object[] args)
         {
             await WriteAsync(args);
             await Console.Out.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text to the standard error stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorAsync()
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -168,6 +232,11 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorAsync(params object[] args)
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
@@ -184,24 +253,41 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text followed by the current line terminator to the standard error stream.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync()
         {
             await WriteErrorAsync();
             await Console.Error.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
+        /// </summary>
+        /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync(params object[] args)
         {
             await WriteErrorAsync(args);
             await Console.Error.WriteLineAsync();
         }
 
+        /// <summary>
+        /// Translates an color in the RGB colorspace to a <see cref="ConsoleColor"/> object that can be used for styling the console.
+        /// </summary>
+        /// <param name="rgb">A color in the RGB colorspace.</param>
+        /// <returns>A <see cref="ConsoleColor"/> object that can be used for styling.</returns>
         protected static ConsoleColor GetConsoleColor(IRgb rgb)
         {
             var ansiColor = GetSimpleAnsiColor(rgb);
             return _ansiToConsoleColor[ansiColor];
         }
 
+        /// <summary>
+        /// Resets the console styling to grey text on a black background.
+        /// </summary>
         protected static void ResetConsoleColors()
         {
             Console.ForegroundColor = ConsoleColor.Gray;

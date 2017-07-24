@@ -5,20 +5,38 @@ using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// An ANSI string builder that will style text using ANSI escapes with the basic ANSI 16 colors.
+    /// </summary>
     public class AnsiSimpleStringBuilder : IAnsiStringBuilder
     {
+        /// <summary>
+        /// Creates an ANSI string builder that is styled with 16 colors for a piece of styled text.
+        /// </summary>
+        /// <param name="text">A piece of text to be styled.</param>
         public AnsiSimpleStringBuilder(FabulousText text)
             : this(new FabulousTextCollection(text))
         {
         }
 
+        /// <summary>
+        /// Creates an ANSI string builder that is styled with 16 colors for a collection of styled text.
+        /// </summary>
+        /// <param name="textCollection">A collection of text to be styled.</param>
         public AnsiSimpleStringBuilder(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));
         }
 
+        /// <summary>
+        /// The text to be styled.
+        /// </summary>
         protected FabulousTextCollection TextCollection { get; }
 
+        /// <summary>
+        /// Converts the value of an <see cref="IAnsiStringBuilder"/> to a <see cref="string"/>.
+        /// </summary>
+        /// <returns>A string that can contain ANSI styling if present.</returns>
         public string ToAnsiString()
         {
             var builder = new StringBuilder();
@@ -72,6 +90,11 @@ namespace SJP.Fabulous
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Translates a color in the RGB colorspace to an ANSI color.
+        /// </summary>
+        /// <param name="rgb">A color in the RGB colorspace.</param>
+        /// <returns>An integer representing an escape code in the ANSI color set.</returns>
         protected static int GetSimpleAnsiColor(IRgb rgb)
         {
             if (rgb == null)
@@ -95,6 +118,11 @@ namespace SJP.Fabulous
                 : ansi;
         }
 
+        /// <summary>
+        /// Retrieves the value of a color (i.e. its white or black level) from the HSV colorspace.
+        /// </summary>
+        /// <param name="rgb">A color in the RGB colorspace.</param>
+        /// <returns>The value of a color from the HSV colorspace.</returns>
         protected static double GetValue(IRgb rgb)
         {
             if (rgb == null)

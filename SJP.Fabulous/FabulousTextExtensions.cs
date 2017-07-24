@@ -3,8 +3,17 @@ using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Extension methods for working with styled text.
+    /// </summary>
     public static class FabulousTextExtensions
     {
+        /// <summary>
+        /// Creates a new styled text object that is the same as the current object, but with the foreground color set to the given color instead.
+        /// </summary>
+        /// <param name="fragment">The text object to be used as a reference.</param>
+        /// <param name="foreColor">The new color to use as a foreground color.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
         public static FabulousText Foreground(this FabulousText fragment, IColor foreColor)
         {
             if (fragment == null)
@@ -15,6 +24,12 @@ namespace SJP.Fabulous
             return new FabulousText(foreColor, fragment.BackgroundColor, fragment.Decorations, fragment.ConsoleReset, fragment.Text);
         }
 
+        /// <summary>
+        /// Creates a new styled text object that is the same as the current object, but with the background color set to the given color instead.
+        /// </summary>
+        /// <param name="fragment">The text object to be used as a reference.</param>
+        /// <param name="backColor">The new color to use as a background color.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public static FabulousText Background(this FabulousText fragment, IColor backColor)
         {
             if (fragment == null)
@@ -25,6 +40,12 @@ namespace SJP.Fabulous
             return new FabulousText(fragment.ForegroundColor, backColor, fragment.Decorations, fragment.ConsoleReset, fragment.Text);
         }
 
+        /// <summary>
+        /// Creates a new styled text object that is the same as the current object, but with the text set to the given text instead.
+        /// </summary>
+        /// <param name="fragment">The text object to be used as a reference.</param>
+        /// <param name="text">The text to be used for printing.</param>
+        /// <returns>A new text object that is the same as the current object, but with the new text instead.</returns>
         public static FabulousText Text(this FabulousText fragment, string text)
         {
             if (fragment == null)

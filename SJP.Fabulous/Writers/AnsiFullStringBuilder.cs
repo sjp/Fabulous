@@ -5,20 +5,38 @@ using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// An ANSI string builder that will style text using ANSI escapes with 24-bit color.
+    /// </summary>
     public class AnsiFullStringBuilder : IAnsiStringBuilder
     {
+        /// <summary>
+        /// Creates an ANSI string builder that is styled with 24-bit color for a piece of styled text.
+        /// </summary>
+        /// <param name="text">A piece of text to be styled.</param>
         public AnsiFullStringBuilder(FabulousText text)
             : this(new FabulousTextCollection(text))
         {
         }
 
+        /// <summary>
+        /// Creates an ANSI string builder that is styled with 24-bit color for a collection of styled text.
+        /// </summary>
+        /// <param name="textCollection">A collection of text to be styled.</param>
         public AnsiFullStringBuilder(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));
         }
 
+        /// <summary>
+        /// The text to be styled.
+        /// </summary>
         protected FabulousTextCollection TextCollection { get; }
 
+        /// <summary>
+        /// Converts the value of an <see cref="IAnsiStringBuilder"/> to a <see cref="string"/>.
+        /// </summary>
+        /// <returns>A string that can contain ANSI styling if present.</returns>
         public string ToAnsiString()
         {
             var builder = new StringBuilder();
@@ -61,6 +79,11 @@ namespace SJP.Fabulous
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Creates an ANSI string definition of a color in a 24-bit color format.
+        /// </summary>
+        /// <param name="rgb">A color in the RGB colorspace.</param>
+        /// <returns>A string representing a 24-bit definition of a color, usable in ANSI consoles.</returns>
         protected static string GetColorDefinition(IRgb rgb)
         {
             if (rgb == null)

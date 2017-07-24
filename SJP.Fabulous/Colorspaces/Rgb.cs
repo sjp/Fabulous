@@ -4,13 +4,26 @@ using System.Globalization;
 
 namespace SJP.Fabulous.Colorspaces
 {
+    /// <summary>
+    /// Represents a color in the RGB colorspcae.
+    /// </summary>
     public struct Rgb : IRgb
     {
+        /// <summary>
+        /// Creates an RGB color using a tuple of each of its separate color components.
+        /// </summary>
+        /// <param name="values">A tuple of values containing the separate color components of an RGB color.</param>
         public Rgb((byte red, byte green, byte blue) values)
             : this(values.red, values.green, values.blue)
         {
         }
 
+        /// <summary>
+        /// Creates an RGB color using each of its separate color components.
+        /// </summary>
+        /// <param name="red">The red component of the color</param>
+        /// <param name="green">The green component of the color</param>
+        /// <param name="blue">The blue component of the color</param>
         public Rgb(byte red, byte green, byte blue)
         {
             Red = red;
@@ -18,14 +31,32 @@ namespace SJP.Fabulous.Colorspaces
             Blue = blue;
         }
 
+        /// <summary>
+        /// The red component of the color.
+        /// </summary>
         public byte Red { get; }
 
+        /// <summary>
+        /// The green component of the color.
+        /// </summary>
         public byte Green { get; }
 
+        /// <summary>
+        /// The blue component of the color.
+        /// </summary>
         public byte Blue { get; }
 
+        /// <summary>
+        /// Transforms the color from the current colorspace into an RGB representation.
+        /// </summary>
+        /// <returns>A color that is represented in RGB.</returns>
         public IRgb ToRgb() => new Rgb(Red, Green, Blue);
 
+        /// <summary>
+        /// Creates a color in the RGB colorspace from a hexadecimal string.
+        /// </summary>
+        /// <param name="hex">A hexadecimal string defining an RGB color.</param>
+        /// <returns>A color in the RGB colorspace.</returns>
         public static IRgb FromHex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -70,6 +101,11 @@ namespace SJP.Fabulous.Colorspaces
             return new Rgb(r, g, b);
         }
 
+        /// <summary>
+        /// Creates a color in the RGB colorspace from a CSS color keyword.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A color in the RGB colorspace.</returns>
         public static IRgb FromKeyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))

@@ -1,6 +1,6 @@
 ﻿namespace SJP.Fabulous
 {
-    public struct ConsoleStyle
+    internal struct ConsoleStyle
     {
         public ConsoleStyle(int start, int close)
         {

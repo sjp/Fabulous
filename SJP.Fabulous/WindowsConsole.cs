@@ -7,9 +7,15 @@ using System;
 
 namespace SJP.Fabulous
 {
+    /// <summary>
+    /// Provides methods for working with the console on Windows.
+    /// </summary>
     public static class WindowsConsole
     {
 #if PINVOKE
+        /// <summary>
+        /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
+        /// </summary>
         public static void EnableVirtualTerminalProcessing()
         {
             if (!IsWindows)
@@ -22,6 +28,10 @@ namespace SJP.Fabulous
             }
         }
 
+        /// <summary>
+        /// Determines whether the current console is able to process ANSI escape sequences.
+        /// </summary>
+        /// <returns><b>True</b> if the console can process ANSI escape sequences. <b>False</b> otherwise.</returns>
         public static bool IsVirtualTerminalProcessingEnabled()
         {
             var stdout = GetStdHandle(StandardOutputHandleId);
@@ -43,13 +53,22 @@ namespace SJP.Fabulous
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool SetConsoleMode(IntPtr handle, uint mode);
 #else
+        /// <summary>
+        /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
+        /// </summary>
         public static void EnableVirtualTerminalProcessing()
         {
         }
 
+        /// <summary>
+        /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
+        /// </summary>
         public static bool IsVirtualTerminalProcessingEnabled() => false;
 #endif
 
+        /// <summary>
+        /// Determines whether the current environment is running on Windows.
+        /// </summary>
         public static bool IsWindows => _isWindows.Value;
 
         private readonly static Lazy<bool> _isWindows = new Lazy<bool>(() =>

@@ -2,7 +2,7 @@
 
 namespace SJP.Fabulous
 {
-    public static class ConsoleColors
+    internal static class RgbConsoleColor
     {
         public static IRgb Black => new Rgb(0, 0, 0);
 
