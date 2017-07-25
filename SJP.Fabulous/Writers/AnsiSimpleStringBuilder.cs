@@ -47,7 +47,7 @@ namespace SJP.Fabulous
                 var bgAnsiColor = GetSimpleAnsiColor(text.BackgroundColor.ToRgb());
 
                 // bump blue brightness up on windows
-                if (WindowsConsole.IsWindows)
+                if (WindowsConsole.IsWindowsPlatform)
                 {
                     if (fgAnsiColor == 34)
                         fgAnsiColor = 94;
@@ -66,7 +66,7 @@ namespace SJP.Fabulous
                 builder.Append(fgStart);
                 builder.Append(bgStart);
 
-                var styles = AnsiStyles.GetAnsiStyles(text.Decorations);
+                var styles = text.Decorations.GetAnsiStyles();
                 foreach (var style in styles)
                 {
                     var ansiStyle = Escape + "[" + style.Start.ToString() + "m";
@@ -113,7 +113,7 @@ namespace SJP.Fabulous
                 | (iGreen << 1)
                 | iRed);
 
-            return value == 2
+            return value >= 50
                 ? ansi += 60
                 : ansi;
         }
@@ -123,13 +123,13 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="rgb">A color in the RGB colorspace.</param>
         /// <returns>The value of a color from the HSV colorspace.</returns>
-        protected static double GetValue(IRgb rgb)
+        private static double GetValue(IRgb rgb)
         {
             if (rgb == null)
                 throw new ArgumentNullException(nameof(rgb));
 
             var maxColor = Math.Max(Math.Max(rgb.Blue, rgb.Green), rgb.Red);
-            return maxColor * 100d;
+            return (maxColor / 255d) * 100d;
         }
 
         private const string Escape = "\x1B";

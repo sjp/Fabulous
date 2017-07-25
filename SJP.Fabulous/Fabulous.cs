@@ -1117,16 +1117,14 @@ namespace SJP.Fabulous
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            if (WindowsConsole.IsWindows)
-                WindowsConsole.EnableVirtualTerminalProcessing();
-
-            var consoleSupport = ConsoleColorMode.Full;
-            switch (consoleSupport)
+            var consoleLevel = FabulousConsole.ColorLevel;
+            switch (consoleLevel)
             {
+                case ConsoleColorMode.None:
+                    return new UnstyledConsoleWriter(collection);
+                case ConsoleColorMode.Standard:
+                    return new StandardConsoleWriter(collection);
                 case ConsoleColorMode.Basic:
-                    if (WindowsConsole.IsWindows && !WindowsConsole.IsVirtualTerminalProcessingEnabled())
-                        return new StandardConsoleWriter(collection);
-
                     var basicAnsi = new AnsiSimpleStringBuilder(collection);
                     return new AnsiConsoleWriter(basicAnsi.ToAnsiString());
                 case ConsoleColorMode.Enhanced:
@@ -1136,7 +1134,7 @@ namespace SJP.Fabulous
                     var fullText = new AnsiFullStringBuilder(collection);
                     return new AnsiConsoleWriter(fullText.ToAnsiString());
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(consoleSupport), "Unknown console support level: " + consoleSupport.ToString());
+                    throw new ArgumentOutOfRangeException(nameof(consoleLevel), "Unknown console support level: " + consoleLevel.ToString());
             }
         }
     }

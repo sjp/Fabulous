@@ -1,4 +1,5 @@
 ﻿using System;
+using SJP.Fabulous;
 
 namespace SJP.Fabulous.CoreConsoleTest
 {

@@ -7,7 +7,7 @@ namespace SJP.Fabulous
 {
     internal static class AnsiStyles
     {
-        public static IEnumerable<ConsoleStyle> GetAnsiStyles(TextDecoration decorations)
+        public static IEnumerable<ConsoleStyle> GetAnsiStyles(this TextDecoration decorations)
         {
             if (!decorations.IsValid())
                 throw new ArgumentException($"The { nameof(TextDecoration) } provided must be a valid enum.", nameof(decorations));

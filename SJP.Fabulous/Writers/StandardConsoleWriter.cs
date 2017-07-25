@@ -312,7 +312,7 @@ namespace SJP.Fabulous
                 | (iGreen << 1)
                 | iRed);
 
-            return value == 2
+            return value >= 50
                 ? ansi += 60
                 : ansi;
         }
@@ -323,7 +323,7 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(rgb));
 
             var maxColor = Math.Max(Math.Max(rgb.Blue, rgb.Green), rgb.Red);
-            return maxColor * 100d;
+            return (maxColor / 255d) * 100d;
         }
 
         private readonly static IReadOnlyDictionary<int, ConsoleColor> _ansiToConsoleColor = new Dictionary<int, ConsoleColor>

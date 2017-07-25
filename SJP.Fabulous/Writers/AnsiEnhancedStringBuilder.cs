@@ -55,7 +55,7 @@ namespace SJP.Fabulous
                 builder.Append(fgStart);
                 builder.Append(bgStart);
 
-                var styles = AnsiStyles.GetAnsiStyles(text.Decorations);
+                var styles = text.Decorations.GetAnsiStyles();
                 foreach (var style in styles)
                 {
                     var ansiStyle = Escape + "[" + style.Start.ToString() + "m";

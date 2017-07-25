@@ -1,7 +1,7 @@
 ﻿namespace SJP.Fabulous
 {
     /// <summary>
-    /// Represents the way in which the console will be styled.
+    /// Represents the way in which the console will be styled. Order is important and goes from the least functionality to the most.
     /// </summary>
     public enum ConsoleColorMode
     {
