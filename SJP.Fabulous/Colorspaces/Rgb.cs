@@ -5,7 +5,7 @@ using System.Globalization;
 namespace SJP.Fabulous.Colorspaces
 {
     /// <summary>
-    /// Represents a color in the RGB colorspcae.
+    /// Represents a color in the RGB colorspace.
     /// </summary>
     public struct Rgb : IRgb
     {
@@ -51,6 +51,10 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <returns>A color that is represented in RGB.</returns>
         public IRgb ToRgb() => new Rgb(Red, Green, Blue);
+
+        /// <summary>Returns a definition of the color as a string.</summary>
+        /// <returns>A <see cref="string" /> containing the definition of the RGB color.</returns>
+        public override string ToString() => "Red = " + Red.ToString() + ", Green = " + Green.ToString() + ", Blue = " + Blue.ToString();
 
         /// <summary>
         /// Creates a color in the RGB colorspace from a hexadecimal string.
