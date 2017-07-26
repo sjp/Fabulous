@@ -6,6 +6,7 @@ namespace SJP.Fabulous.ConsoleTest
     {
         private static void Main(string[] args)
         {
+            FabulousConsole.ColorLevel = FabulousConsole.GetMaximumSupportedColorMode();
             var a1 = Fabulous
                 .Red
                 .BgHex("#00f")

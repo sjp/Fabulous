@@ -7,7 +7,7 @@ namespace SJP.Fabulous.Colorspaces
     /// <summary>
     /// Represents a color in the RGB colorspace.
     /// </summary>
-    public struct Rgb : IRgb
+    public struct Rgb : IRgb, IEquatable<Rgb>
     {
         /// <summary>
         /// Creates an RGB color using a tuple of each of its separate color components.
@@ -119,6 +119,79 @@ namespace SJP.Fabulous.Colorspaces
                 throw new ArgumentOutOfRangeException(nameof(keyword), "Unknown keyword for color: " + keyword);
 
             return _keywordColors[keyword];
+        }
+
+        /// <summary>Indicates whether the current RGB color is equal to another RGB color.</summary>
+        /// <returns><b>True</b> if the current RGB color is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <param name="other">An RGB color to compare with this color.</param>
+        public bool Equals(Rgb other)
+        {
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Red == other.Red
+                && Green == other.Green
+                && Blue == other.Blue;
+        }
+
+        /// <summary>Indicates whether this RGB color and a specified object are equal.</summary>
+        /// <returns><b>True</b> if <paramref name="obj" /> and this RGB color are the same type and represent the same value; otherwise, <b>false</b>.</returns>
+        /// <param name="obj">The object to compare with the current RGB color.</param>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            var objType = obj.GetType();
+            if (objType != GetType())
+                return false;
+
+            return Equals((Rgb)obj);
+        }
+
+        /// <summary>Returns the hash code for this RGB color.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this RGB color.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var result = 17;
+                result ^= Red.GetHashCode();
+                result ^= Green.GetHashCode();
+                result ^= Blue.GetHashCode();
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Equality operator for RGB colors
+        /// </summary>
+        /// <param name="a">An RGB color.</param>
+        /// <param name="b">Another RGB color.</param>
+        /// <returns><b>True</b> if all of the color components of the colors are equal, otherwise <b>false</b>.</returns>
+        public static bool operator ==(Rgb a, Rgb b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Inequality operator for RGB colors
+        /// </summary>
+        /// <param name="a">An RGB color.</param>
+        /// <param name="b">Another RGB color.</param>
+        /// <returns><b>True</b> if any of the color components of the colors are different, otherwise <b>true</b>.</returns>
+        public static bool operator !=(Rgb a, Rgb b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            return a.Equals(b);
         }
 
         private readonly static IReadOnlyDictionary<string, Rgb> _keywordColors = new Dictionary<string, Rgb>(StringComparer.OrdinalIgnoreCase)

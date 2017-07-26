@@ -33,8 +33,8 @@ namespace SJP.Fabulous
                 //if (VersionSupportsTrueColor)
                 //    return ConsoleColorMode.Full;
 
-                if (VersionSupportsEnhancedColor)
-                    return ConsoleColorMode.Enhanced;
+                //if (VersionSupportsEnhancedColor)
+                //    return ConsoleColorMode.Enhanced;
 
                 return ConsoleColorMode.Basic; // could use ConsoleColorMode.Standard, but would provide less styling than Basic
             }
