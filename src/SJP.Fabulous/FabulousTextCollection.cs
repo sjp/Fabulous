@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SJP.Fabulous
@@ -57,6 +58,11 @@ namespace SJP.Fabulous
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
         public static FabulousTextCollection operator +(FabulousTextCollection collection, FabulousText fragment)
         {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
             var fragments = new List<FabulousText>(collection.Fragments) { fragment };
             return new FabulousTextCollection(fragments);
         }
@@ -69,8 +75,32 @@ namespace SJP.Fabulous
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
         public static FabulousTextCollection operator +(FabulousText fragment, FabulousTextCollection collection)
         {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+            if (fragment == null)
+                throw new ArgumentNullException(nameof(fragment));
+
             var fragments = new List<FabulousText> { fragment };
             fragments.AddRange(collection.Fragments);
+            return new FabulousTextCollection(fragments);
+        }
+
+        /// <summary>
+        /// Combines two collections of styled text.
+        /// </summary>
+        /// <param name="collectionA">A styled collection of text.</param>
+        /// <param name="collectionB">A styled collection of text.</param>
+        /// <returns>A new object representing the combined collection of objects.</returns>
+        public static FabulousTextCollection operator +(FabulousTextCollection collectionA, FabulousTextCollection collectionB)
+        {
+            if (collectionA == null)
+                throw new ArgumentNullException(nameof(collectionA));
+            if (collectionB == null)
+                throw new ArgumentNullException(nameof(collectionB));
+
+            var fragments = collectionA.Fragments.ToList();
+            fragments.AddRange(collectionB);
+
             return new FabulousTextCollection(fragments);
         }
 

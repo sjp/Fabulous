@@ -27,14 +27,14 @@ namespace SJP.Fabulous.Tests
         public void Green_PropertyGet_MatchesCtorArg()
         {
             var rgb = new Rgb(12, 34, 56);
-            Assert.AreEqual(rgb.Green, 34);
+            Assert.AreEqual(34, rgb.Green);
         }
 
         [Test]
         public void Blue_PropertyGet_MatchesCtorArg()
         {
             var rgb = new Rgb(12, 34, 56);
-            Assert.AreEqual(rgb.Blue, 56);
+            Assert.AreEqual(56, rgb.Blue);
         }
 
 
@@ -58,8 +58,8 @@ namespace SJP.Fabulous.Tests
         public void ToString_WhenInvoked_ReturnsCorrectRepresentation()
         {
             var rgb = new Rgb(12, 34, 56);
-            var strRep = rgb.ToString();
-            Assert.AreEqual(rgb.ToString(), strRep);
+            var strRep = "Red = 12, Green = 34, Blue = 56";
+            Assert.AreEqual(strRep, rgb.ToString());
         }
 
         [Test]

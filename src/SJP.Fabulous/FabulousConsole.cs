@@ -1,6 +1,5 @@
 ﻿using System;
 using EnumsNET;
-using System.Text.RegularExpressions;
 using System.IO;
 
 namespace SJP.Fabulous
@@ -43,9 +42,13 @@ namespace SJP.Fabulous
                 return isAnsiStyledCi ? ConsoleColorMode.Basic : ConsoleColorMode.None;
             }
 
-            if (env.TryGetEnvironmentVariable("TEAMCITY_VERSION", out var tcVersion))
+            if (env.TryGetEnvironmentVariable("TEAMCITY_VERSION", out var tcVersionText))
             {
-                return Regex.IsMatch(tcVersion, @"^(9\.(0*[1-9]\d*)\.|\d{2,}\.)")
+                if (!Version.TryParse(tcVersionText, out var tcVersion))
+                    return ConsoleColorMode.None;
+
+                var minColoredVersion = new Version(9, 1);
+                return tcVersion >= minColoredVersion
                     ? ConsoleColorMode.Basic
                     : ConsoleColorMode.None;
             }
@@ -66,16 +69,16 @@ namespace SJP.Fabulous
                 return WindowsConsole.MaximumSupportedColorLevel;
             }
 
-            if (env.TryGetEnvironmentVariable("TERM_PROGRAM", out var termProgram) &&
-                env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out var termProgramVersion))
+            if (env.TryGetEnvironmentVariable("TERM_PROGRAM", out var termProgram))
             {
-                var pieces = termProgramVersion.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-                var majorVersionText = pieces[0];
-
                 switch (termProgram)
                 {
                     case "iTerm.app":
-                        return int.TryParse(majorVersionText, out var majorVersion) && majorVersion >= 3
+                        if (!env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out var termProgramVersionText)
+                            || !Version.TryParse(termProgramVersionText, out var termProgramVersion))
+                            return ConsoleColorMode.Enhanced;
+
+                        return termProgramVersion.Major >= 3
                             ? ConsoleColorMode.Full
                             : ConsoleColorMode.Enhanced;
                     case "Hyper":
@@ -120,6 +123,15 @@ namespace SJP.Fabulous
                 return (stream ?? Stream.Null) != Stream.Null;
         });
 
-        private static IEnvironmentVariableProvider Environment { get; } = new EnvironmentVariableProvider();
+        /// <summary>
+        /// Provides access to environment variables on the system. Not intended to be changed.
+        /// </summary>
+        public static IEnvironmentVariableProvider Environment
+        {
+            get => _environment;
+            set => _environment = value ?? throw new ArgumentNullException(nameof(Environment));
+        }
+
+        private static IEnvironmentVariableProvider _environment = new EnvironmentVariableProvider();
     }
 }

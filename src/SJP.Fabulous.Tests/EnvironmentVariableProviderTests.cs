@@ -34,7 +34,7 @@ namespace SJP.Fabulous.Tests
             var providerPath = env.GetEnvironmentVariable("PATH");
             var sysPath = Environment.GetEnvironmentVariable("PATH");
 
-            Assert.AreEqual(providerPath, sysPath);
+            Assert.AreEqual(sysPath, providerPath);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace SJP.Fabulous.Tests
             var sysPath = Environment.GetEnvironmentVariable("PATH");
 
             Assert.IsTrue(isFound);
-            Assert.AreEqual(providerPath, sysPath);
+            Assert.AreEqual(sysPath, providerPath);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace SJP.Fabulous.Tests
 
             Assert.IsTrue(isFound);
             Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(numberOfProcessors.ToString(), sysNumberOfProcs);
+            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("PATH", out var pathInt);
 
             Assert.IsFalse(isFound);
-            Assert.AreEqual(pathInt, default(int));
+            Assert.AreEqual(default(int), pathInt);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
 
             Assert.IsFalse(isFound);
-            Assert.AreEqual(notFoundVar, default(int));
+            Assert.AreEqual(default(int), notFoundVar);
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace SJP.Fabulous.Tests
 
             Assert.IsTrue(isFound);
             Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(numberOfProcessors.ToString(), sysNumberOfProcs);
+            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("PATH", null, out var pathInt);
 
             Assert.IsFalse(isFound);
-            Assert.AreEqual(pathInt, default(int));
+            Assert.AreEqual(default(int), pathInt);
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", null, out var notFoundVar);
 
             Assert.IsFalse(isFound);
-            Assert.AreEqual(notFoundVar, default(int));
+            Assert.AreEqual(default(int), notFoundVar);
         }
     }
 }

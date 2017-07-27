@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using SJP.Fabulous.Colorspaces;
+﻿using System.Text.RegularExpressions;
 
 namespace SJP.Fabulous
 {
