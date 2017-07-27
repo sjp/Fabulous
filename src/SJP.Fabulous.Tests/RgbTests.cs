@@ -119,36 +119,48 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void FromHex_GivenEmptyHexString_ThrowsArgNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(null));
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromHex("   "));
+            Assert.Multiple(() =>
+            {
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(null));
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromHex("   "));
+            });
         }
 
         [Test]
         public void FromHex_GivenTooShortString_ThrowsArgException()
         {
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("12"));
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("#12"));
+            Assert.Multiple(() =>
+            {
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("12"));
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("#12"));
+            });
         }
 
         [Test]
         public void FromHex_GivenIncorrectLengthString_ThrowsArgException()
         {
-            // > 3 but < 6
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234"));
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("#1234"));
+            Assert.Multiple(() =>
+            {
+                // > 3 but < 6
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234"));
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("#1234"));
 
-            // >6
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234567"));
-            Assert.Throws<ArgumentException>(() => Rgb.FromHex("#1234567"));
+                // >6
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234567"));
+                Assert.Throws<ArgumentException>(() => Rgb.FromHex("#1234567"));
+            });
         }
 
         [Test]
         public void FromKeyword_GivenEmptyKeywordString_ThrowsArgNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(null));
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword("   "));
+            Assert.Multiple(() =>
+            {
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(null));
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword("   "));
+            });
         }
 
         [Test]

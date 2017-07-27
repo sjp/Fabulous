@@ -73,8 +73,11 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable("PATH", out var providerPath);
             var sysPath = Environment.GetEnvironmentVariable("PATH");
 
-            Assert.IsTrue(isFound);
-            Assert.AreEqual(sysPath, providerPath);
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(isFound);
+                Assert.AreEqual(sysPath, providerPath);
+            });
         }
 
         [Test]
@@ -85,8 +88,11 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
             var sysPath = Environment.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
 
-            Assert.IsFalse(isFound);
-            Assert.IsNull(notFoundVar);
+            Assert.Multiple(() =>
+            {
+                Assert.IsFalse(isFound);
+                Assert.IsNull(notFoundVar);
+            });
         }
 
         [Test]
@@ -98,9 +104,12 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS", out var numberOfProcessors);
             var sysNumberOfProcs = Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS");
 
-            Assert.IsTrue(isFound);
-            Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(isFound);
+                Assert.IsTrue(numberOfProcessors > 0);
+                Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            });
         }
 
         [Test]
@@ -121,8 +130,11 @@ namespace SJP.Fabulous.Tests
 
             var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
 
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), notFoundVar);
+            Assert.Multiple(() =>
+            {
+                Assert.IsFalse(isFound);
+                Assert.AreEqual(default(int), notFoundVar);
+            });
         }
 
         [Test]
@@ -134,9 +146,12 @@ namespace SJP.Fabulous.Tests
             var isFound = env.TryGetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS", null, out var numberOfProcessors);
             var sysNumberOfProcs = Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS");
 
-            Assert.IsTrue(isFound);
-            Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(isFound);
+                Assert.IsTrue(numberOfProcessors > 0);
+                Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            });
         }
 
         [Test]
@@ -146,8 +161,11 @@ namespace SJP.Fabulous.Tests
 
             var isFound = env.TryGetEnvironmentVariable<int>("PATH", null, out var pathInt);
 
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), pathInt);
+            Assert.Multiple(() =>
+            {
+                Assert.IsFalse(isFound);
+                Assert.AreEqual(default(int), pathInt);
+            });
         }
 
         [Test]
@@ -157,8 +175,11 @@ namespace SJP.Fabulous.Tests
 
             var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", null, out var notFoundVar);
 
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), notFoundVar);
+            Assert.Multiple(() =>
+            {
+                Assert.IsFalse(isFound);
+                Assert.AreEqual(default(int), notFoundVar);
+            });
         }
     }
 }

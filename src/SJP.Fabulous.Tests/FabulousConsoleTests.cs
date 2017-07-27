@@ -151,7 +151,7 @@ namespace SJP.Fabulous.Tests
             Assert.AreEqual(ConsoleColorMode.None, result);
         }
 
-        [Test]
+        [Test, TestPlatform.Windows]
         public void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndON_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
@@ -165,7 +165,7 @@ namespace SJP.Fabulous.Tests
             Assert.AreEqual(ConsoleColorMode.Enhanced, result);
         }
 
-        [Test]
+        [Test, TestPlatform.Windows]
         public void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndNotON_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
@@ -179,312 +179,264 @@ namespace SJP.Fabulous.Tests
             Assert.AreEqual(ConsoleColorMode.Basic, result);
         }
 
-        [TestFixture]
-        public class NonWindowsTests
+        [Test, TestPlatform.Windows]
+        public void GetMaximumSupportedColorMode_WhenNotConEmuANSIPresent_ReturnsBasic()
         {
-            [SetUp]
-            public void Reset()
-            {
-                FabulousConsole.Environment = new EnvironmentVariableProvider();
-                FabulousConsole.ColorLevel = ConsoleColorMode.Standard;
-            }
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithHyper_ReturnsFull()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            var conemuVar = "xyz";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("ConEmuANSI", out conemuVar)).Returns(false);
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var termProgram = "Hyper";
-                newEnv.Setup(env => WindowsConsole.IsWindowsPlatform).Returns(false);
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
+            Assert.AreEqual(WindowsConsole.MaximumSupportedColorLevel, result);
+        }
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithHyper_ReturnsFull()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                Assert.AreEqual(ConsoleColorMode.Full, result);
-            }
+            var termProgram = "Hyper";
+            newEnv.Setup(env => WindowsConsole.IsWindowsPlatform).Returns(false);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithAppleTerminal_ReturnsFull()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            Assert.AreEqual(ConsoleColorMode.Full, result);
+        }
 
-                var termProgram = "Apple_Terminal";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithAppleTerminal_ReturnsFull()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            var termProgram = "Apple_Terminal";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
 
-                Assert.AreEqual(ConsoleColorMode.Enhanced, result);
-            }
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionGte3_ReturnsFull()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        }
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionGte3_ReturnsFull()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var termProgram = "iTerm.app";
-                var termProgramVersion = "3.1";
+            var termProgram = "iTerm.app";
+            var termProgramVersion = "3.1";
 
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                Assert.AreEqual(ConsoleColorMode.Full, result);
-            }
+            Assert.AreEqual(ConsoleColorMode.Full, result);
+        }
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionLt3_ReturnsEnhanced()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionLt3_ReturnsEnhanced()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            var termProgram = "iTerm.app";
+            var termProgramVersion = "2.4.5";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
 
-                var termProgram = "iTerm.app";
-                var termProgramVersion = "2.4.5";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        }
 
-                Assert.AreEqual(ConsoleColorMode.Enhanced, result);
-            }
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndJunkVersion_ReturnsEnhanced()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndJunkVersion_ReturnsEnhanced()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            var termProgram = "iTerm.app";
+            var termProgramVersion = "xyz";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var termProgram = "iTerm.app";
-                var termProgramVersion = "xyz";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out termProgramVersion)).Returns(true);
+            Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        }
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithScreen256ColorValue_ReturnsEnhanced()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                Assert.AreEqual(ConsoleColorMode.Enhanced, result);
-            }
+            var term = "screen-256color";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithScreen256ColorValue_ReturnsEnhanced()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        }
 
-                var term = "screen-256color";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithXTerm256ColorValue_ReturnsEnhanced()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            var term = "xterm-256color";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                Assert.AreEqual(ConsoleColorMode.Enhanced, result);
-            }
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithXTerm256ColorValue_ReturnsEnhanced()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        }
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithScreenValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var term = "xterm-256color";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            var term = "screen";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                Assert.AreEqual(ConsoleColorMode.Enhanced, result);
-            }
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithScreenValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithXTermValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            var term = "xterm";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                var term = "screen";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithVT100Value_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithXTermValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            var term = "vt100";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var term = "xterm";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithAnsiValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+            var term = "ansi";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithVT100Value_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                var term = "vt100";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithColorValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            var term = "color";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithAnsiValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithCygwinValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var term = "ansi";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            var term = "vt100";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithColorValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithLinuxValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            var term = "linux";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                var term = "color";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenTermPresentWithDumbValue_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithCygwinValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            var term = "dumb";
+            newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var term = "vt100";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+            Assert.AreEqual(ConsoleColorMode.None, result);
+        }
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenColortermPresent_ReturnsBasic()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+            newEnv.Setup(env => env.HasEnvironmentVariable("COLORTERM")).Returns(true);
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithLinuxValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
+            Assert.AreEqual(ConsoleColorMode.Basic, result);
+        }
 
-                var term = "linux";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
+        [Test, TestPlatform.NonWindows]
+        public void GetMaximumSupportedColorMode_WhenNoVariablesPresent_ReturnsNone()
+        {
+            var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
+            string tmp;
+            newEnv.Setup(env => env.HasEnvironmentVariable(It.IsAny<string>())).Returns(false);
+            newEnv.Setup(env => env.TryGetEnvironmentVariable(It.IsAny<string>(), out tmp)).Returns(false);
 
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
+            FabulousConsole.Environment = newEnv.Object;
+            var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenTermPresentWithDumbValue_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
-
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
-
-                var term = "dumb";
-                newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
-
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
-
-                Assert.AreEqual(ConsoleColorMode.None, result);
-            }
-
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenColortermPresent_ReturnsBasic()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
-
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
-
-                newEnv.Setup(env => env.HasEnvironmentVariable("COLORTERM")).Returns(true);
-
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
-
-                Assert.AreEqual(ConsoleColorMode.Basic, result);
-            }
-
-            [Test]
-            public void GetMaximumSupportedColorMode_WhenNoVariablesPresent_ReturnsNone()
-            {
-                if (WindowsConsole.IsWindowsPlatform)
-                    return;
-
-                var newEnv = new Mock<IEnvironmentVariableProvider>();
-
-                string tmp;
-                newEnv.Setup(env => env.HasEnvironmentVariable(It.IsAny<string>())).Returns(false);
-                newEnv.Setup(env => env.TryGetEnvironmentVariable(It.IsAny<string>(), out tmp)).Returns(false);
-
-                FabulousConsole.Environment = newEnv.Object;
-                var result = FabulousConsole.GetMaximumSupportedColorMode();
-
-                Assert.AreEqual(ConsoleColorMode.None, result);
-            }
+            Assert.AreEqual(ConsoleColorMode.None, result);
         }
     }
 }
