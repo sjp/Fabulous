@@ -67,13 +67,13 @@ namespace SJP.Fabulous.Colorspaces
                 throw new ArgumentNullException(nameof(hex));
 
             if (hex.Length < 3)
-                throw new ArgumentException("Hex string does not have enough characters. Must be either 3 or 6 hexadecimal digits.", nameof(hex));
+                throw new ArgumentException("Hex string does not have enough characters. Must be either 3 or 6 hexadecimal digits. Hex string is: " + hex, nameof(hex));
 
             if (hex.StartsWith("#"))
                 hex = hex.Substring(1);
 
             if (hex.Length != 3 && hex.Length != 6)
-                throw new ArgumentException("Hex string is not the correct length. Must either be 3 or 6 hexadecimal characters.", nameof(hex));
+                throw new ArgumentException("Hex string is not the correct length. Must either be 3 or 6 hexadecimal characters. Hex string is: " + hex, nameof(hex));
 
             var inputLength = hex.Length;
 
