@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using EnumsNET;
 
 namespace SJP.Fabulous.Colorspaces
 {
@@ -103,6 +104,20 @@ namespace SJP.Fabulous.Colorspaces
                 throw new ArgumentException("Hex string contains invalid hexadecimal characters. Hex string is: " + hex, nameof(hex));
 
             return new Rgb(r, g, b);
+        }
+
+        /// <summary>
+        /// Creates a color in the RGB colorspace from a CSS color keyword.
+        /// </summary>
+        /// <param name="keyword">A color keyword.</param>
+        /// <returns>A color in the RGB colorspace.</returns>
+        public static IRgb FromKeyword(ColorKeyword keyword)
+        {
+            if (!keyword.IsValid())
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+
+            var keywordName = keyword.GetName();
+            return FromKeyword(keywordName);
         }
 
         /// <summary>
