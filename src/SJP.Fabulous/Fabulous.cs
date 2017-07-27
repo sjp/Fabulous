@@ -12,9 +12,9 @@ namespace SJP.Fabulous
         /// <summary>
         /// Creates a new <see cref="FabulousText"/> object that has a given foreground color.
         /// </summary>
-        /// <param name="foreColor">A color defined in the RGB colorspace.</param>
+        /// <param name="foreColor">A color to use for the foreground.</param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
-        public static FabulousText Foreground(IRgb foreColor)
+        public static FabulousText Foreground(IColor foreColor)
         {
             if (foreColor == null)
                 throw new ArgumentNullException(nameof(foreColor));
@@ -25,9 +25,9 @@ namespace SJP.Fabulous
         /// <summary>
         /// Creates a new <see cref="FabulousText"/> object that has a given background color.
         /// </summary>
-        /// <param name="backColor">A color defined in the RGB colorspace.</param>
+        /// <param name="backColor">A color to use for the background.</param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
-        public static FabulousText Background(IRgb backColor)
+        public static FabulousText Background(IColor backColor)
         {
             if (backColor == null)
                 throw new ArgumentNullException(nameof(backColor));
@@ -1108,9 +1108,9 @@ namespace SJP.Fabulous
 
         #endregion Writer methods
 
-        private static IRgb DefaultForeground { get; } = RgbConsoleColor.White;
+        private static IColor DefaultForeground { get; } = RgbConsoleColor.White;
 
-        private static IRgb DefaultBackground { get; } = RgbConsoleColor.Black;
+        private static IColor DefaultBackground { get; } = RgbConsoleColor.Black;
 
         private static IConsoleWriter GetConsoleWriter(FabulousTextCollection collection)
         {
