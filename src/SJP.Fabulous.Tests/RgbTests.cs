@@ -174,5 +174,21 @@ namespace SJP.Fabulous.Tests
 
             Assert.AreEqual(rgb, orangeRed);
         }
+
+        [Test]
+        public void FromKeyword_GivenColorKeywordWithInvalidEnum_ThrowsArgException()
+        {
+            var badEnum = (ColorKeyword)293048;
+            Assert.Throws<ArgumentException>(() => Rgb.FromKeyword(badEnum));
+        }
+
+        [Test]
+        public void FromKeyword_GivenColorKeywordWithEnum_ReturnsRgbColorDefinition()
+        {
+            var rgb = new Rgb(255, 69, 0);
+            var orangeRed = Rgb.FromKeyword(ColorKeyword.OrangeRed);
+
+            Assert.AreEqual(rgb, orangeRed);
+        }
     }
 }
