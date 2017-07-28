@@ -31,13 +31,25 @@ namespace SJP.Fabulous
             Text = text ?? string.Empty;
         }
 
-        internal IColor ForegroundColor { get; }
+        /// <summary>
+        /// The color of the foreground text.
+        /// </summary>
+        public IColor ForegroundColor { get; }
 
-        internal IColor BackgroundColor { get; }
+        /// <summary>
+        /// The color of the background text.
+        /// </summary>
+        public IColor BackgroundColor { get; }
 
-        internal TextDecoration Decorations { get; }
+        /// <summary>
+        /// A collection of styles that may be applied to the console.
+        /// </summary>
+        public TextDecoration Decorations { get; }
 
-        internal bool ConsoleReset { get; }
+        /// <summary>
+        /// If true, will reset all styling on the console before and after printing this text object.
+        /// </summary>
+        public bool ConsoleReset { get; }
 
         /// <summary>
         /// The text that will be styled.
@@ -87,6 +99,20 @@ namespace SJP.Fabulous
         {
             if (string.IsNullOrWhiteSpace(keyword))
                 throw new ArgumentNullException(nameof(keyword));
+
+            var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
+            return new FabulousText(foreColor, BackgroundColor, Decorations, Text, ConsoleReset);
+        }
+
+        /// <summary>
+        /// Styles the text with a new foreground color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        public FabulousText Keyword(ColorKeyword keyword)
+        {
+            if (!keyword.IsValid())
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
 
             var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(foreColor, BackgroundColor, Decorations, Text, ConsoleReset);
@@ -215,6 +241,20 @@ namespace SJP.Fabulous
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
         public FabulousText BgKeyword(string keyword)
         {
+            var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
+            return new FabulousText(ForegroundColor, bgColor, Decorations, Text, ConsoleReset);
+        }
+
+        /// <summary>
+        /// Styles the text with a new background color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        public FabulousText BgKeyword(ColorKeyword keyword)
+        {
+            if (!keyword.IsValid())
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+
             var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text, ConsoleReset);
         }

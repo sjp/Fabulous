@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EnumsNET;
 using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous
@@ -85,6 +86,20 @@ namespace SJP.Fabulous
         {
             if (string.IsNullOrWhiteSpace(keyword))
                 throw new ArgumentNullException(nameof(keyword));
+
+            var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
+            return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
+        }
+
+        /// <summary>
+        /// Styles the text with a new foreground color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        public static FabulousText Keyword(ColorKeyword keyword)
+        {
+            if (!keyword.IsValid())
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
 
             var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
@@ -218,6 +233,20 @@ namespace SJP.Fabulous
         {
             if (string.IsNullOrWhiteSpace(keyword))
                 throw new ArgumentNullException(nameof(keyword));
+
+            var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
+            return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);
+        }
+
+        /// <summary>
+        /// Styles the text with a new background color as defined by a named CSS color in the RGB colorspace.
+        /// </summary>
+        /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
+        /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        public static FabulousText BgKeyword(ColorKeyword keyword)
+        {
+            if (!keyword.IsValid())
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
 
             var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);

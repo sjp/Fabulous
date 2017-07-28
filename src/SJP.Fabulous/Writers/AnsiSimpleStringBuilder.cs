@@ -74,8 +74,8 @@ namespace SJP.Fabulous
                 }
 
                 builder.Append(text.Text);
-                builder.Append(BackgroundColorClose);
                 builder.Append(ForegroundColorClose);
+                builder.Append(BackgroundColorClose);
 
                 foreach (var style in styles)
                 {

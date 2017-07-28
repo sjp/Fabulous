@@ -1,7 +1,5 @@
 using System;
 using NUnit.Framework;
-using Moq;
-using SJP.Fabulous.Colorspaces;
 using System.Linq;
 
 namespace SJP.Fabulous.Tests

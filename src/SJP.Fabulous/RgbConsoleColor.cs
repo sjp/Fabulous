@@ -28,7 +28,7 @@ namespace SJP.Fabulous
 
         public static IRgb Blue => new Rgb(0, 0, 255);
 
-        public static IRgb Green => new Rgb(0, 128, 0);
+        public static IRgb Green => new Rgb(0, 255, 0);
 
         public static IRgb Cyan => new Rgb(0, 255, 255);
 
