@@ -118,6 +118,94 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
+        public void Rgb_GivenValidColor_ReturnsNewObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(12, 34, 56);
+
+            FabulousText text = string.Empty;
+            var result = text.Rgb(12, 34, 56);
+
+            Assert.AreEqual(expectedColor, result.ForegroundColor);
+        }
+
+        [Test]
+        public void BgRgb_GivenValidColor_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(12, 34, 56);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgRgb(12, 34, 56);
+
+            Assert.AreEqual(expectedColor, result.BackgroundColor);
+        }
+
+        [Test]
+        public void Hex_GivenValidHex_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.Hex("#8FBC8F");
+
+            Assert.AreEqual(expectedColor, result.ForegroundColor);
+        }
+
+        [Test]
+        public void BgHex_GivenValidHex_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgHex("#8FBC8F");
+
+            Assert.AreEqual(expectedColor, result.BackgroundColor);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorName_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.Keyword("DarkSeaGreen");
+
+            Assert.AreEqual(expectedColor, result.ForegroundColor);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorNameEnum_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreEqual(expectedColor, result.ForegroundColor);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorName_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgKeyword("DarkSeaGreen");
+
+            Assert.AreEqual(expectedColor, result.BackgroundColor);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorNameEnum_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreEqual(expectedColor, result.BackgroundColor);
+        }
+
+        [Test]
         public void Black_PropertyGet_ReturnsObjectWithBlackForegroundColor()
         {
             FabulousText text = string.Empty;
@@ -134,7 +222,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(139, 0, 0);
 
-            var result = Fabulous.Red;
+            var result = text.Red;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -145,7 +233,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 100, 0);
 
-            var result = Fabulous.Green;
+            var result = text.Green;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -156,7 +244,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(215, 195, 42);
 
-            var result = Fabulous.Yellow;
+            var result = text.Yellow;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -178,7 +266,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(139, 0, 139);
 
-            var result = Fabulous.Magenta;
+            var result = text.Magenta;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -200,7 +288,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(192, 192, 192);
 
-            var result = Fabulous.White;
+            var result = text.White;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -209,9 +297,9 @@ namespace SJP.Fabulous.Tests
         public void Gray_PropertyGet_ReturnsObjectWithGrayForegroundColor()
         {
             FabulousText text = string.Empty;
-            var expectedColor = new Rgb(169, 169, 169);
+            var expectedColor = new Rgb(128, 128, 128);
 
-            var result = Fabulous.Gray;
+            var result = text.Gray;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -220,9 +308,9 @@ namespace SJP.Fabulous.Tests
         public void Grey_PropertyGet_ReturnsObjectWithGreyForegroundColor()
         {
             FabulousText text = string.Empty;
-            var expectedColor = new Rgb(169, 169, 169);
+            var expectedColor = new Rgb(128, 128, 128);
 
-            var result = Fabulous.Grey;
+            var result = text.Grey;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -233,7 +321,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 0, 0);
 
-            var result = Fabulous.RedBright;
+            var result = text.RedBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -244,7 +332,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 255, 0);
 
-            var result = Fabulous.GreenBright;
+            var result = text.GreenBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -266,7 +354,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 0, 255);
 
-            var result = Fabulous.BlueBright;
+            var result = text.BlueBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -277,7 +365,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 0, 255);
 
-            var result = Fabulous.MagentaBright;
+            var result = text.MagentaBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -288,7 +376,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 255, 255);
 
-            var result = Fabulous.CyanBright;
+            var result = text.CyanBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -299,7 +387,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 255, 255);
 
-            var result = Fabulous.WhiteBright;
+            var result = text.WhiteBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -310,7 +398,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 0, 0);
 
-            var result = Fabulous.Black;
+            var result = text.Black;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -321,7 +409,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(139, 0, 0);
 
-            var result = Fabulous.BgRed;
+            var result = text.BgRed;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -332,7 +420,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 100, 0);
 
-            var result = Fabulous.BgGreen;
+            var result = text.BgGreen;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -343,7 +431,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(215, 195, 42);
 
-            var result = Fabulous.BgYellow;
+            var result = text.BgYellow;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -354,7 +442,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 0, 139);
 
-            var result = Fabulous.BgBlue;
+            var result = text.BgBlue;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -365,7 +453,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(139, 0, 139);
 
-            var result = Fabulous.BgMagenta;
+            var result = text.BgMagenta;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -387,7 +475,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(192, 192, 192);
 
-            var result = Fabulous.BgWhite;
+            var result = text.BgWhite;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -398,7 +486,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(169, 169, 169);
 
-            var result = Fabulous.BgGray;
+            var result = text.BgGray;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -409,7 +497,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(169, 169, 169);
 
-            var result = Fabulous.BgGrey;
+            var result = text.BgGrey;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -420,7 +508,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 0, 0);
 
-            var result = Fabulous.BgRedBright;
+            var result = text.BgRedBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -431,7 +519,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 255, 0);
 
-            var result = Fabulous.BgGreenBright;
+            var result = text.BgGreenBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -442,7 +530,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 255, 0);
 
-            var result = Fabulous.BgYellowBright;
+            var result = text.BgYellowBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -453,7 +541,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 0, 255);
 
-            var result = Fabulous.BgBlueBright;
+            var result = text.BgBlueBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -464,7 +552,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 0, 255);
 
-            var result = Fabulous.BgMagentaBright;
+            var result = text.BgMagentaBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -475,7 +563,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 255, 255);
 
-            var result = Fabulous.BgCyanBright;
+            var result = text.BgCyanBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -486,7 +574,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 255, 255);
 
-            var result = Fabulous.BgWhiteBright;
+            var result = text.BgWhiteBright;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -504,7 +592,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Blink;
 
-            var result = Fabulous.Blink;
+            var result = text.Blink;
 
             Assert.AreEqual(expected, result.Decorations);
         }
@@ -526,7 +614,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Dim;
 
-            var result = Fabulous.Dim;
+            var result = text.Dim;
 
             Assert.AreEqual(expected, result.Decorations);
         }
@@ -537,7 +625,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Italic;
 
-            var result = Fabulous.Italic;
+            var result = text.Italic;
 
             Assert.AreEqual(expected, result.Decorations);
         }
@@ -548,7 +636,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Underline;
 
-            var result = Fabulous.Underline;
+            var result = text.Underline;
 
             Assert.AreEqual(expected, result.Decorations);
         }
@@ -559,7 +647,7 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Hidden;
 
-            var result = Fabulous.Hidden;
+            var result = text.Hidden;
 
             Assert.AreEqual(expected, result.Decorations);
         }
@@ -570,22 +658,502 @@ namespace SJP.Fabulous.Tests
             FabulousText text = string.Empty;
             var expected = TextDecoration.Strikethrough;
 
-            var result = Fabulous.Strikethrough;
+            var result = text.Strikethrough;
 
             Assert.AreEqual(expected, result.Decorations);
         }
 
-        // TODO: test correct behaviour of
-        // Rgb / BgRgb
-        // Hex / BgHex
-        // Keyword / BgKeyword
-
-        // TODO
-        // now to test that everything returns a new object, i.e. Assert.AreNotSame
         [Test]
-        public void Foreground_WithCorrectValue_ReturnsNewObject()
+        public void Rgb_GivenValidColor_ReturnsNewObject()
         {
+            FabulousText text = string.Empty;
+            var result = text.Rgb(12, 34, 56);
 
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgRgb_GivenValidColor_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgRgb(12, 34, 56);
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Hex_GivenValidHex_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.Hex("#8FBC8F");
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgHex_GivenValidHex_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgHex("#8FBC8F");
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorName_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.Keyword("DarkSeaGreen");
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorNameEnum_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorName_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgKeyword("DarkSeaGreen");
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorNameEnum_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var result = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Black_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Black;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Red_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Red;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Green_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Green;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Yellow_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Yellow;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Blue_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = Fabulous.Blue;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Magenta_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Magenta;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Cyan_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = Fabulous.Cyan;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void White_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.White;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Gray_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Gray;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Grey_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Grey;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void RedBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.RedBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void GreenBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.GreenBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void YellowBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = Fabulous.YellowBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BlueBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BlueBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void MagentaBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.MagentaBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void CyanBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.CyanBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void WhiteBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.WhiteBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgBlack_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Black;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgRed_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgRed;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgGreen_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgGreen;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgYellow_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgYellow;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgBlue_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgBlue;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgMagenta_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgMagenta;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgCyan_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = Fabulous.BgCyan;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgWhite_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgWhite;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgGray_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+            var expectedColor = new Rgb(169, 169, 169);
+
+            var result = text.BgGray;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgGrey_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgGrey;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgRedBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgRedBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgGreenBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgGreenBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgYellowBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgYellowBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgBlueBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgBlueBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgMagentaBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgMagentaBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgCyanBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgCyanBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void BgWhiteBright_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.BgWhiteBright;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Reset_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Reset;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Blink_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Blink;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Bold_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = Fabulous.Bold;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Dim_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Dim;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Italic_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Italic;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Underline_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Underline;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Hidden_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Hidden;
+
+            Assert.AreNotSame(text, result);
+        }
+
+        [Test]
+        public void Strikethrough_PropertyGet_ReturnsNewObject()
+        {
+            FabulousText text = string.Empty;
+
+            var result = text.Strikethrough;
+
+            Assert.AreNotSame(text, result);
         }
     }
 }

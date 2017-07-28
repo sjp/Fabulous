@@ -78,6 +78,86 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
+        public void Rgb_GivenValidColor_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(12, 34, 56);
+
+            var text = Fabulous.Rgb(12, 34, 56);
+
+            Assert.AreEqual(expectedColor, text.ForegroundColor);
+        }
+
+        [Test]
+        public void BgRgb_GivenValidColor_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(12, 34, 56);
+
+            var text = Fabulous.BgRgb(12, 34, 56);
+
+            Assert.AreEqual(expectedColor, text.BackgroundColor);
+        }
+
+        [Test]
+        public void Hex_GivenValidHex_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.Hex("#8FBC8F");
+
+            Assert.AreEqual(expectedColor, text.ForegroundColor);
+        }
+
+        [Test]
+        public void BgHex_GivenValidHex_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.BgHex("#8FBC8F");
+
+            Assert.AreEqual(expectedColor, text.BackgroundColor);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorName_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.Keyword("DarkSeaGreen");
+
+            Assert.AreEqual(expectedColor, text.ForegroundColor);
+        }
+
+        [Test]
+        public void Keyword_GivenValidColorNameEnum_ReturnsObjectWithForegroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreEqual(expectedColor, text.ForegroundColor);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorName_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.BgKeyword("DarkSeaGreen");
+
+            Assert.AreEqual(expectedColor, text.BackgroundColor);
+        }
+
+        [Test]
+        public void BgKeyword_GivenValidColorNameEnum_ReturnsObjectWithBackgroundSet()
+        {
+            var expectedColor = new Rgb(143, 188, 143);
+
+            var text = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
+
+            Assert.AreEqual(expectedColor, text.BackgroundColor);
+        }
+
+        [Test]
         public void Black_PropertyGet_ReturnsObjectWithBlackForegroundColor()
         {
             var expectedColor = new Rgb(0, 0, 0);
