@@ -90,9 +90,7 @@ namespace SJP.Fabulous
 
             if (env.TryGetEnvironmentVariable("TERM", out var term))
             {
-                var isEnhancedTerm = term.Equals("screen-256color", StringComparison.OrdinalIgnoreCase)
-                    || term.Equals("xterm-256color", StringComparison.OrdinalIgnoreCase);
-                if (isEnhancedTerm)
+                if (term.EndsWith("-256color", StringComparison.OrdinalIgnoreCase))
                     return ConsoleColorMode.Enhanced;
 
                 var isBasicTerm = term.StartsWith("screen", StringComparison.OrdinalIgnoreCase)
