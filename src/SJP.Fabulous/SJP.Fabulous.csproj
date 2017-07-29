@@ -7,6 +7,15 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\.xml</DocumentationFile>
+    <Authors>Simon Potter</Authors>
+    <Company />
+    <Product />
+    <Description>Easy terminal styling for .NET</Description>
+    <Copyright>Copyright © Simon Potter 2017</Copyright>
+    <PackageLicenseUrl>https://raw.github.com/sjp/Fabulous/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/sjp/Fabulous</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sjp/Fabulous</RepositoryUrl>
+    <PackageIconUrl>https://raw.github.com/sjp/SJP.Fabulous/master/fabulous.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
