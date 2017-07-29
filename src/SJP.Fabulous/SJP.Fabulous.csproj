@@ -15,7 +15,11 @@
     <PackageLicenseUrl>https://raw.github.com/sjp/Fabulous/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sjp/Fabulous</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sjp/Fabulous</RepositoryUrl>
-    <PackageIconUrl>https://raw.github.com/sjp/SJP.Fabulous/master/fabulous.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.github.com/sjp/Fabulous/master/fabulous.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
