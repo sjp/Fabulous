@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using SJP.Fabulous.Colorspaces;
 using EnumsNET;
+using System.Collections.Generic;
 
 namespace SJP.Fabulous
 {
     /// <summary>
     /// Represents a styled piece of text.
     /// </summary>
-    public class FabulousText : IConsoleWriter
+    public class FabulousText : IConsoleWriter, IEquatable<FabulousText>
     {
         /// <summary>
         /// Creates a styled piece of text.
@@ -404,6 +405,95 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(fragmentB));
 
             return new FabulousTextCollection(fragmentA, fragmentB);
+        }
+
+        /// <summary>
+        /// Equality operator for FabulousText objects
+        /// </summary>
+        /// <param name="a">A FabulousText object.</param>
+        /// <param name="b">Another FabulousText object.</param>
+        /// <returns><b>True</b> if all of the value properties of the FabulousText objects are equal, otherwise <b>false</b>.</returns>
+        public static bool operator ==(FabulousText a, FabulousText b)
+        {
+            var aIsNull = ReferenceEquals(a, null);
+            var bIsNull = ReferenceEquals(b, null);
+
+            if (aIsNull && bIsNull)
+                return true;
+
+            if (aIsNull ^ bIsNull)
+                return false;
+
+            if (ReferenceEquals(a, b))
+                return true;
+
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Inequality operator for FabulousText objects
+        /// </summary>
+        /// <param name="a">A FabulousText object.</param>
+        /// <param name="b">Another FabulousText object.</param>
+        /// <returns><b>False</b> if all of the value properties of the FabulousText objects are equal, otherwise <b>true</b>.</returns>
+        public static bool operator !=(FabulousText a, FabulousText b) => !(a == b);
+
+        /// <summary>
+        /// Indicates whether the FabulousText object is equal to another text object.
+        /// </summary>
+        /// <returns><b>True</b> if the FabulousText object is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <param name="other">A FabulousText object to compare with this object.</param>
+        public bool Equals(FabulousText other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return _colorComparer.Equals(ForegroundColor, other.ForegroundColor)
+                && _colorComparer.Equals(BackgroundColor, other.BackgroundColor)
+                && Decorations == other.Decorations
+                && ConsoleReset == other.ConsoleReset
+                && Text == other.Text;
+        }
+
+        private static readonly IEqualityComparer<IColor> _colorComparer = EqualityComparer<IColor>.Default;
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current FabulousText object.
+        /// </summary>
+        /// <returns><b>True</b> if the specified object is equal to the current FabulousText object; otherwise, <b>false</b>.</returns>
+        /// <param name="obj">The object to compare with the current FabulousText object.</param>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            return Equals(obj as FabulousText);
+        }
+
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the FabulousText object.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var result = 17;
+
+                result = (result * 31) + ForegroundColor.GetHashCode();
+                result = (result * 31) + BackgroundColor.GetHashCode();
+                result = (result * 31) + Decorations.GetHashCode();
+                result = (result * 31) + ConsoleReset.GetHashCode();
+                result = (result * 31) + Text.GetHashCode();
+
+                return result;
+            }
         }
 
         #region IConsoleWriter

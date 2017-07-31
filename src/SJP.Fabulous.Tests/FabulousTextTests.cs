@@ -118,6 +118,89 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
+        public void Equals_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Red.Text(message);
+
+            var result = a.Equals(b);
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Equals_GivenSameValuedObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Green.Text(message);
+
+            var result = a.Equals(b);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void Equals_GivenSameObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+
+            var result = a.Equals(a);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Green.Text(message);
+
+            var result = a == b;
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Red.Text(message);
+
+            var result = a == b;
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Red.Text(message);
+
+            var result = a != b;
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var a = Fabulous.Green.Text(message);
+            var b = Fabulous.Green.Text(message);
+
+            var result = a != b;
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
         public void Rgb_GivenValidColor_ReturnsNewObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(12, 34, 56);

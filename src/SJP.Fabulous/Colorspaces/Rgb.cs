@@ -174,9 +174,9 @@ namespace SJP.Fabulous.Colorspaces
             unchecked
             {
                 var result = 17;
-                result ^= Red.GetHashCode();
-                result ^= Green.GetHashCode();
-                result ^= Blue.GetHashCode();
+                result = (result * 31) + Red.GetHashCode();
+                result = (result * 31) + Green.GetHashCode();
+                result = (result * 31) + Blue.GetHashCode();
                 return result;
             }
         }
@@ -200,13 +200,13 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="a">An RGB color.</param>
         /// <param name="b">Another RGB color.</param>
-        /// <returns><b>True</b> if any of the color components of the colors are different, otherwise <b>true</b>.</returns>
+        /// <returns><b>True</b> if any of the color components of the colors are different, otherwise <b>false</b>.</returns>
         public static bool operator !=(Rgb a, Rgb b)
         {
-            if (ReferenceEquals(a, b))
+            if (!ReferenceEquals(a, b))
                 return true;
 
-            return a.Equals(b);
+            return !a.Equals(b);
         }
 
         private readonly static IReadOnlyDictionary<string, Rgb> _keywordColors = new Dictionary<string, Rgb>(StringComparer.OrdinalIgnoreCase)

@@ -146,5 +146,107 @@ namespace SJP.Fabulous.Tests
 
             Assert.Throws<ArgumentNullException>(() => { var x = collectionA + collectionB; });
         }
+
+        [Test]
+        public void Equals_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Red.Text(message);
+            var b = bText + bText;
+
+            var result = a.Equals(b);
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Equals_GivenSameValuedObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Green.Text(message);
+            var b = bText + bText;
+
+            var result = a.Equals(b);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void Equals_GivenSameObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var result = a.Equals(a);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Green.Text(message);
+            var b = bText + bText;
+
+            var result = a == b;
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Red.Text(message);
+            var b = bText + bText;
+
+            var result = a == b;
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Red.Text(message);
+            var b = bText + bText;
+
+            var result = a != b;
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
+        {
+            var message = "asd";
+            var aText = Fabulous.Green.Text(message);
+            var a = aText + aText;
+
+            var bText = Fabulous.Green.Text(message);
+            var b = bText + bText;
+
+            var result = a != b;
+
+            Assert.IsFalse(result);
+        }
     }
 }

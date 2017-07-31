@@ -37,7 +37,6 @@ namespace SJP.Fabulous.Tests
             Assert.AreEqual(56, rgb.Blue);
         }
 
-
         [Test]
         public void ToRgb_WhenInvoked_ReturnsEqualRgb()
         {

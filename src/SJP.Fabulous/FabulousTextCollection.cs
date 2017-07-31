@@ -9,7 +9,7 @@ namespace SJP.Fabulous
     /// <summary>
     /// Represents a collection of styled text that can be printed together.
     /// </summary>
-    public class FabulousTextCollection : IConsoleWriter, IEnumerable<FabulousText>
+    public class FabulousTextCollection : IConsoleWriter, IEnumerable<FabulousText>, IEquatable<FabulousTextCollection>
     {
         /// <summary>
         /// Creates a collection of styled text fragments.
@@ -115,6 +115,86 @@ namespace SJP.Fabulous
         /// </summary>
         /// <returns>An enumerator for <see cref="FabulousTextCollection"/>.</returns>
         IEnumerator IEnumerable.GetEnumerator() => Fragments.GetEnumerator();
+
+        /// <summary>
+        /// Equality operator for FabulousTextCollection objects
+        /// </summary>
+        /// <param name="a">A FabulousTextCollection object.</param>
+        /// <param name="b">Another FabulousTextCollection object.</param>
+        /// <returns><b>True</b> if all of the contained FabulousText are equal, otherwise <b>false</b>.</returns>
+        public static bool operator ==(FabulousTextCollection a, FabulousTextCollection b)
+        {
+            var aIsNull = ReferenceEquals(a, null);
+            var bIsNull = ReferenceEquals(b, null);
+
+            if (aIsNull && bIsNull)
+                return true;
+
+            if (aIsNull ^ bIsNull)
+                return false;
+
+            if (ReferenceEquals(a, b))
+                return true;
+
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Inequality operator for FabulousTextCollection objects
+        /// </summary>
+        /// <param name="a">A FabulousTextCollection object.</param>
+        /// <param name="b">Another FabulousTextCollection object.</param>
+        /// <returns><b>False</b> if all of the contained FabulousText objects are equal, otherwise <b>true</b>.</returns>
+        public static bool operator !=(FabulousTextCollection a, FabulousTextCollection b) => !(a == b);
+
+        /// <summary>
+        /// Indicates whether the text collection is equal to another text collection.
+        /// </summary>
+        /// <returns><b>True</b> if the text collection is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <param name="other">A text collection to compare with this object.</param>
+        public bool Equals(FabulousTextCollection other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Fragments.SequenceEqual(other.Fragments);
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current text collection.
+        /// </summary>
+        /// <returns><b>True</b> if the specified object is equal to the current text collection; otherwise, <b>false</b>.</returns>
+        /// <param name="obj">The object to compare with the current text collection.</param>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            return Equals(obj as FabulousTextCollection);
+        }
+
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the text collection.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var result = 17;
+
+                foreach (var fragment in Fragments)
+                    result = (result * 31) + fragment.GetHashCode();
+
+                return result;
+            }
+        }
 
         #region IConsoleWriter
 

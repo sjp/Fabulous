@@ -19,7 +19,7 @@ namespace SJP.Fabulous.Tests
         public void Foreground_NullColor_ThrowsArgNullException()
         {
             FabulousText text = string.Empty;
-            Assert.Throws<ArgumentNullException>(() => FabulousTextExtensions.Foreground(text, null));
+            Assert.Throws<ArgumentNullException>(() => text.Foreground(null));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace SJP.Fabulous.Tests
         public void Background_NullColor_ThrowsArgNullException()
         {
             FabulousText text = string.Empty;
-            Assert.Throws<ArgumentNullException>(() => FabulousTextExtensions.Background(text, null));
+            Assert.Throws<ArgumentNullException>(() => text.Background(null));
         }
 
         [Test]
