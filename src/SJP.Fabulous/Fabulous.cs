@@ -15,6 +15,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="foreColor">A color to use for the foreground.</param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="foreColor"/> is <b>null</b>.</exception>
         public static FabulousText Foreground(IColor foreColor)
         {
             if (foreColor == null)
@@ -28,6 +29,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="backColor">A color to use for the background.</param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="backColor"/> is <b>null</b>.</exception>
         public static FabulousText Background(IColor backColor)
         {
             if (backColor == null)
@@ -68,6 +70,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object with the given foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
         public static FabulousText Hex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -82,6 +85,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object with the given foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
         public static FabulousText Keyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -96,6 +100,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentException"><paramref name="keyword"/> is not a valid enum.</exception>
         public static FabulousText Keyword(ColorKeyword keyword)
         {
             if (!keyword.IsValid())
@@ -215,6 +220,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object with the given background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
         public static FabulousText BgHex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -229,6 +235,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object with the given background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
         public static FabulousText BgKeyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -243,6 +250,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentException"><paramref name="keyword"/> is not a valid enum.</exception>
         public static FabulousText BgKeyword(ColorKeyword keyword)
         {
             if (!keyword.IsValid())
@@ -420,6 +428,7 @@ namespace SJP.Fabulous
         /// Writes the styled text to the standard output stream.
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void Write(FabulousText fragment)
         {
             if (fragment == null)
@@ -434,6 +443,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void Write(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -447,6 +457,7 @@ namespace SJP.Fabulous
         /// Writes the styled text to the standard output stream.
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void Write(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -461,6 +472,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void Write(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -511,6 +523,7 @@ namespace SJP.Fabulous
         /// Writes the styled text followed by the current line terminator to the standard output stream.
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteLine(FabulousText fragment)
         {
             if (fragment == null)
@@ -525,6 +538,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteLine(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -538,6 +552,7 @@ namespace SJP.Fabulous
         /// Writes the styled text followed by the current line terminator to the standard output stream.
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteLine(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -552,6 +567,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteLine(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -602,6 +618,7 @@ namespace SJP.Fabulous
         /// Writes the styled text to the standard error stream.
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteError(FabulousText fragment)
         {
             if (fragment == null)
@@ -616,6 +633,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteError(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -629,6 +647,7 @@ namespace SJP.Fabulous
         /// Writes the styled text to the standard error stream.
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteError(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -643,6 +662,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteError(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -693,6 +713,7 @@ namespace SJP.Fabulous
         /// Writes the styled text followed by the current line terminator to the standard error stream.
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteErrorLine(FabulousText fragment)
         {
             if (fragment == null)
@@ -707,6 +728,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static void WriteErrorLine(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -720,6 +742,7 @@ namespace SJP.Fabulous
         /// Writes the styled text followed by the current line terminator to the standard error stream.
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteErrorLine(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -734,6 +757,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static void WriteErrorLine(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -788,6 +812,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -803,6 +828,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using the styled text format.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -817,6 +843,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -832,6 +859,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -886,6 +914,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteLineAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -901,6 +930,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteLineAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -915,6 +945,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteLineAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -930,6 +961,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteLineAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -984,6 +1016,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment"></param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteErrorAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -999,6 +1032,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteErrorAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -1013,6 +1047,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection"></param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteErrorAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -1028,6 +1063,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteErrorAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)
@@ -1082,6 +1118,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="fragment">A piece of styled text.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteErrorLineAsync(FabulousText fragment)
         {
             if (fragment == null)
@@ -1097,6 +1134,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A composite styled text format.</param>
         /// <param name="args">An array of objects to write using <paramref name="fragment"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static Task WriteErrorLineAsync(FabulousText fragment, params object[] args)
         {
             if (fragment == null)
@@ -1111,6 +1149,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="collection">A collection of text to be styled.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteErrorLineAsync(FabulousTextCollection collection)
         {
             if (collection == null)
@@ -1126,6 +1165,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A collection of composite styled text formats.</param>
         /// <param name="args">An array of objects to write using <paramref name="collection"/>.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <b>null</b>.</exception>
         public static Task WriteErrorLineAsync(FabulousTextCollection collection, params object[] args)
         {
             if (collection == null)

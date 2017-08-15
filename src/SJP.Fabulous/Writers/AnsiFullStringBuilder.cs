@@ -23,6 +23,7 @@ namespace SJP.Fabulous
         /// Creates an ANSI string builder that is styled with 24-bit color for a collection of styled text.
         /// </summary>
         /// <param name="textCollection">A collection of text to be styled.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="textCollection"/> is <b>null</b>.</exception>
         public AnsiFullStringBuilder(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));
@@ -34,7 +35,7 @@ namespace SJP.Fabulous
         protected FabulousTextCollection TextCollection { get; }
 
         /// <summary>
-        /// Converts the value of an <see cref="IAnsiStringBuilder"/> to a <see cref="string"/>.
+        /// Converts the value of an <see cref="AnsiFullStringBuilder"/> to a <see cref="string"/>.
         /// </summary>
         /// <returns>A string that can contain ANSI styling if present.</returns>
         public string ToAnsiString()
@@ -84,6 +85,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="rgb">A color in the RGB colorspace.</param>
         /// <returns>A string representing a 24-bit definition of a color, usable in ANSI consoles.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="rgb"/> is <b>null</b>.</exception>
         protected static string GetColorDefinition(IRgb rgb)
         {
             if (rgb == null)

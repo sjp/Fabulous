@@ -19,6 +19,8 @@ namespace SJP.Fabulous
         /// <param name="decorations">The decorations to be applied to the text.</param>
         /// <param name="text">The text to be styled.</param>
         /// <param name="reset">Whether to reset the console to default styling before and after printing the text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="foreColor"/> or <paramref name="backColor"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentException"><paramref name="decorations"/> is not a valid enum.</exception>
         public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, string text, bool reset = false)
         {
             ForegroundColor = foreColor ?? throw new ArgumentNullException(nameof(foreColor));
@@ -82,6 +84,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
         public FabulousText Hex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -96,6 +99,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
         public FabulousText Keyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -110,6 +114,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentException"><paramref name="keyword"/> is not a valid enum.</exception>
         public FabulousText Keyword(ColorKeyword keyword)
         {
             if (!keyword.IsValid())
@@ -229,8 +234,12 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
         public FabulousText BgHex(string hex)
         {
+            if (string.IsNullOrWhiteSpace(hex))
+                throw new ArgumentNullException(nameof(hex));
+
             var bgColor = Colorspaces.Rgb.FromHex(hex);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text, ConsoleReset);
         }
@@ -240,8 +249,12 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
         public FabulousText BgKeyword(string keyword)
         {
+            if (string.IsNullOrWhiteSpace(keyword))
+                throw new ArgumentNullException(nameof(keyword));
+
             var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
             return new FabulousText(ForegroundColor, bgColor, Decorations, Text, ConsoleReset);
         }
@@ -251,6 +264,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentException"><paramref name="keyword"/> is not a valid enum.</exception>
         public FabulousText BgKeyword(ColorKeyword keyword)
         {
             if (!keyword.IsValid())
@@ -397,6 +411,7 @@ namespace SJP.Fabulous
         /// <param name="fragmentA">A styled piece of text.</param>
         /// <param name="fragmentB">A styled piece of text.</param>
         /// <returns>An object representing a collection of styled text objects.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragmentA"/> or <paramref name="fragmentB"/> is <b>null</b>.</exception>
         public static FabulousTextCollection operator +(FabulousText fragmentA, FabulousText fragmentB)
         {
             if (fragmentA == null)

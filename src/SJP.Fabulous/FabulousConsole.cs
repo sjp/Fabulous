@@ -12,6 +12,7 @@ namespace SJP.Fabulous
         /// <summary>
         /// Determines the maximum color level for the current console. Defaults to <see cref="ConsoleColorMode.Standard"/>.
         /// </summary>
+        /// <exception cref="ArgumentException"><b>value</b> is not a valid <see cref="ConsoleColorMode"/> enum.</exception>
         public static ConsoleColorMode ColorLevel
         {
             get => _colorLevel;
@@ -124,6 +125,7 @@ namespace SJP.Fabulous
         /// <summary>
         /// Provides access to environment variables on the system. Not intended to be changed.
         /// </summary>
+        /// <exception cref="ArgumentNullException"><b>value</b> is <b>null</b>.</exception>
         public static IEnvironmentVariableProvider Environment
         {
             get => _environment;

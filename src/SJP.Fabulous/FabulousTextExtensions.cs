@@ -14,6 +14,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">The text object to be used as a reference.</param>
         /// <param name="foreColor">The new color to use as a foreground color.</param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> or <paramref name="foreColor"/> is <b>null</b>.</exception>
         public static FabulousText Foreground(this FabulousText fragment, IColor foreColor)
         {
             if (fragment == null)
@@ -30,6 +31,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">The text object to be used as a reference.</param>
         /// <param name="backColor">The new color to use as a background color.</param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> or <paramref name="backColor"/> is <b>null</b>.</exception>
         public static FabulousText Background(this FabulousText fragment, IColor backColor)
         {
             if (fragment == null)
@@ -46,6 +48,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">The text object to be used as a reference.</param>
         /// <param name="text">The text to be used for printing.</param>
         /// <returns>A new text object that is the same as the current object, but with the new text instead.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fragment"/> is <b>null</b>.</exception>
         public static FabulousText Text(this FabulousText fragment, string text)
         {
             if (fragment == null)

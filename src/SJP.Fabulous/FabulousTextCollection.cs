@@ -24,6 +24,7 @@ namespace SJP.Fabulous
         /// Creates a collection of styled text fragments.
         /// </summary>
         /// <param name="fragments">A collection of styled text fragments.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fragments"/> is <b>null</b>.</exception>
         public FabulousTextCollection(IEnumerable<FabulousText> fragments)
         {
             Fragments = fragments ?? throw new ArgumentNullException(nameof(fragments));
@@ -56,6 +57,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A styled collection of text.</param>
         /// <param name="fragment">A styled piece of text.</param>
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <b>null</b>.</exception>
         public static FabulousTextCollection operator +(FabulousTextCollection collection, FabulousText fragment)
         {
             if (collection == null)
@@ -73,6 +75,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A styled piece of text.</param>
         /// <param name="collection">A styled collection of text.</param>
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <b>null</b>.</exception>
         public static FabulousTextCollection operator +(FabulousText fragment, FabulousTextCollection collection)
         {
             if (collection == null)
@@ -91,6 +94,7 @@ namespace SJP.Fabulous
         /// <param name="collectionA">A styled collection of text.</param>
         /// <param name="collectionB">A styled collection of text.</param>
         /// <returns>A new object representing the combined collection of objects.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="collectionA"/> or <paramref name="collectionB"/> is <b>null</b>.</exception>
         public static FabulousTextCollection operator +(FabulousTextCollection collectionA, FabulousTextCollection collectionB)
         {
             if (collectionA == null)

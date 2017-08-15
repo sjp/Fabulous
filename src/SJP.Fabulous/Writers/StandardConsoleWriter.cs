@@ -24,6 +24,7 @@ namespace SJP.Fabulous
         /// Creates a console writer that performs styling using <see cref="Console"/>.
         /// </summary>
         /// <param name="textCollection">A collection of text to be printed.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="textCollection"/> is <b>null</b>.</exception>
         public StandardConsoleWriter(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));

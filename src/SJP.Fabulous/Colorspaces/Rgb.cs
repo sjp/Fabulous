@@ -62,6 +62,8 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="hex">A hexadecimal string defining an RGB color.</param>
         /// <returns>A color in the RGB colorspace.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentException"><paramref name="hex"/> is not a valid hexadecimal color string.</exception>
         public static IRgb FromHex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -111,6 +113,7 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="keyword">A color keyword.</param>
         /// <returns>A color in the RGB colorspace.</returns>
+        /// <exception cref="ArgumentException"><paramref name="keyword"/> is not a valid enum.</exception>
         public static IRgb FromKeyword(ColorKeyword keyword)
         {
             if (!keyword.IsValid())
@@ -125,6 +128,8 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A color in the RGB colorspace.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="keyword"/> is not a known named color.</exception>
         public static IRgb FromKeyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
