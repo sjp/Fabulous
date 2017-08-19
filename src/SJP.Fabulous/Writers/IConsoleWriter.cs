@@ -74,6 +74,7 @@ namespace SJP.Fabulous
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         Task WriteAsync(params object[] args);
 
         /// <summary>
@@ -86,6 +87,7 @@ namespace SJP.Fabulous
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to standard output stream afterwards.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         Task WriteLineAsync(params object[] args);
 
         /// <summary>
@@ -98,6 +100,7 @@ namespace SJP.Fabulous
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         Task WriteErrorAsync(params object[] args);
 
         /// <summary>
@@ -110,6 +113,7 @@ namespace SJP.Fabulous
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information. The current line terminator will also be asynchronously printed to the standard error stream afterwards.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
+        /// <returns>A task that represents the asynchronous write operation.</returns>
         Task WriteErrorLineAsync(params object[] args);
     }
 }
