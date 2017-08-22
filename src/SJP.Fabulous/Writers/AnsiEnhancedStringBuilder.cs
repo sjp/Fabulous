@@ -23,7 +23,7 @@ namespace SJP.Fabulous
         /// Creates an ANSI string builder that is styled with 256 colors for a collection of styled text.
         /// </summary>
         /// <param name="textCollection">A collection of text to be styled.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="textCollection"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="textCollection"/> is <c>null</c>.</exception>
         public AnsiEnhancedStringBuilder(FabulousTextCollection textCollection)
         {
             TextCollection = textCollection ?? throw new ArgumentNullException(nameof(textCollection));
@@ -85,7 +85,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="rgb">A color in the RGB colorspace.</param>
         /// <returns>An integer representing an escape code in the extended ANSI color set.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="rgb"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="rgb"/> is <c>null</c>.</exception>
         protected static int GetAnsiColor(IRgb rgb)
         {
             if (rgb == null)

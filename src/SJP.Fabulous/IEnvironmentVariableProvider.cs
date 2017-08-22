@@ -11,15 +11,15 @@ namespace SJP.Fabulous
         /// Retrieves the value of an environment variable from the current process.
         /// </summary>
         /// <param name="variable">The name of the environment variable.</param>
-        /// <returns>The value of the environment variable. This will be <b>null</b> if missing.</returns>
+        /// <returns>The value of the environment variable. This will be <c>null</c> if missing.</returns>
         string GetEnvironmentVariable(string variable);
 
         /// <summary>
         /// Retrieves the value of an environment variable from the current process. The return value indicates whether retrieval was successful.
         /// </summary>
         /// <param name="variable">The name of the environment variable.</param>
-        /// <param name="value">The value of the environment variable. This will be <b>null</b> if missing.</param>
-        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        /// <param name="value">The value of the environment variable. This will be <c>null</c> if missing.</param>
+        /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
         bool TryGetEnvironmentVariable(string variable, out string value);
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace SJP.Fabulous
         /// <typeparam name="T">The type of object to return.</typeparam>
         /// <param name="variable">The name of the environment variable.</param>
         /// <param name="value"></param>
-        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
         bool TryGetEnvironmentVariable<T>(string variable, out T value) where T : IConvertible;
 
         /// <summary>
@@ -46,14 +46,14 @@ namespace SJP.Fabulous
         /// <param name="variable">The name of the environment variable.</param>
         /// <param name="formatter">An object that supplies culture-specific formatting information.</param>
         /// <param name="value"></param>
-        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
         bool TryGetEnvironmentVariable<T>(string variable, IFormatProvider formatter, out T value) where T : IConvertible;
 
         /// <summary>
         /// Determines whether an environment variable is present.
         /// </summary>
         /// <param name="variable">The name of the environment variable.</param>
-        /// <returns><b>True</b> if the environment variable is present. <b>False</b> otherwise.</returns>
+        /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
         bool HasEnvironmentVariable(string variable);
     }
 }

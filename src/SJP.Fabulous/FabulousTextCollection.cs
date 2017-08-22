@@ -24,7 +24,7 @@ namespace SJP.Fabulous
         /// Creates a collection of styled text fragments.
         /// </summary>
         /// <param name="fragments">A collection of styled text fragments.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="fragments"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="fragments"/> is <c>null</c>.</exception>
         public FabulousTextCollection(IEnumerable<FabulousText> fragments)
         {
             Fragments = fragments ?? throw new ArgumentNullException(nameof(fragments));
@@ -57,7 +57,7 @@ namespace SJP.Fabulous
         /// <param name="collection">A styled collection of text.</param>
         /// <param name="fragment">A styled piece of text.</param>
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <c>null</c>.</exception>
         public static FabulousTextCollection operator +(FabulousTextCollection collection, FabulousText fragment)
         {
             if (collection == null)
@@ -75,7 +75,7 @@ namespace SJP.Fabulous
         /// <param name="fragment">A styled piece of text.</param>
         /// <param name="collection">A styled collection of text.</param>
         /// <returns>A new object representing the combined collection of styled text objects.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="fragment"/> is <c>null</c>.</exception>
         public static FabulousTextCollection operator +(FabulousText fragment, FabulousTextCollection collection)
         {
             if (collection == null)
@@ -94,7 +94,7 @@ namespace SJP.Fabulous
         /// <param name="collectionA">A styled collection of text.</param>
         /// <param name="collectionB">A styled collection of text.</param>
         /// <returns>A new object representing the combined collection of objects.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collectionA"/> or <paramref name="collectionB"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="collectionA"/> or <paramref name="collectionB"/> is <c>null</c>.</exception>
         public static FabulousTextCollection operator +(FabulousTextCollection collectionA, FabulousTextCollection collectionB)
         {
             if (collectionA == null)
@@ -125,7 +125,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="a">A FabulousTextCollection object.</param>
         /// <param name="b">Another FabulousTextCollection object.</param>
-        /// <returns><b>True</b> if all of the contained FabulousText are equal, otherwise <b>false</b>.</returns>
+        /// <returns><c>true</c> if all of the contained FabulousText are equal, otherwise <c>false</c>.</returns>
         public static bool operator ==(FabulousTextCollection a, FabulousTextCollection b)
         {
             var aIsNull = ReferenceEquals(a, null);
@@ -148,13 +148,13 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="a">A FabulousTextCollection object.</param>
         /// <param name="b">Another FabulousTextCollection object.</param>
-        /// <returns><b>False</b> if all of the contained FabulousText objects are equal, otherwise <b>true</b>.</returns>
+        /// <returns><c>false</c> if all of the contained FabulousText objects are equal, otherwise <c>true</c>.</returns>
         public static bool operator !=(FabulousTextCollection a, FabulousTextCollection b) => !(a == b);
 
         /// <summary>
         /// Indicates whether the text collection is equal to another text collection.
         /// </summary>
-        /// <returns><b>True</b> if the text collection is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if the text collection is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.</returns>
         /// <param name="other">A text collection to compare with this object.</param>
         public bool Equals(FabulousTextCollection other)
         {
@@ -170,7 +170,7 @@ namespace SJP.Fabulous
         /// <summary>
         /// Determines whether the specified object is equal to the current text collection.
         /// </summary>
-        /// <returns><b>True</b> if the specified object is equal to the current text collection; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if the specified object is equal to the current text collection; otherwise, <c>false</c>.</returns>
         /// <param name="obj">The object to compare with the current text collection.</param>
         public override bool Equals(object obj)
         {

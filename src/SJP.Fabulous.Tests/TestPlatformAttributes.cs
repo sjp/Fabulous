@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
@@ -6,7 +7,8 @@ namespace SJP.Fabulous.Tests
 {
     public static class TestPlatform
     {
-        public class Windows : NUnitAttribute, IApplyToTest
+        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+        public sealed class Windows : NUnitAttribute, IApplyToTest
         {
             public void ApplyToTest(Test test)
             {
@@ -22,7 +24,8 @@ namespace SJP.Fabulous.Tests
             private readonly static bool _isWindows = WindowsConsole.IsWindowsPlatform;
         }
 
-        public class NonWindows : NUnitAttribute, IApplyToTest
+        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+        public sealed class NonWindows : NUnitAttribute, IApplyToTest
         {
             public void ApplyToTest(Test test)
             {

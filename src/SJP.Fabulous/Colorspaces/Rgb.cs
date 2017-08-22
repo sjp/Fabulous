@@ -62,7 +62,7 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="hex">A hexadecimal string defining an RGB color.</param>
         /// <returns>A color in the RGB colorspace.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <c>null</c>, empty, or whitespace.</exception>
         /// <exception cref="ArgumentException"><paramref name="hex"/> is not a valid hexadecimal color string.</exception>
         public static IRgb FromHex(string hex)
         {
@@ -128,7 +128,7 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A color in the RGB colorspace.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="keyword"/> is not a known named color.</exception>
         public static IRgb FromKeyword(string keyword)
         {
@@ -142,7 +142,7 @@ namespace SJP.Fabulous.Colorspaces
         }
 
         /// <summary>Indicates whether the current RGB color is equal to another RGB color.</summary>
-        /// <returns><b>True</b> if the current RGB color is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if the current RGB color is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.</returns>
         /// <param name="other">An RGB color to compare with this color.</param>
         public bool Equals(Rgb other)
         {
@@ -155,7 +155,7 @@ namespace SJP.Fabulous.Colorspaces
         }
 
         /// <summary>Indicates whether this RGB color and a specified object are equal.</summary>
-        /// <returns><b>True</b> if <paramref name="obj" /> and this RGB color are the same type and represent the same value; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if <paramref name="obj" /> and this RGB color are the same type and represent the same value; otherwise, <c>false</c>.</returns>
         /// <param name="obj">The object to compare with the current RGB color.</param>
         public override bool Equals(object obj)
         {
@@ -191,7 +191,7 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="a">An RGB color.</param>
         /// <param name="b">Another RGB color.</param>
-        /// <returns><b>True</b> if all of the color components of the colors are equal, otherwise <b>false</b>.</returns>
+        /// <returns><c>true</c> if all of the color components of the colors are equal, otherwise <c>false</c>.</returns>
         public static bool operator ==(Rgb a, Rgb b)
         {
             if (ReferenceEquals(a, b))
@@ -205,7 +205,7 @@ namespace SJP.Fabulous.Colorspaces
         /// </summary>
         /// <param name="a">An RGB color.</param>
         /// <param name="b">Another RGB color.</param>
-        /// <returns><b>True</b> if any of the color components of the colors are different, otherwise <b>false</b>.</returns>
+        /// <returns><c>true</c> if any of the color components of the colors are different, otherwise <c>false</c>.</returns>
         public static bool operator !=(Rgb a, Rgb b)
         {
             if (!ReferenceEquals(a, b))

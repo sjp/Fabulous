@@ -19,7 +19,7 @@ namespace SJP.Fabulous
         /// <param name="decorations">The decorations to be applied to the text.</param>
         /// <param name="text">The text to be styled.</param>
         /// <param name="reset">Whether to reset the console to default styling before and after printing the text.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="foreColor"/> or <paramref name="backColor"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="foreColor"/> or <paramref name="backColor"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="decorations"/> is not a valid enum.</exception>
         public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, string text, bool reset = false)
         {
@@ -84,7 +84,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <c>null</c>, empty, or whitespace.</exception>
         public FabulousText Hex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -99,7 +99,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <c>null</c>, empty, or whitespace.</exception>
         public FabulousText Keyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -234,7 +234,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="hex">A hexadecimal string representing a color in the RGB colorspace.</param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hex"/> is <c>null</c>, empty, or whitespace.</exception>
         public FabulousText BgHex(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
@@ -249,7 +249,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="keyword">A named color, as defined in https://drafts.csswg.org/css-color/#named-colors </param>
         /// <returns>A new text object that is the same as the current object, but with the new background color.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <b>null</b>, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is <c>null</c>, empty, or whitespace.</exception>
         public FabulousText BgKeyword(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -411,7 +411,7 @@ namespace SJP.Fabulous
         /// <param name="fragmentA">A styled piece of text.</param>
         /// <param name="fragmentB">A styled piece of text.</param>
         /// <returns>An object representing a collection of styled text objects.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="fragmentA"/> or <paramref name="fragmentB"/> is <b>null</b>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="fragmentA"/> or <paramref name="fragmentB"/> is <c>null</c>.</exception>
         public static FabulousTextCollection operator +(FabulousText fragmentA, FabulousText fragmentB)
         {
             if (fragmentA == null)
@@ -427,7 +427,7 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="a">A FabulousText object.</param>
         /// <param name="b">Another FabulousText object.</param>
-        /// <returns><b>True</b> if all of the value properties of the FabulousText objects are equal, otherwise <b>false</b>.</returns>
+        /// <returns><c>true</c> if all of the value properties of the FabulousText objects are equal, otherwise <c>false</c>.</returns>
         public static bool operator ==(FabulousText a, FabulousText b)
         {
             var aIsNull = ReferenceEquals(a, null);
@@ -450,13 +450,13 @@ namespace SJP.Fabulous
         /// </summary>
         /// <param name="a">A FabulousText object.</param>
         /// <param name="b">Another FabulousText object.</param>
-        /// <returns><b>False</b> if all of the value properties of the FabulousText objects are equal, otherwise <b>true</b>.</returns>
+        /// <returns><c>false</c> if all of the value properties of the FabulousText objects are equal, otherwise <c>true</c>.</returns>
         public static bool operator !=(FabulousText a, FabulousText b) => !(a == b);
 
         /// <summary>
         /// Indicates whether the FabulousText object is equal to another text object.
         /// </summary>
-        /// <returns><b>True</b> if the FabulousText object is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if the FabulousText object is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.</returns>
         /// <param name="other">A FabulousText object to compare with this object.</param>
         public bool Equals(FabulousText other)
         {
@@ -478,7 +478,7 @@ namespace SJP.Fabulous
         /// <summary>
         /// Determines whether the specified object is equal to the current FabulousText object.
         /// </summary>
-        /// <returns><b>True</b> if the specified object is equal to the current FabulousText object; otherwise, <b>false</b>.</returns>
+        /// <returns><c>true</c> if the specified object is equal to the current FabulousText object; otherwise, <c>false</c>.</returns>
         /// <param name="obj">The object to compare with the current FabulousText object.</param>
         public override bool Equals(object obj)
         {

@@ -59,7 +59,7 @@ namespace SJP.Fabulous
         /// <summary>
         /// Determines whether the current console is able to process ANSI escape sequences.
         /// </summary>
-        /// <returns><b>True</b> if the console can process ANSI escape sequences. <b>False</b> otherwise.</returns>
+        /// <returns><c>true</c> if the console can process ANSI escape sequences. <c>false</c> otherwise.</returns>
         private static bool IsVirtualTerminalProcessingEnabled()
         {
             var stdout = GetStdHandle(StandardOutputHandleId);
