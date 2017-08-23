@@ -28,7 +28,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void ImplicitOp_GivenString_CreatesViaCtor()
         {
-            var abc = "abc";
+            const string abc = "abc";
             FabulousText text = abc;
 
             FabulousTextCollection collection = abc;
@@ -150,7 +150,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Equals_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -165,7 +165,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Equals_GivenSameValuedObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -180,7 +180,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Equals_GivenSameObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -192,7 +192,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -207,7 +207,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -222,7 +222,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 
@@ -237,7 +237,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var aText = Fabulous.Green.Text(message);
             var a = aText + aText;
 

@@ -55,7 +55,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Keyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
         {
-            var keyword = (ColorKeyword)293048;
+            const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.Keyword(keyword));
         }
 
@@ -73,7 +73,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void BgKeyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
         {
-            var keyword = (ColorKeyword)293048;
+            const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.BgKeyword(keyword));
         }
 
@@ -506,7 +506,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Blink_PropertyGet_ReturnsObjectWithBlinkDecorationSet()
         {
-            var expected = TextDecoration.Blink;
+            const TextDecoration expected = TextDecoration.Blink;
 
             var text = Fabulous.Blink;
 
@@ -516,7 +516,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Bold_PropertyGet_ReturnsObjectWithBoldDecorationSet()
         {
-            var expected = TextDecoration.Bold;
+            const TextDecoration expected = TextDecoration.Bold;
 
             var text = Fabulous.Bold;
 
@@ -526,7 +526,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Dim_PropertyGet_ReturnsObjectWithDimDecorationSet()
         {
-            var expected = TextDecoration.Dim;
+            const TextDecoration expected = TextDecoration.Dim;
 
             var text = Fabulous.Dim;
 
@@ -536,7 +536,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Italic_PropertyGet_ReturnsObjectWithItalicDecorationSet()
         {
-            var expected = TextDecoration.Italic;
+            const TextDecoration expected = TextDecoration.Italic;
 
             var text = Fabulous.Italic;
 
@@ -546,7 +546,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Underline_PropertyGet_ReturnsObjectWithUnderlineDecorationSet()
         {
-            var expected = TextDecoration.Underline;
+            const TextDecoration expected = TextDecoration.Underline;
 
             var text = Fabulous.Underline;
 
@@ -556,7 +556,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Hidden_PropertyGet_ReturnsObjectWithHiddenDecorationSet()
         {
-            var expected = TextDecoration.Hidden;
+            const TextDecoration expected = TextDecoration.Hidden;
 
             var text = Fabulous.Hidden;
 
@@ -566,7 +566,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Strikethrough_PropertyGet_ReturnsObjectWithStrikethroughDecorationSet()
         {
-            var expected = TextDecoration.Strikethrough;
+            const TextDecoration expected = TextDecoration.Strikethrough;
 
             var text = Fabulous.Strikethrough;
 

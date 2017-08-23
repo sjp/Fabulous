@@ -69,7 +69,7 @@ namespace SJP.Fabulous.Tests
         {
             FabulousText text = "xyz";
 
-            var replacement = "abc";
+            const string replacement = "abc";
             var result = text.Text(replacement);
 
             Assert.AreEqual(replacement, result.Text);

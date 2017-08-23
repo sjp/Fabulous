@@ -57,7 +57,7 @@ namespace SJP.Fabulous.Tests
         public void ToString_WhenInvoked_ReturnsCorrectRepresentation()
         {
             var rgb = new Rgb(12, 34, 56);
-            var strRep = "Red = 12, Green = 34, Blue = 56";
+            const string strRep = "Red = 12, Green = 34, Blue = 56";
             Assert.AreEqual(strRep, rgb.ToString());
         }
 
@@ -189,7 +189,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void FromKeyword_GivenColorKeywordWithInvalidEnum_ThrowsArgException()
         {
-            var badEnum = (ColorKeyword)293048;
+            const ColorKeyword badEnum = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Rgb.FromKeyword(badEnum));
         }
 

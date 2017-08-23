@@ -17,7 +17,7 @@ namespace SJP.Fabulous.Tests
 
                 test.RunState = RunState.Ignored;
 
-                var reason = "This test is ignored because the current platform is non-Windows and the test is for Windows platforms only.";
+                const string reason = "This test is ignored because the current platform is non-Windows and the test is for Windows platforms only.";
                 test.Properties.Set(PropertyNames.SkipReason, reason);
             }
 
@@ -34,7 +34,7 @@ namespace SJP.Fabulous.Tests
 
                 test.RunState = RunState.Ignored;
 
-                var reason = "This test is ignored because the current platform is Windows and the test is for non-Windows platforms only.";
+                const string reason = "This test is ignored because the current platform is Windows and the test is for non-Windows platforms only.";
                 test.Properties.Set(PropertyNames.SkipReason, reason);
             }
 

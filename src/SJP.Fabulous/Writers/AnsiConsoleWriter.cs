@@ -86,14 +86,14 @@ namespace SJP.Fabulous
         /// Asynchronously writes styled text to the standard output stream.
         /// </summary>
         /// <returns>A task that represents the asynchronous write operation.</returns>
-        public async Task WriteAsync() => await Console.Out.WriteAsync(Text);
+        public async Task WriteAsync() => await Console.Out.WriteAsync(Text).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard output stream using the styled text as the specified format information.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
-        public async Task WriteAsync(params object[] args) => await Console.Out.WriteAsync(string.Format(Text, args));
+        public async Task WriteAsync(params object[] args) => await Console.Out.WriteAsync(string.Format(Text, args)).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously writes styled text followed by the current line terminator to the standard output stream.
@@ -101,8 +101,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync()
         {
-            await WriteAsync();
-            await Console.Out.WriteLineAsync();
+            await WriteAsync().ConfigureAwait(false);
+            await Console.Out.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -112,22 +112,22 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync(params object[] args)
         {
-            await WriteAsync(args);
-            await Console.Out.WriteLineAsync();
+            await WriteAsync(args).ConfigureAwait(false);
+            await Console.Out.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
         /// Asynchronously writes styled text to the standard error stream.
         /// </summary>
         /// <returns>A task that represents the asynchronous write operation.</returns>
-        public async Task WriteErrorAsync() => await Console.Error.WriteAsync(Text);
+        public async Task WriteErrorAsync() => await Console.Error.WriteAsync(Text).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously writes styled text using the text representation of the specified array of objects to the standard error stream using the styled text as the specified format information.
         /// </summary>
         /// <param name="args">An array of objects to write using the styled text format.</param>
         /// <returns>A task that represents the asynchronous write operation.</returns>
-        public async Task WriteErrorAsync(params object[] args) => await Console.Error.WriteAsync(string.Format(Text, args));
+        public async Task WriteErrorAsync(params object[] args) => await Console.Error.WriteAsync(string.Format(Text, args)).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously writes styled text followed by the current line terminator to the standard error stream.
@@ -135,8 +135,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync()
         {
-            await WriteErrorAsync();
-            await Console.Error.WriteLineAsync();
+            await WriteErrorAsync().ConfigureAwait(false);
+            await Console.Error.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -146,8 +146,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync(params object[] args)
         {
-            await WriteErrorAsync(args);
-            await Console.Error.WriteLineAsync();
+            await WriteErrorAsync(args).ConfigureAwait(false);
+            await Console.Error.WriteLineAsync().ConfigureAwait(false);
         }
     }
 }

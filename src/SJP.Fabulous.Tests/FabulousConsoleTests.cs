@@ -24,7 +24,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void ColorLevel_OnPropertySetWithInvalidEnum_ThrowsArgumentException()
         {
-            var invalidLevel = (ConsoleColorMode)23904;
+            const ConsoleColorMode invalidLevel = (ConsoleColorMode)23904;
             Assert.Throws<ArgumentException>(() => FabulousConsole.ColorLevel = invalidLevel);
         }
 

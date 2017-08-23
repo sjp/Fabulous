@@ -125,7 +125,7 @@ namespace SJP.Fabulous
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
             {
-                await Console.Out.WriteAsync(text.Text);
+                await Console.Out.WriteAsync(text.Text).ConfigureAwait(false);
             }
         }
 
@@ -138,7 +138,7 @@ namespace SJP.Fabulous
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
             {
-                await Console.Out.WriteAsync(string.Format(text.Text, args));
+                await Console.Out.WriteAsync(string.Format(text.Text, args)).ConfigureAwait(false);
             }
         }
 
@@ -148,8 +148,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync()
         {
-            await WriteAsync();
-            await Console.Out.WriteLineAsync();
+            await WriteAsync().ConfigureAwait(false);
+            await Console.Out.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -159,8 +159,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteLineAsync(params object[] args)
         {
-            await WriteAsync(args);
-            await Console.Out.WriteLineAsync();
+            await WriteAsync(args).ConfigureAwait(false);
+            await Console.Out.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace SJP.Fabulous
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
             {
-                await Console.Error.WriteAsync(text.Text);
+                await Console.Error.WriteAsync(text.Text).ConfigureAwait(false);
             }
         }
 
@@ -184,7 +184,7 @@ namespace SJP.Fabulous
         {
             foreach (var text in TextCollection.Where(t => t.Text.Length > 0))
             {
-                await Console.Error.WriteAsync(string.Format(text.Text, args));
+                await Console.Error.WriteAsync(string.Format(text.Text, args)).ConfigureAwait(false);
             }
         }
 
@@ -194,8 +194,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync()
         {
-            await WriteErrorAsync();
-            await Console.Error.WriteLineAsync();
+            await WriteErrorAsync().ConfigureAwait(false);
+            await Console.Error.WriteLineAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -205,8 +205,8 @@ namespace SJP.Fabulous
         /// <returns>A task that represents the asynchronous write operation.</returns>
         public async Task WriteErrorLineAsync(params object[] args)
         {
-            await WriteErrorAsync(args);
-            await Console.Error.WriteLineAsync();
+            await WriteErrorAsync(args).ConfigureAwait(false);
+            await Console.Error.WriteLineAsync().ConfigureAwait(false);
         }
     }
 }

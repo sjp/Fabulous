@@ -26,7 +26,7 @@ namespace SJP.Fabulous.Tests
         public void Ctor_InvalidDecorations_ThrowsArgException()
         {
             var color = Mock.Of<IColor>();
-            var decorations = (TextDecoration)234908;
+            const TextDecoration decorations = (TextDecoration)234908;
 
             Assert.Throws<ArgumentException>(() => new FabulousText(color, color, decorations, string.Empty));
         }
@@ -91,7 +91,7 @@ namespace SJP.Fabulous.Tests
         {
             FabulousText text = string.Empty;
 
-            var keyword = (ColorKeyword)293048;
+            const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => text.Keyword(keyword));
         }
 
@@ -113,14 +113,14 @@ namespace SJP.Fabulous.Tests
         {
             FabulousText text = string.Empty;
 
-            var keyword = (ColorKeyword)293048;
+            const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.BgKeyword(keyword));
         }
 
         [Test]
         public void Equals_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Red.Text(message);
 
@@ -132,7 +132,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Equals_GivenSameValuedObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Green.Text(message);
 
@@ -144,7 +144,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void Equals_GivenSameObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
 
             var result = a.Equals(a);
@@ -155,7 +155,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Green.Text(message);
 
@@ -167,7 +167,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Red.Text(message);
 
@@ -179,7 +179,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Red.Text(message);
 
@@ -191,7 +191,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
         {
-            var message = "asd";
+            const string message = "asd";
             var a = Fabulous.Green.Text(message);
             var b = Fabulous.Green.Text(message);
 
@@ -673,7 +673,7 @@ namespace SJP.Fabulous.Tests
         public void Blink_PropertyGet_ReturnsObjectWithBlinkDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Blink;
+            const TextDecoration expected = TextDecoration.Blink;
 
             var result = text.Blink;
 
@@ -684,7 +684,7 @@ namespace SJP.Fabulous.Tests
         public void Bold_PropertyGet_ReturnsObjectWithBoldDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Bold;
+            const TextDecoration expected = TextDecoration.Bold;
 
             var result = Fabulous.Bold;
 
@@ -695,7 +695,7 @@ namespace SJP.Fabulous.Tests
         public void Dim_PropertyGet_ReturnsObjectWithDimDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Dim;
+            const TextDecoration expected = TextDecoration.Dim;
 
             var result = text.Dim;
 
@@ -706,7 +706,7 @@ namespace SJP.Fabulous.Tests
         public void Italic_PropertyGet_ReturnsObjectWithItalicDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Italic;
+            const TextDecoration expected = TextDecoration.Italic;
 
             var result = text.Italic;
 
@@ -717,7 +717,7 @@ namespace SJP.Fabulous.Tests
         public void Underline_PropertyGet_ReturnsObjectWithUnderlineDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Underline;
+            const TextDecoration expected = TextDecoration.Underline;
 
             var result = text.Underline;
 
@@ -728,7 +728,7 @@ namespace SJP.Fabulous.Tests
         public void Hidden_PropertyGet_ReturnsObjectWithHiddenDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Hidden;
+            const TextDecoration expected = TextDecoration.Hidden;
 
             var result = text.Hidden;
 
@@ -739,7 +739,7 @@ namespace SJP.Fabulous.Tests
         public void Strikethrough_PropertyGet_ReturnsObjectWithStrikethroughDecorationSet()
         {
             FabulousText text = string.Empty;
-            var expected = TextDecoration.Strikethrough;
+            const TextDecoration expected = TextDecoration.Strikethrough;
 
             var result = text.Strikethrough;
 
