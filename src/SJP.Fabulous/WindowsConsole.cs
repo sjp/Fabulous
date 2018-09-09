@@ -1,12 +1,6 @@
-﻿#if PINVOKE
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
-#else
-using System;
-#endif
-#if NETFX
 using Microsoft.Win32;
-#endif
 
 namespace SJP.Fabulous
 {
@@ -40,7 +34,6 @@ namespace SJP.Fabulous
             }
         }
 
-#if PINVOKE
         /// <summary>
         /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
         /// </summary>
@@ -80,41 +73,16 @@ namespace SJP.Fabulous
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool SetConsoleMode(IntPtr handle, uint mode);
-#else
-        /// <summary>
-        /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
-        /// </summary>
-        private static void EnableVirtualTerminalProcessing()
-        {
-        }
-
-        /// <summary>
-        /// If supported, this will enable ANSI escape sequence processing on Windows consoles.
-        /// </summary>
-        private static bool IsVirtualTerminalProcessingEnabled() => false;
-#endif
 
         /// <summary>
         /// Determines whether the current environment is running on Windows.
         /// </summary>
-        public static bool IsWindowsPlatform => _isWindows.Value;
-
-        private readonly static Lazy<bool> _isWindows = new Lazy<bool>(() =>
-        {
-#if RUNTIME_INFORMATION
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#elif NETFX
-            return Environment.OSVersion.Platform == PlatformID.Win32NT;
-#else
-            return false;
-#endif
-        });
+        public static bool IsWindowsPlatform => Environment.OSVersion.Platform == PlatformID.Win32NT;
 
         private static bool VersionSupportsTrueColor
         {
             get
             {
-#if NETFX
                 if (Environment.OSVersion.Version.Major > 6)
                     return true;
                 if (Environment.OSVersion.Version.Major < 6)
@@ -131,9 +99,6 @@ namespace SJP.Fabulous
                     return false;
 
                 return WindowsBuildNumber >= 14931;
-#else
-                return false;
-#endif
             }
         }
 
@@ -141,7 +106,6 @@ namespace SJP.Fabulous
         {
             get
             {
-#if NETFX
                 if (Environment.OSVersion.Version.Major > 6)
                     return true;
                 if (Environment.OSVersion.Version.Major < 6)
@@ -158,9 +122,6 @@ namespace SJP.Fabulous
                     return false;
 
                 return WindowsBuildNumber >= 10586;
-#else
-                return false;
-#endif
             }
         }
 
@@ -168,7 +129,6 @@ namespace SJP.Fabulous
 
         private static long GetWindowsBuildNumber()
         {
-#if NETFX
             using (var hklmKey = Registry.LocalMachine)
             using (var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
             {
@@ -179,16 +139,7 @@ namespace SJP.Fabulous
                         return buildNumber;
                 }
             }
-#elif RUNTIME_INFORMATION
-            var osDesc = RuntimeInformation.OSDescription ?? string.Empty;
-            if (osDesc.IndexOf("Windows", StringComparison.OrdinalIgnoreCase) < 0)
-                return 0;
 
-            var pieces = osDesc.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            var lastPiece = pieces[pieces.Length - 1];
-            if (long.TryParse(lastPiece, out var buildNumber))
-                return buildNumber;
-#endif
             return 0;
         }
 
