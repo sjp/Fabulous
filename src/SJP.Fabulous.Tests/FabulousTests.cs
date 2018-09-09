@@ -5,22 +5,22 @@ using SJP.Fabulous.Colorspaces;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class FabulousTests
+    internal static class FabulousTests
     {
         [Test]
-        public void Foreground_NullColor_ThrowsArgNullException()
+        public static void Foreground_NullColor_ThrowsArgNullException()
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.Foreground(null));
         }
 
         [Test]
-        public void Background_NullColor_ThrowsArgNullException()
+        public static void Background_NullColor_ThrowsArgNullException()
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.Background(null));
         }
 
         [Test]
-        public void Hex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
+        public static void Hex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
         {
             Assert.Multiple(() =>
             {
@@ -31,7 +31,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgHex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
+        public static void BgHex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
         {
             Assert.Multiple(() =>
             {
@@ -42,7 +42,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Keyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
+        public static void Keyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
         {
             Assert.Multiple(() =>
             {
@@ -53,14 +53,14 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Keyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
+        public static void Keyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
         {
             const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.Keyword(keyword));
         }
 
         [Test]
-        public void BgKeyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
+        public static void BgKeyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
         {
             Assert.Multiple(() =>
             {
@@ -71,14 +71,14 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgKeyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
+        public static void BgKeyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
         {
             const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.BgKeyword(keyword));
         }
 
         [Test]
-        public void Rgb_GivenValidColor_ReturnsObjectWithForegroundSet()
+        public static void Rgb_GivenValidColor_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(12, 34, 56);
 
@@ -88,7 +88,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgRgb_GivenValidColor_ReturnsObjectWithBackgroundSet()
+        public static void BgRgb_GivenValidColor_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(12, 34, 56);
 
@@ -98,7 +98,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Hex_GivenValidHex_ReturnsObjectWithForegroundSet()
+        public static void Hex_GivenValidHex_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -108,7 +108,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgHex_GivenValidHex_ReturnsObjectWithBackgroundSet()
+        public static void BgHex_GivenValidHex_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -118,7 +118,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Keyword_GivenValidColorName_ReturnsObjectWithForegroundSet()
+        public static void Keyword_GivenValidColorName_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -128,7 +128,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Keyword_GivenValidColorNameEnum_ReturnsObjectWithForegroundSet()
+        public static void Keyword_GivenValidColorNameEnum_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -138,7 +138,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgKeyword_GivenValidColorName_ReturnsObjectWithBackgroundSet()
+        public static void BgKeyword_GivenValidColorName_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -148,7 +148,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgKeyword_GivenValidColorNameEnum_ReturnsObjectWithBackgroundSet()
+        public static void BgKeyword_GivenValidColorNameEnum_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
 
@@ -158,7 +158,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Black_PropertyGet_ReturnsObjectWithBlackForegroundColor()
+        public static void Black_PropertyGet_ReturnsObjectWithBlackForegroundColor()
         {
             var expectedColor = new Rgb(0, 0, 0);
 
@@ -168,7 +168,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Red_PropertyGet_ReturnsObjectWithRedForegroundColor()
+        public static void Red_PropertyGet_ReturnsObjectWithRedForegroundColor()
         {
             var expectedColor = new Rgb(139, 0, 0);
 
@@ -178,7 +178,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Green_PropertyGet_ReturnsObjectWithGreenForegroundColor()
+        public static void Green_PropertyGet_ReturnsObjectWithGreenForegroundColor()
         {
             var expectedColor = new Rgb(0, 100, 0);
 
@@ -188,7 +188,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Yellow_PropertyGet_ReturnsObjectWithYellowForegroundColor()
+        public static void Yellow_PropertyGet_ReturnsObjectWithYellowForegroundColor()
         {
             var expectedColor = new Rgb(215, 195, 42);
 
@@ -198,7 +198,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Blue_PropertyGet_ReturnsObjectWithBlueForegroundColor()
+        public static void Blue_PropertyGet_ReturnsObjectWithBlueForegroundColor()
         {
             var expectedColor = new Rgb(0, 0, 139);
 
@@ -208,7 +208,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Magenta_PropertyGet_ReturnsObjectWithMagentaForegroundColor()
+        public static void Magenta_PropertyGet_ReturnsObjectWithMagentaForegroundColor()
         {
             var expectedColor = new Rgb(139, 0, 139);
 
@@ -218,7 +218,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Cyan_PropertyGet_ReturnsObjectWithCyanForegroundColor()
+        public static void Cyan_PropertyGet_ReturnsObjectWithCyanForegroundColor()
         {
             var expectedColor = new Rgb(0, 139, 139);
 
@@ -228,7 +228,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void White_PropertyGet_ReturnsObjectWithWhiteForegroundColor()
+        public static void White_PropertyGet_ReturnsObjectWithWhiteForegroundColor()
         {
             var expectedColor = new Rgb(192, 192, 192);
 
@@ -238,7 +238,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Gray_PropertyGet_ReturnsObjectWithGrayForegroundColor()
+        public static void Gray_PropertyGet_ReturnsObjectWithGrayForegroundColor()
         {
             var expectedColor = new Rgb(169, 169, 169);
 
@@ -248,7 +248,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Grey_PropertyGet_ReturnsObjectWithGreyForegroundColor()
+        public static void Grey_PropertyGet_ReturnsObjectWithGreyForegroundColor()
         {
             var expectedColor = new Rgb(169, 169, 169);
 
@@ -258,7 +258,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void RedBright_PropertyGet_ReturnsObjectWithRedBrightForegroundColor()
+        public static void RedBright_PropertyGet_ReturnsObjectWithRedBrightForegroundColor()
         {
             var expectedColor = new Rgb(255, 0, 0);
 
@@ -268,7 +268,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GreenBright_PropertyGet_ReturnsObjectWithGreenBrightForegroundColor()
+        public static void GreenBright_PropertyGet_ReturnsObjectWithGreenBrightForegroundColor()
         {
             var expectedColor = new Rgb(0, 255, 0);
 
@@ -278,7 +278,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void YellowBright_PropertyGet_ReturnsObjectWithYellowBrightForegroundColor()
+        public static void YellowBright_PropertyGet_ReturnsObjectWithYellowBrightForegroundColor()
         {
             var expectedColor = new Rgb(255, 255, 0);
 
@@ -288,7 +288,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BlueBright_PropertyGet_ReturnsObjectWithBlueBrightForegroundColor()
+        public static void BlueBright_PropertyGet_ReturnsObjectWithBlueBrightForegroundColor()
         {
             var expectedColor = new Rgb(0, 0, 255);
 
@@ -298,7 +298,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void MagentaBright_PropertyGet_ReturnsObjectWithMagentaBrightForegroundColor()
+        public static void MagentaBright_PropertyGet_ReturnsObjectWithMagentaBrightForegroundColor()
         {
             var expectedColor = new Rgb(255, 0, 255);
 
@@ -308,7 +308,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void CyanBright_PropertyGet_ReturnsObjectWithCyanBrightForegroundColor()
+        public static void CyanBright_PropertyGet_ReturnsObjectWithCyanBrightForegroundColor()
         {
             var expectedColor = new Rgb(0, 255, 255);
 
@@ -318,7 +318,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void WhiteBright_PropertyGet_ReturnsObjectWithWhiteBrightForegroundColor()
+        public static void WhiteBright_PropertyGet_ReturnsObjectWithWhiteBrightForegroundColor()
         {
             var expectedColor = new Rgb(255, 255, 255);
 
@@ -328,7 +328,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgBlack_PropertyGet_ReturnsObjectWithBlackBackgroundColor()
+        public static void BgBlack_PropertyGet_ReturnsObjectWithBlackBackgroundColor()
         {
             var expectedColor = new Rgb(0, 0, 0);
 
@@ -338,7 +338,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgRed_PropertyGet_ReturnsObjectWithRedBackgroundColor()
+        public static void BgRed_PropertyGet_ReturnsObjectWithRedBackgroundColor()
         {
             var expectedColor = new Rgb(139, 0, 0);
 
@@ -348,7 +348,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgGreen_PropertyGet_ReturnsObjectWithGreenBackgroundColor()
+        public static void BgGreen_PropertyGet_ReturnsObjectWithGreenBackgroundColor()
         {
             var expectedColor = new Rgb(0, 100, 0);
 
@@ -358,7 +358,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgYellow_PropertyGet_ReturnsObjectWithYellowBackgroundColor()
+        public static void BgYellow_PropertyGet_ReturnsObjectWithYellowBackgroundColor()
         {
             var expectedColor = new Rgb(215, 195, 42);
 
@@ -368,7 +368,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgBlue_PropertyGet_ReturnsObjectWithBlueBackgroundColor()
+        public static void BgBlue_PropertyGet_ReturnsObjectWithBlueBackgroundColor()
         {
             var expectedColor = new Rgb(0, 0, 139);
 
@@ -378,7 +378,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgMagenta_PropertyGet_ReturnsObjectWithMagentaBackgroundColor()
+        public static void BgMagenta_PropertyGet_ReturnsObjectWithMagentaBackgroundColor()
         {
             var expectedColor = new Rgb(139, 0, 139);
 
@@ -388,7 +388,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgCyan_PropertyGet_ReturnsObjectWithCyanBackgroundColor()
+        public static void BgCyan_PropertyGet_ReturnsObjectWithCyanBackgroundColor()
         {
             var expectedColor = new Rgb(0, 139, 139);
 
@@ -398,7 +398,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgWhite_PropertyGet_ReturnsObjectWithWhiteBackgroundColor()
+        public static void BgWhite_PropertyGet_ReturnsObjectWithWhiteBackgroundColor()
         {
             var expectedColor = new Rgb(192, 192, 192);
 
@@ -408,7 +408,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgGray_PropertyGet_ReturnsObjectWithGrayBackgroundColor()
+        public static void BgGray_PropertyGet_ReturnsObjectWithGrayBackgroundColor()
         {
             var expectedColor = new Rgb(169, 169, 169);
 
@@ -418,7 +418,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgGrey_PropertyGet_ReturnsObjectWithGreyBackgroundColor()
+        public static void BgGrey_PropertyGet_ReturnsObjectWithGreyBackgroundColor()
         {
             var expectedColor = new Rgb(169, 169, 169);
 
@@ -428,7 +428,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgRedBright_PropertyGet_ReturnsObjectWithRedBrightBackgroundColor()
+        public static void BgRedBright_PropertyGet_ReturnsObjectWithRedBrightBackgroundColor()
         {
             var expectedColor = new Rgb(255, 0, 0);
 
@@ -438,7 +438,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgGreenBright_PropertyGet_ReturnsObjectWithGreenBrightBackgroundColor()
+        public static void BgGreenBright_PropertyGet_ReturnsObjectWithGreenBrightBackgroundColor()
         {
             var expectedColor = new Rgb(0, 255, 0);
 
@@ -448,7 +448,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgYellowBright_PropertyGet_ReturnsObjectWithYellowBrightBackgroundColor()
+        public static void BgYellowBright_PropertyGet_ReturnsObjectWithYellowBrightBackgroundColor()
         {
             var expectedColor = new Rgb(255, 255, 0);
 
@@ -458,7 +458,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgBlueBright_PropertyGet_ReturnsObjectWithBlueBrightBackgroundColor()
+        public static void BgBlueBright_PropertyGet_ReturnsObjectWithBlueBrightBackgroundColor()
         {
             var expectedColor = new Rgb(0, 0, 255);
 
@@ -468,7 +468,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgMagentaBright_PropertyGet_ReturnsObjectWithMagentaBrightBackgroundColor()
+        public static void BgMagentaBright_PropertyGet_ReturnsObjectWithMagentaBrightBackgroundColor()
         {
             var expectedColor = new Rgb(255, 0, 255);
 
@@ -478,7 +478,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgCyanBright_PropertyGet_ReturnsObjectWithCyanBrightBackgroundColor()
+        public static void BgCyanBright_PropertyGet_ReturnsObjectWithCyanBrightBackgroundColor()
         {
             var expectedColor = new Rgb(0, 255, 255);
 
@@ -488,7 +488,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void BgWhiteBright_PropertyGet_ReturnsObjectWithWhiteBrightBackgroundColor()
+        public static void BgWhiteBright_PropertyGet_ReturnsObjectWithWhiteBrightBackgroundColor()
         {
             var expectedColor = new Rgb(255, 255, 255);
 
@@ -498,13 +498,13 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Reset_PropertyGet_ReturnsObjectWithConsoleResetTrue()
+        public static void Reset_PropertyGet_ReturnsObjectWithConsoleResetTrue()
         {
             Assert.IsTrue(Fabulous.Reset.ConsoleReset);
         }
 
         [Test]
-        public void Blink_PropertyGet_ReturnsObjectWithBlinkDecorationSet()
+        public static void Blink_PropertyGet_ReturnsObjectWithBlinkDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Blink;
 
@@ -514,7 +514,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Bold_PropertyGet_ReturnsObjectWithBoldDecorationSet()
+        public static void Bold_PropertyGet_ReturnsObjectWithBoldDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Bold;
 
@@ -524,7 +524,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Dim_PropertyGet_ReturnsObjectWithDimDecorationSet()
+        public static void Dim_PropertyGet_ReturnsObjectWithDimDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Dim;
 
@@ -534,7 +534,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Italic_PropertyGet_ReturnsObjectWithItalicDecorationSet()
+        public static void Italic_PropertyGet_ReturnsObjectWithItalicDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Italic;
 
@@ -544,7 +544,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Underline_PropertyGet_ReturnsObjectWithUnderlineDecorationSet()
+        public static void Underline_PropertyGet_ReturnsObjectWithUnderlineDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Underline;
 
@@ -554,7 +554,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Hidden_PropertyGet_ReturnsObjectWithHiddenDecorationSet()
+        public static void Hidden_PropertyGet_ReturnsObjectWithHiddenDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Hidden;
 
@@ -564,7 +564,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Strikethrough_PropertyGet_ReturnsObjectWithStrikethroughDecorationSet()
+        public static void Strikethrough_PropertyGet_ReturnsObjectWithStrikethroughDecorationSet()
         {
             const TextDecoration expected = TextDecoration.Strikethrough;
 

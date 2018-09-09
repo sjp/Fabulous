@@ -430,8 +430,8 @@ namespace SJP.Fabulous
         /// <returns><c>true</c> if all of the value properties of the FabulousText objects are equal, otherwise <c>false</c>.</returns>
         public static bool operator ==(FabulousText a, FabulousText b)
         {
-            var aIsNull = ReferenceEquals(a, null);
-            var bIsNull = ReferenceEquals(b, null);
+            var aIsNull = a is null;
+            var bIsNull = b is null;
 
             if (aIsNull && bIsNull)
                 return true;
@@ -505,9 +505,7 @@ namespace SJP.Fabulous
                 result = (result * 31) + BackgroundColor.GetHashCode();
                 result = (result * 31) + Decorations.GetHashCode();
                 result = (result * 31) + ConsoleReset.GetHashCode();
-                result = (result * 31) + Text.GetHashCode();
-
-                return result;
+                return (result * 31) + Text.GetHashCode();
             }
         }
 

@@ -5,7 +5,7 @@ using NUnit.Framework.Internal;
 
 namespace SJP.Fabulous.Tests
 {
-    public static class TestPlatform
+    internal static class TestPlatform
     {
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
         public sealed class Windows : NUnitAttribute, IApplyToTest

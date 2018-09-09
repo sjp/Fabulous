@@ -128,8 +128,8 @@ namespace SJP.Fabulous
         /// <returns><c>true</c> if all of the contained FabulousText are equal, otherwise <c>false</c>.</returns>
         public static bool operator ==(FabulousTextCollection a, FabulousTextCollection b)
         {
-            var aIsNull = ReferenceEquals(a, null);
-            var bIsNull = ReferenceEquals(b, null);
+            var aIsNull = a is null;
+            var bIsNull = b is null;
 
             if (aIsNull && bIsNull)
                 return true;

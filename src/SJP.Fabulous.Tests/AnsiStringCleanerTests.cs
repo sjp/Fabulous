@@ -3,10 +3,10 @@ using NUnit.Framework;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class AnsiStringCleanerTests
+    internal static class AnsiStringCleanerTests
     {
         [Test]
-        public void ToAnsiCleanedString_GivenRegularText_ReturnsUnchangedText()
+        public static void ToAnsiCleanedString_GivenRegularText_ReturnsUnchangedText()
         {
             const string input = "this is regular text";
             var cleaner = new AnsiStringCleaner(input);
@@ -17,7 +17,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void ToAnsiCleanedString_GivenTextWithAnsiEscapes_ReturnsCleanedText()
+        public static void ToAnsiCleanedString_GivenTextWithAnsiEscapes_ReturnsCleanedText()
         {
             const string input = "\x1B[45mthis is a test\x1B[0m";
             var cleaner = new AnsiStringCleaner(input);
@@ -28,7 +28,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void ToAnsiCleanedString_GivenTextWithAnsiLikeText_ReturnsTextWithoutAnsiEscapes()
+        public static void ToAnsiCleanedString_GivenTextWithAnsiLikeText_ReturnsTextWithoutAnsiEscapes()
         {
             const string input = "\x1B[45this is a test\x1B[0m\x1Bsdfb";
             var cleaner = new AnsiStringCleaner(input);

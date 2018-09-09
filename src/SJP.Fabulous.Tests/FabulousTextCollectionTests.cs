@@ -5,16 +5,16 @@ using System.Linq;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class FabulousTextCollectionTests
+    internal static class FabulousTextCollectionTests
     {
         [Test]
-        public void Ctor_GivenNullFragments_ThrowsArgNullException()
+        public static void Ctor_GivenNullFragments_ThrowsArgNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new FabulousTextCollection(null));
         }
 
         [Test]
-        public void Fragments_PropertyGet_ReturnsFragments()
+        public static void Fragments_PropertyGet_ReturnsFragments()
         {
             FabulousText abc = "abc";
             FabulousText def = "def";
@@ -26,7 +26,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void ImplicitOp_GivenString_CreatesViaCtor()
+        public static void ImplicitOp_GivenString_CreatesViaCtor()
         {
             const string abc = "abc";
             FabulousText text = abc;
@@ -39,7 +39,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void ImplicitOp_GivenFabulousText_CreatesViaCtor()
+        public static void ImplicitOp_GivenFabulousText_CreatesViaCtor()
         {
             FabulousText text = "abc";
             FabulousTextCollection collection = text;
@@ -50,7 +50,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenCollectionThenText_AddsInCorrectOrder()
+        public static void AdditionOp_GivenCollectionThenText_AddsInCorrectOrder()
         {
             FabulousText abc = "abc";
 
@@ -66,7 +66,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTextThenCollection_AddsInCorrectOrder()
+        public static void AdditionOp_GivenTextThenCollection_AddsInCorrectOrder()
         {
             FabulousText abc = "abc";
             FabulousText def = "def";
@@ -81,7 +81,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTwoCollections_AddsInCorrectOrder()
+        public static void AdditionOp_GivenTwoCollections_AddsInCorrectOrder()
         {
             FabulousTextCollection abc = "abc";
             FabulousTextCollection def = "def";
@@ -94,7 +94,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenCollectionThenTextWithNullCollection_ThrowsArgNullException()
+        public static void AdditionOp_GivenCollectionThenTextWithNullCollection_ThrowsArgNullException()
         {
             FabulousTextCollection collection = null;
             FabulousText text = "abc";
@@ -103,7 +103,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenCollectionThenTextWithNullText_ThrowsArgNullException()
+        public static void AdditionOp_GivenCollectionThenTextWithNullText_ThrowsArgNullException()
         {
             FabulousTextCollection collection = "abc";
             FabulousText text = null;
@@ -112,7 +112,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTextThenCollectionWithNullCollection_ThrowsArgNullException()
+        public static void AdditionOp_GivenTextThenCollectionWithNullCollection_ThrowsArgNullException()
         {
             FabulousTextCollection collection = null;
             FabulousText text = "abc";
@@ -121,7 +121,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTextThenCollectionWithNullText_ThrowsArgNullException()
+        public static void AdditionOp_GivenTextThenCollectionWithNullText_ThrowsArgNullException()
         {
             FabulousTextCollection collection = "abc";
             FabulousText text = null;
@@ -130,7 +130,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTwoCollectionsWithFirstCollectionNull_ThrowsArgNullException()
+        public static void AdditionOp_GivenTwoCollectionsWithFirstCollectionNull_ThrowsArgNullException()
         {
             FabulousTextCollection collectionA = null;
             FabulousTextCollection collectionB = "abc";
@@ -139,7 +139,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void AdditionOp_GivenTwoCollectionsWithSecondCollectionNull_ThrowsArgNullException()
+        public static void AdditionOp_GivenTwoCollectionsWithSecondCollectionNull_ThrowsArgNullException()
         {
             FabulousTextCollection collectionA = "abc";
             FabulousTextCollection collectionB = null;
@@ -148,7 +148,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Equals_GivenDifferentValuedObjects_ReturnsFalse()
+        public static void Equals_GivenDifferentValuedObjects_ReturnsFalse()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -163,7 +163,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Equals_GivenSameValuedObjects_ReturnsTrue()
+        public static void Equals_GivenSameValuedObjects_ReturnsTrue()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -178,7 +178,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Equals_GivenSameObjects_ReturnsTrue()
+        public static void Equals_GivenSameObjects_ReturnsTrue()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -190,7 +190,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
+        public static void EqualsOp_GivenSameValuedObjects_ReturnsTrue()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -205,7 +205,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        public static void EqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -220,7 +220,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
+        public static void NotEqualsOp_GivenDifferentValuedObjects_ReturnsFalse()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);
@@ -235,7 +235,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
+        public static void NotEqualsOp_GivenSameValuedObjects_ReturnsFalse()
         {
             const string message = "asd";
             var aText = Fabulous.Green.Text(message);

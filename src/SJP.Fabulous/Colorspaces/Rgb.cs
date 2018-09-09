@@ -181,8 +181,7 @@ namespace SJP.Fabulous.Colorspaces
                 var result = 17;
                 result = (result * 31) + Red.GetHashCode();
                 result = (result * 31) + Green.GetHashCode();
-                result = (result * 31) + Blue.GetHashCode();
-                return result;
+                return (result * 31) + Blue.GetHashCode();
             }
         }
 

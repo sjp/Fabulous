@@ -4,10 +4,10 @@ using NUnit.Framework;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class EnvironmentVariableProviderTests
+    internal static class EnvironmentVariableProviderTests
     {
         [Test]
-        public void HasEnvironmentVariable_GivenExistingVariable_ReturnsTrue()
+        public static void HasEnvironmentVariable_GivenExistingVariable_ReturnsTrue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -17,7 +17,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void HasEnvironmentVariable_GivenMissingVariable_ReturnsFalse()
+        public static void HasEnvironmentVariable_GivenMissingVariable_ReturnsFalse()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -27,7 +27,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetEnvironmentVariable_GivenExistingVariable_ReturnsCorrectValue()
+        public static void GetEnvironmentVariable_GivenExistingVariable_ReturnsCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -38,7 +38,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetEnvironmentVariable_GivenMissingVariable_ReturnsNull()
+        public static void GetEnvironmentVariable_GivenMissingVariable_ReturnsNull()
         {
             var env = new EnvironmentVariableProvider();
             var missingVar = env.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
@@ -47,7 +47,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsCorrectValue()
+        public static void GetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -57,7 +57,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetEnvironmentVariableT_GivenMissingVariable_ReturnsDefaultValue()
+        public static void GetEnvironmentVariableT_GivenMissingVariable_ReturnsDefaultValue()
         {
             var env = new EnvironmentVariableProvider();
             var missingVar = env.GetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND");
@@ -66,7 +66,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariable_GivenExistingVariable_ReturnsTrueAndCorrectValue()
+        public static void TryGetEnvironmentVariable_GivenExistingVariable_ReturnsTrueAndCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -81,7 +81,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariable_GivenMissingVariable_ReturnsFalseAndNullValue()
+        public static void TryGetEnvironmentVariable_GivenMissingVariable_ReturnsFalseAndNullValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -96,7 +96,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
+        public static void TryGetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -113,7 +113,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableT_GivenExistingVariableAndIncorrectType_ReturnsFalseAndDefaultValue()
+        public static void TryGetEnvironmentVariableT_GivenExistingVariableAndIncorrectType_ReturnsFalseAndDefaultValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -124,7 +124,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableT_GivenMissingVariable_ReturnsFalseAndDefaultValue()
+        public static void TryGetEnvironmentVariableT_GivenMissingVariable_ReturnsFalseAndDefaultValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -138,7 +138,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableTWithFormatter_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
+        public static void TryGetEnvironmentVariableTWithFormatter_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -155,7 +155,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableTWithFormatter_GivenExistingVariableAndIncorrectType_ReturnsFalseAndDefaultValue()
+        public static void TryGetEnvironmentVariableTWithFormatter_GivenExistingVariableAndIncorrectType_ReturnsFalseAndDefaultValue()
         {
             var env = new EnvironmentVariableProvider();
 
@@ -169,7 +169,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void TryGetEnvironmentVariableTWithFormatter_GivenMissingVariable_ReturnsFalseAndDefaultValue()
+        public static void TryGetEnvironmentVariableTWithFormatter_GivenMissingVariable_ReturnsFalseAndDefaultValue()
         {
             var env = new EnvironmentVariableProvider();
 

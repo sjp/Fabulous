@@ -6,24 +6,24 @@ using SJP.Fabulous.Colorspaces;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class FabulousTextExtensionsTests
+    internal static class FabulousTextExtensionsTests
     {
         [Test]
-        public void Foreground_NullText_ThrowsArgNullException()
+        public static void Foreground_NullText_ThrowsArgNullException()
         {
             var color = Mock.Of<IColor>();
             Assert.Throws<ArgumentNullException>(() => FabulousTextExtensions.Foreground(null, color));
         }
 
         [Test]
-        public void Foreground_NullColor_ThrowsArgNullException()
+        public static void Foreground_NullColor_ThrowsArgNullException()
         {
             FabulousText text = string.Empty;
             Assert.Throws<ArgumentNullException>(() => text.Foreground(null));
         }
 
         [Test]
-        public void Foreground_GivenValidArgs_CreatesNewObject()
+        public static void Foreground_GivenValidArgs_CreatesNewObject()
         {
             FabulousText text = "xyz";
 
@@ -34,21 +34,21 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Background_NullText_ThrowsArgNullException()
+        public static void Background_NullText_ThrowsArgNullException()
         {
             var color = Mock.Of<IColor>();
             Assert.Throws<ArgumentNullException>(() => FabulousTextExtensions.Background(null, color));
         }
 
         [Test]
-        public void Background_NullColor_ThrowsArgNullException()
+        public static void Background_NullColor_ThrowsArgNullException()
         {
             FabulousText text = string.Empty;
             Assert.Throws<ArgumentNullException>(() => text.Background(null));
         }
 
         [Test]
-        public void Background_GivenValidArgs_CreatesNewObject()
+        public static void Background_GivenValidArgs_CreatesNewObject()
         {
             FabulousText text = "xyz";
 
@@ -59,13 +59,13 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void Text_GivenNullText_ThrowsArgNullException()
+        public static void Text_GivenNullText_ThrowsArgNullException()
         {
             Assert.Throws<ArgumentNullException>(() => FabulousTextExtensions.Text(null, string.Empty));
         }
 
         [Test]
-        public void Text_GivenValidText_SetsTextOnNewObject()
+        public static void Text_GivenValidText_SetsTextOnNewObject()
         {
             FabulousText text = "xyz";
 

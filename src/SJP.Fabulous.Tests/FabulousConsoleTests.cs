@@ -5,44 +5,44 @@ using Moq;
 namespace SJP.Fabulous.Tests
 {
     [TestFixture]
-    public class FabulousConsoleTests
+    internal static class FabulousConsoleTests
     {
         [SetUp, TearDown]
-        public void Reset()
+        public static void Reset()
         {
             FabulousConsole.Environment = new EnvironmentVariableProvider();
             FabulousConsole.ColorLevel = ConsoleColorMode.Standard;
         }
 
         [Test]
-        public void ColorLevel_OnDefaultPropertyGet_ReturnsStandardColorMode()
+        public static void ColorLevel_OnDefaultPropertyGet_ReturnsStandardColorMode()
         {
             var colorLevel = FabulousConsole.ColorLevel;
             Assert.AreEqual(ConsoleColorMode.Standard, colorLevel);
         }
 
         [Test]
-        public void ColorLevel_OnPropertySetWithInvalidEnum_ThrowsArgumentException()
+        public static void ColorLevel_OnPropertySetWithInvalidEnum_ThrowsArgumentException()
         {
             const ConsoleColorMode invalidLevel = (ConsoleColorMode)23904;
             Assert.Throws<ArgumentException>(() => FabulousConsole.ColorLevel = invalidLevel);
         }
 
         [Test]
-        public void ColorLevel_OnPropertySetWithValidEnum_SetsCorrectly()
+        public static void ColorLevel_OnPropertySetWithValidEnum_SetsCorrectly()
         {
             FabulousConsole.ColorLevel = ConsoleColorMode.Enhanced;
             Assert.AreEqual(ConsoleColorMode.Enhanced, FabulousConsole.ColorLevel);
         }
 
         [Test]
-        public void Environment_OnPropertySetWithNullValue_ThrowsArgNullException()
+        public static void Environment_OnPropertySetWithNullValue_ThrowsArgNullException()
         {
             Assert.Throws<ArgumentNullException>(() => FabulousConsole.Environment = null);
         }
 
         [Test]
-        public void Environment_OnPropertySetWithValidValue_SetsCorrectly()
+        public static void Environment_OnPropertySetWithValidValue_SetsCorrectly()
         {
             var newEnv = Mock.Of<IEnvironmentVariableProvider>();
 
@@ -52,7 +52,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenCIVariableIsTravis_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenCIVariableIsTravis_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -66,7 +66,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenTravisVariablePresent_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTravisVariablePresent_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -81,7 +81,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenCircleCiVariablePresent_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenCircleCiVariablePresent_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -96,7 +96,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenCIVariablePresentWithUnknownCI_ReturnsNone()
+        public static void GetMaximumSupportedColorMode_WhenCIVariablePresentWithUnknownCI_ReturnsNone()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -110,7 +110,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentAndAtLeastVersion9dot1_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentAndAtLeastVersion9dot1_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -124,7 +124,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentLessThanVersion9dot1_ReturnsNone()
+        public static void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentLessThanVersion9dot1_ReturnsNone()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -138,7 +138,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test]
-        public void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentWithBadData_ReturnsNone()
+        public static void GetMaximumSupportedColorMode_WhenTeamCityVariablePresentWithBadData_ReturnsNone()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -152,7 +152,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.Windows]
-        public void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndON_ReturnsEnhanced()
+        public static void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndON_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -166,7 +166,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.Windows]
-        public void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndNotON_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenConEmuANSIPresentAndNotON_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -180,7 +180,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.Windows]
-        public void GetMaximumSupportedColorMode_WhenNotConEmuANSIPresent_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenNotConEmuANSIPresent_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -194,12 +194,12 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithHyper_ReturnsFull()
+        public static void GetMaximumSupportedColorMode_WhenTermProgramPresentWithHyper_ReturnsFull()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
             var termProgram = "Hyper";
-            newEnv.Setup(env => WindowsConsole.IsWindowsPlatform).Returns(false);
+            newEnv.Setup(_ => WindowsConsole.IsWindowsPlatform).Returns(false);
             newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
 
             FabulousConsole.Environment = newEnv.Object;
@@ -209,7 +209,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithAppleTerminal_ReturnsFull()
+        public static void GetMaximumSupportedColorMode_WhenTermProgramPresentWithAppleTerminal_ReturnsFull()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -223,7 +223,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionGte3_ReturnsFull()
+        public static void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionGte3_ReturnsFull()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -240,7 +240,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionLt3_ReturnsEnhanced()
+        public static void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndMajorVersionLt3_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -256,7 +256,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndJunkVersion_ReturnsEnhanced()
+        public static void GetMaximumSupportedColorMode_WhenTermProgramPresentWithiTermAndJunkVersion_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -272,7 +272,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithScreen256ColorValue_ReturnsEnhanced()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithScreen256ColorValue_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -286,7 +286,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithXTerm256ColorValue_ReturnsEnhanced()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithXTerm256ColorValue_ReturnsEnhanced()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -300,7 +300,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithScreenValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithScreenValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -314,7 +314,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithXTermValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithXTermValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -328,7 +328,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithVT100Value_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithVT100Value_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -342,7 +342,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithAnsiValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithAnsiValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -356,7 +356,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithColorValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithColorValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -370,7 +370,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithCygwinValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithCygwinValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -384,7 +384,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithLinuxValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithLinuxValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -398,7 +398,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenTermPresentWithDumbValue_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenTermPresentWithDumbValue_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -412,7 +412,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenColortermPresent_ReturnsBasic()
+        public static void GetMaximumSupportedColorMode_WhenColortermPresent_ReturnsBasic()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
@@ -425,7 +425,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [Test, TestPlatform.NonWindows]
-        public void GetMaximumSupportedColorMode_WhenNoVariablesPresent_ReturnsNone()
+        public static void GetMaximumSupportedColorMode_WhenNoVariablesPresent_ReturnsNone()
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
