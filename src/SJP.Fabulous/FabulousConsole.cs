@@ -19,7 +19,7 @@ namespace SJP.Fabulous
             set
             {
                 if (!value.IsValid())
-                    throw new ArgumentException($"The { nameof(ConsoleColorMode) } object is not set to a valid value.", nameof(ColorLevel));
+                    throw new ArgumentException($"The { nameof(ConsoleColorMode) } object is not set to a valid value.", nameof(value));
 
                 _colorLevel = value;
             }
@@ -77,7 +77,9 @@ namespace SJP.Fabulous
                     case "iTerm.app":
                         if (!env.TryGetEnvironmentVariable("TERM_PROGRAM_VERSION", out var termProgramVersionText)
                             || !Version.TryParse(termProgramVersionText, out var termProgramVersion))
+                        {
                             return ConsoleColorMode.Enhanced;
+                        }
 
                         return termProgramVersion.Major >= 3
                             ? ConsoleColorMode.Full
@@ -129,7 +131,7 @@ namespace SJP.Fabulous
         public static IEnvironmentVariableProvider Environment
         {
             get => _environment;
-            set => _environment = value ?? throw new ArgumentNullException(nameof(Environment));
+            set => _environment = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         private static IEnvironmentVariableProvider _environment = new EnvironmentVariableProvider();
