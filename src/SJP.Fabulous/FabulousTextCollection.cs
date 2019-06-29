@@ -9,7 +9,7 @@ namespace SJP.Fabulous
     /// <summary>
     /// Represents a collection of styled text that can be printed together.
     /// </summary>
-    public class FabulousTextCollection : IConsoleWriter, IEnumerable<FabulousText>, IEquatable<FabulousTextCollection>
+    public sealed class FabulousTextCollection : IConsoleWriter, IEnumerable<FabulousText>, IEquatable<FabulousTextCollection>
     {
         /// <summary>
         /// Creates a collection of styled text fragments.

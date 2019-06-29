@@ -314,7 +314,7 @@ namespace SJP.Fabulous
                 | iRed);
 
             return value >= 50
-                ? ansi += 60
+                ? ansi + 60
                 : ansi;
         }
 

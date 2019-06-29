@@ -374,7 +374,7 @@ namespace SJP.Fabulous.Tests
         {
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
-            var term = "vt100";
+            var term = "cygwin";
             newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM", out term)).Returns(true);
 
             FabulousConsole.Environment = newEnv.Object;

@@ -8,7 +8,7 @@ namespace SJP.Fabulous.Tests
     internal static class TestPlatform
     {
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-        public sealed class Windows : NUnitAttribute, IApplyToTest
+        public sealed class WindowsAttribute : NUnitAttribute, IApplyToTest
         {
             public void ApplyToTest(Test test)
             {
@@ -25,7 +25,7 @@ namespace SJP.Fabulous.Tests
         }
 
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-        public sealed class NonWindows : NUnitAttribute, IApplyToTest
+        public sealed class NonWindowsAttribute : NUnitAttribute, IApplyToTest
         {
             public void ApplyToTest(Test test)
             {

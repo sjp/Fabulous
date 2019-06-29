@@ -20,7 +20,7 @@ namespace SJP.Fabulous.Tests
         public static void Red_PropertyGet_MatchesCtorArg()
         {
             var rgb = new Rgb(12, 34, 56);
-            Assert.AreEqual(rgb.Red, 12);
+            Assert.AreEqual(12, rgb.Red);
         }
 
         [Test]

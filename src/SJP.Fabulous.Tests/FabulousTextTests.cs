@@ -111,8 +111,6 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void BgKeyword_GivenInvalidKeywordEnum_ThrowsArgNullException()
         {
-            FabulousText text = string.Empty;
-
             const ColorKeyword keyword = (ColorKeyword)293048;
             Assert.Throws<ArgumentException>(() => Fabulous.BgKeyword(keyword));
         }
@@ -215,8 +213,6 @@ namespace SJP.Fabulous.Tests
         public static void BgRgb_GivenValidColor_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(12, 34, 56);
-
-            FabulousText text = string.Empty;
             var result = Fabulous.BgRgb(12, 34, 56);
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
@@ -226,8 +222,6 @@ namespace SJP.Fabulous.Tests
         public static void Hex_GivenValidHex_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
             var result = Fabulous.Hex("#8FBC8F");
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
@@ -237,8 +231,6 @@ namespace SJP.Fabulous.Tests
         public static void BgHex_GivenValidHex_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
             var result = Fabulous.BgHex("#8FBC8F");
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
@@ -248,9 +240,7 @@ namespace SJP.Fabulous.Tests
         public static void Keyword_GivenValidColorName_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
-            var result = Fabulous.Keyword("DarkSeaGreen");
+            var result = Fabulous.Keyword(nameof(ColorKeyword.DarkSeaGreen));
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
         }
@@ -259,8 +249,6 @@ namespace SJP.Fabulous.Tests
         public static void Keyword_GivenValidColorNameEnum_ReturnsObjectWithForegroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
             var result = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
@@ -270,9 +258,7 @@ namespace SJP.Fabulous.Tests
         public static void BgKeyword_GivenValidColorName_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
-            var result = Fabulous.BgKeyword("DarkSeaGreen");
+            var result = Fabulous.BgKeyword(nameof(ColorKeyword.DarkSeaGreen));
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
         }
@@ -281,8 +267,6 @@ namespace SJP.Fabulous.Tests
         public static void BgKeyword_GivenValidColorNameEnum_ReturnsObjectWithBackgroundSet()
         {
             var expectedColor = new Rgb(143, 188, 143);
-
-            FabulousText text = string.Empty;
             var result = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
@@ -335,9 +319,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void Blue_PropertyGet_ReturnsObjectWithBlueForegroundColor()
         {
-            FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 0, 139);
-
             var result = Fabulous.Blue;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
@@ -357,9 +339,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void Cyan_PropertyGet_ReturnsObjectWithCyanForegroundColor()
         {
-            FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 139, 139);
-
             var result = Fabulous.Cyan;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
@@ -423,9 +403,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void YellowBright_PropertyGet_ReturnsObjectWithYellowBrightForegroundColor()
         {
-            FabulousText text = string.Empty;
             var expectedColor = new Rgb(255, 255, 0);
-
             var result = Fabulous.YellowBright;
 
             Assert.AreEqual(expectedColor, result.ForegroundColor);
@@ -544,9 +522,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void BgCyan_PropertyGet_ReturnsObjectWithCyanBackgroundColor()
         {
-            FabulousText text = string.Empty;
             var expectedColor = new Rgb(0, 139, 139);
-
             var result = Fabulous.BgCyan;
 
             Assert.AreEqual(expectedColor, result.BackgroundColor);
@@ -683,9 +659,7 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void Bold_PropertyGet_ReturnsObjectWithBoldDecorationSet()
         {
-            FabulousText text = string.Empty;
             const TextDecoration expected = TextDecoration.Bold;
-
             var result = Fabulous.Bold;
 
             Assert.AreEqual(expected, result.Decorations);
@@ -992,8 +966,7 @@ namespace SJP.Fabulous.Tests
         public static void BgBlack_PropertyGet_ReturnsNewObject()
         {
             FabulousText text = string.Empty;
-
-            var result = text.Black;
+            var result = text.BgBlack;
 
             Assert.AreNotSame(text, result);
         }
@@ -1072,8 +1045,6 @@ namespace SJP.Fabulous.Tests
         public static void BgGray_PropertyGet_ReturnsNewObject()
         {
             FabulousText text = string.Empty;
-            var expectedColor = new Rgb(169, 169, 169);
-
             var result = text.BgGray;
 
             Assert.AreNotSame(text, result);

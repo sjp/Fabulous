@@ -706,7 +706,7 @@ namespace SJP.Fabulous
             FabulousText fragment = format;
             FabulousTextCollection collection = fragment;
             var writer = GetConsoleWriter(collection);
-            writer.WriteLine(args);
+            writer.WriteErrorLine(args);
         }
 
         /// <summary>
@@ -720,7 +720,7 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(fragment));
 
             var writer = GetConsoleWriter(fragment);
-            writer.WriteLine();
+            writer.WriteErrorLine();
         }
 
         /// <summary>
@@ -735,7 +735,7 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(fragment));
 
             var writer = GetConsoleWriter(fragment);
-            writer.WriteLine(args);
+            writer.WriteErrorLine(args);
         }
 
         /// <summary>
@@ -749,7 +749,7 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(collection));
 
             var writer = GetConsoleWriter(collection);
-            writer.WriteLine();
+            writer.WriteErrorLine();
         }
 
         /// <summary>
@@ -764,7 +764,7 @@ namespace SJP.Fabulous
                 throw new ArgumentNullException(nameof(collection));
 
             var writer = GetConsoleWriter(collection);
-            writer.WriteLine(args);
+            writer.WriteErrorLine(args);
         }
 
         /// <summary>
@@ -1203,7 +1203,7 @@ namespace SJP.Fabulous
                     var fullText = new AnsiFullStringBuilder(collection);
                     return new AnsiConsoleWriter(fullText.ToAnsiString());
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(consoleLevel), "Unknown console support level: " + consoleLevel.ToString());
+                    throw new NotSupportedException("Unknown console support level: " + consoleLevel.ToString());
             }
         }
     }

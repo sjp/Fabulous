@@ -146,9 +146,6 @@ namespace SJP.Fabulous.Colorspaces
         /// <param name="other">An RGB color to compare with this color.</param>
         public bool Equals(Rgb other)
         {
-            if (ReferenceEquals(this, other))
-                return true;
-
             return Red == other.Red
                 && Green == other.Green
                 && Blue == other.Blue;
@@ -161,9 +158,6 @@ namespace SJP.Fabulous.Colorspaces
         {
             if (obj == null)
                 return false;
-
-            if (ReferenceEquals(this, obj))
-                return true;
 
             var objType = obj.GetType();
             if (objType != GetType())
@@ -191,13 +185,7 @@ namespace SJP.Fabulous.Colorspaces
         /// <param name="a">An RGB color.</param>
         /// <param name="b">Another RGB color.</param>
         /// <returns><c>true</c> if all of the color components of the colors are equal, otherwise <c>false</c>.</returns>
-        public static bool operator ==(Rgb a, Rgb b)
-        {
-            if (ReferenceEquals(a, b))
-                return true;
-
-            return a.Equals(b);
-        }
+        public static bool operator ==(Rgb a, Rgb b) => a.Equals(b);
 
         /// <summary>
         /// Inequality operator for RGB colors
@@ -205,13 +193,7 @@ namespace SJP.Fabulous.Colorspaces
         /// <param name="a">An RGB color.</param>
         /// <param name="b">Another RGB color.</param>
         /// <returns><c>true</c> if any of the color components of the colors are different, otherwise <c>false</c>.</returns>
-        public static bool operator !=(Rgb a, Rgb b)
-        {
-            if (!ReferenceEquals(a, b))
-                return true;
-
-            return !a.Equals(b);
-        }
+        public static bool operator !=(Rgb a, Rgb b) => !a.Equals(b);
 
         private readonly static IReadOnlyDictionary<string, Rgb> _keywordColors = new Dictionary<string, Rgb>(StringComparer.OrdinalIgnoreCase)
         {

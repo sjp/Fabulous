@@ -23,7 +23,7 @@ namespace SJP.Fabulous
                 if (!IsVirtualTerminalProcessingEnabled())
                     return ConsoleColorMode.Standard;
 
-                // disabling true color for now, seems to not be fully supported in creators build
+                // disabling true color for now, seems to not be fully supported yet
                 //if (VersionSupportsTrueColor)
                 //    return ConsoleColorMode.Full;
 

@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SJP.Fabulous.Tests
 {
@@ -10,7 +11,13 @@ namespace SJP.Fabulous.Tests
         [Test]
         public static void Ctor_GivenNullFragments_ThrowsArgNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new FabulousTextCollection(null));
+            Assert.Throws<ArgumentNullException>(() => new FabulousTextCollection((FabulousText[])null));
+        }
+
+        [Test]
+        public static void Ctor_GivenNullFragmentsCollection_ThrowsArgNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new FabulousTextCollection((IEnumerable<FabulousText>)null));
         }
 
         [Test]
@@ -99,7 +106,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collection = null;
             FabulousText text = "abc";
 
-            Assert.Throws<ArgumentNullException>(() => { var x = collection + text; });
+            Assert.Throws<ArgumentNullException>(() => _ = collection + text);
         }
 
         [Test]
@@ -108,7 +115,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collection = "abc";
             FabulousText text = null;
 
-            Assert.Throws<ArgumentNullException>(() => { var x = collection + text; });
+            Assert.Throws<ArgumentNullException>(() => _ = collection + text);
         }
 
         [Test]
@@ -117,7 +124,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collection = null;
             FabulousText text = "abc";
 
-            Assert.Throws<ArgumentNullException>(() => { var x = text + collection; });
+            Assert.Throws<ArgumentNullException>(() => _ = text + collection);
         }
 
         [Test]
@@ -126,7 +133,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collection = "abc";
             FabulousText text = null;
 
-            Assert.Throws<ArgumentNullException>(() => { var x = text + collection; });
+            Assert.Throws<ArgumentNullException>(() => _ = text + collection);
         }
 
         [Test]
@@ -135,7 +142,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collectionA = null;
             FabulousTextCollection collectionB = "abc";
 
-            Assert.Throws<ArgumentNullException>(() => { var x = collectionA + collectionB; });
+            Assert.Throws<ArgumentNullException>(() => _ = collectionA + collectionB);
         }
 
         [Test]
@@ -144,7 +151,7 @@ namespace SJP.Fabulous.Tests
             FabulousTextCollection collectionA = "abc";
             FabulousTextCollection collectionB = null;
 
-            Assert.Throws<ArgumentNullException>(() => { var x = collectionA + collectionB; });
+            Assert.Throws<ArgumentNullException>(() => _ = collectionA + collectionB);
         }
 
         [Test]

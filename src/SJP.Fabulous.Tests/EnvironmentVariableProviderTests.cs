@@ -86,7 +86,7 @@ namespace SJP.Fabulous.Tests
             var env = new EnvironmentVariableProvider();
 
             var isFound = env.TryGetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
-            var sysPath = Environment.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
+            _ = Environment.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
 
             Assert.Multiple(() =>
             {

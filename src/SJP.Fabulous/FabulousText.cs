@@ -9,7 +9,7 @@ namespace SJP.Fabulous
     /// <summary>
     /// Represents a styled piece of text.
     /// </summary>
-    public class FabulousText : IConsoleWriter, IEquatable<FabulousText>
+    public sealed class FabulousText : IConsoleWriter, IEquatable<FabulousText>
     {
         /// <summary>
         /// Creates a styled piece of text.
