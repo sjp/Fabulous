@@ -2,14 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <TreatSpecificWarningsAsErrors />
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <Authors>Simon Potter</Authors>
-    <Company />
-    <Product />
     <Description>Easy terminal styling for .NET</Description>
-    <Copyright>Copyright © Simon Potter 2019</Copyright>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageLicenseUrl>https://raw.github.com/sjp/Fabulous/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sjp/Fabulous</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sjp/Fabulous</RepositoryUrl>
