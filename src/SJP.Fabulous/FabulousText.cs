@@ -436,7 +436,7 @@ namespace SJP.Fabulous
             if (aIsNull && bIsNull)
                 return true;
 
-            if (aIsNull ^ bIsNull)
+            if (aIsNull || bIsNull)
                 return false;
 
             if (ReferenceEquals(a, b))

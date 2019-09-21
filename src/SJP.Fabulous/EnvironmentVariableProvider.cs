@@ -25,7 +25,7 @@ namespace SJP.Fabulous
         {
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)
-                return default(T);
+                return default;
 
             return (T)Convert.ChangeType(result, typeof(T));
         }
@@ -61,7 +61,7 @@ namespace SJP.Fabulous
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)
             {
-                value = default(T);
+                value = default;
                 return false;
             }
 
@@ -72,7 +72,7 @@ namespace SJP.Fabulous
             }
             catch
             {
-                value = default(T);
+                value = default;
                 return false;
             }
         }
@@ -90,7 +90,7 @@ namespace SJP.Fabulous
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)
             {
-                value = default(T);
+                value = default;
                 return false;
             }
 
@@ -101,7 +101,7 @@ namespace SJP.Fabulous
             }
             catch
             {
-                value = default(T);
+                value = default;
                 return false;
             }
         }

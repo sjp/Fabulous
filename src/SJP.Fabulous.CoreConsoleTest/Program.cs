@@ -4,7 +4,7 @@ namespace SJP.Fabulous.CoreConsoleTest
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Fabulous.WriteLine("core test");
 

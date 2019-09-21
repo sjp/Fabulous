@@ -4,7 +4,7 @@ namespace SJP.Fabulous.ConsoleTest
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             FabulousConsole.ColorLevel = FabulousConsole.GetMaximumSupportedColorMode();
             var a1 = Fabulous
