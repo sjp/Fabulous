@@ -17,6 +17,7 @@ This project is largely inspired by [Chalk](https://github.com/chalk/chalk) and 
 * Support for regular styling by `System.Console`, in addition to ANSI 16 colors, ANSI 256 colors and ANSI true colors.
 * Auto-detection of color support.
 * Minimal and focused.
+* .NET Standard 2.1
 
 ## Installation
 
@@ -192,4 +193,4 @@ public static void WriteErrorLine(string message)
 
 ## Windows
 
-When using Windows, using a more sophisticated terminal emulator than `cmd.exe` will give you greater access to styling than basic coloring. Try [cmder](http://cmder.net/) or [ConEmu](https://conemu.github.io/).
+When using Windows, using a more sophisticated terminal emulator than `cmd.exe` will give you greater access to styling than basic coloring. Try [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701), [cmder](http://cmder.net/), or [ConEmu](https://conemu.github.io/).

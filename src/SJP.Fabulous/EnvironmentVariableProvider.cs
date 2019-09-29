@@ -21,7 +21,7 @@ namespace SJP.Fabulous
         /// <param name="variable">The name of the environment variable.</param>
         /// <returns>The value of the environment variable as an object of type <typeparamref name="T"/>.</returns>
         /// <remarks>This method can throw an exception if the variable does not exist or cannot be converted to <typeparamref name="T"/>. <see cref="TryGetEnvironmentVariable(string, out string)"/> and related overloads for safe access.</remarks>
-        public T GetEnvironmentVariable<T>(string variable) where T : IConvertible
+        public T GetEnvironmentVariable<T>(string variable) where T : struct, IConvertible
         {
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)
@@ -56,7 +56,7 @@ namespace SJP.Fabulous
         /// <param name="variable">The name of the environment variable.</param>
         /// <param name="value"></param>
         /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
-        public bool TryGetEnvironmentVariable<T>(string variable, out T value) where T : IConvertible
+        public bool TryGetEnvironmentVariable<T>(string variable, out T value) where T : struct, IConvertible
         {
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)
@@ -85,7 +85,7 @@ namespace SJP.Fabulous
         /// <param name="formatter">An object that supplies culture-specific formatting information.</param>
         /// <param name="value"></param>
         /// <returns><c>true</c> if the environment variable is present. <c>false</c> otherwise.</returns>
-        public bool TryGetEnvironmentVariable<T>(string variable, IFormatProvider formatter, out T value) where T : IConvertible
+        public bool TryGetEnvironmentVariable<T>(string variable, IFormatProvider formatter, out T value) where T : struct, IConvertible
         {
             var result = Environment.GetEnvironmentVariable(variable);
             if (result == null)

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <Description>Easy terminal styling for .NET</Description>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageLicenseUrl>https://raw.github.com/sjp/Fabulous/master/LICENSE</PackageLicenseUrl>
@@ -13,6 +13,7 @@
     <Version>1.0.1</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

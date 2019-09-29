@@ -21,7 +21,7 @@ namespace SJP.Fabulous
         /// <param name="reset">Whether to reset the console to default styling before and after printing the text.</param>
         /// <exception cref="ArgumentNullException"><paramref name="foreColor"/> or <paramref name="backColor"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="decorations"/> is not a valid enum.</exception>
-        public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, string text, bool reset = false)
+        public FabulousText(IColor foreColor, IColor backColor, TextDecoration decorations, string? text, bool reset = false)
         {
             ForegroundColor = foreColor ?? throw new ArgumentNullException(nameof(foreColor));
             BackgroundColor = backColor ?? throw new ArgumentNullException(nameof(backColor));
@@ -403,7 +403,7 @@ namespace SJP.Fabulous
         /// Initializes text styling from a <see cref="string"/> object.
         /// </summary>
         /// <param name="text">Text in the form of a <see cref="string"/> object.</param>
-        public static implicit operator FabulousText(string text) => new FabulousText(RgbConsoleColor.White, RgbConsoleColor.Black, TextDecoration.None, text);
+        public static implicit operator FabulousText(string? text) => new FabulousText(RgbConsoleColor.White, RgbConsoleColor.Black, TextDecoration.None, text);
 
         /// <summary>
         /// Combines two styled text objects.
@@ -428,15 +428,12 @@ namespace SJP.Fabulous
         /// <param name="a">A FabulousText object.</param>
         /// <param name="b">Another FabulousText object.</param>
         /// <returns><c>true</c> if all of the value properties of the FabulousText objects are equal, otherwise <c>false</c>.</returns>
-        public static bool operator ==(FabulousText a, FabulousText b)
+        public static bool operator ==(FabulousText? a, FabulousText? b)
         {
-            var aIsNull = a is null;
-            var bIsNull = b is null;
-
-            if (aIsNull && bIsNull)
+            if (a is null && b is null)
                 return true;
 
-            if (aIsNull || bIsNull)
+            if (a is null || b is null)
                 return false;
 
             if (ReferenceEquals(a, b))
@@ -451,14 +448,14 @@ namespace SJP.Fabulous
         /// <param name="a">A FabulousText object.</param>
         /// <param name="b">Another FabulousText object.</param>
         /// <returns><c>false</c> if all of the value properties of the FabulousText objects are equal, otherwise <c>true</c>.</returns>
-        public static bool operator !=(FabulousText a, FabulousText b) => !(a == b);
+        public static bool operator !=(FabulousText? a, FabulousText? b) => !(a == b);
 
         /// <summary>
         /// Indicates whether the FabulousText object is equal to another text object.
         /// </summary>
         /// <returns><c>true</c> if the FabulousText object is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.</returns>
         /// <param name="other">A FabulousText object to compare with this object.</param>
-        public bool Equals(FabulousText other)
+        public bool Equals(FabulousText? other)
         {
             if (other == null)
                 return false;
@@ -488,7 +485,7 @@ namespace SJP.Fabulous
             if (ReferenceEquals(this, obj))
                 return true;
 
-            return Equals(obj as FabulousText);
+            return obj is FabulousText text && Equals(text);
         }
 
         /// <summary>

@@ -120,8 +120,8 @@ namespace SJP.Fabulous
 
         private readonly static Lazy<bool> _isConsoleApp = new Lazy<bool>(() =>
         {
-            using (var stream = Console.OpenStandardInput())
-                return (stream ?? Stream.Null) != Stream.Null;
+            using var stream = Console.OpenStandardInput();
+            return (stream ?? Stream.Null) != Stream.Null;
         });
 
         /// <summary>

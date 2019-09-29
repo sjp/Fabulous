@@ -126,15 +126,12 @@ namespace SJP.Fabulous
         /// <param name="a">A FabulousTextCollection object.</param>
         /// <param name="b">Another FabulousTextCollection object.</param>
         /// <returns><c>true</c> if all of the contained FabulousText are equal, otherwise <c>false</c>.</returns>
-        public static bool operator ==(FabulousTextCollection a, FabulousTextCollection b)
+        public static bool operator ==(FabulousTextCollection? a, FabulousTextCollection? b)
         {
-            var aIsNull = a is null;
-            var bIsNull = b is null;
-
-            if (aIsNull && bIsNull)
+            if (a is null && b is null)
                 return true;
 
-            if (aIsNull || bIsNull)
+            if (a is null || b is null)
                 return false;
 
             if (ReferenceEquals(a, b))
@@ -149,14 +146,14 @@ namespace SJP.Fabulous
         /// <param name="a">A FabulousTextCollection object.</param>
         /// <param name="b">Another FabulousTextCollection object.</param>
         /// <returns><c>false</c> if all of the contained FabulousText objects are equal, otherwise <c>true</c>.</returns>
-        public static bool operator !=(FabulousTextCollection a, FabulousTextCollection b) => !(a == b);
+        public static bool operator !=(FabulousTextCollection? a, FabulousTextCollection? b) => !(a == b);
 
         /// <summary>
         /// Indicates whether the text collection is equal to another text collection.
         /// </summary>
         /// <returns><c>true</c> if the text collection is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.</returns>
         /// <param name="other">A text collection to compare with this object.</param>
-        public bool Equals(FabulousTextCollection other)
+        public bool Equals(FabulousTextCollection? other)
         {
             if (other == null)
                 return false;
@@ -180,7 +177,7 @@ namespace SJP.Fabulous
             if (ReferenceEquals(this, obj))
                 return true;
 
-            return Equals(obj as FabulousTextCollection);
+            return obj is FabulousTextCollection collection && Equals(collection);
         }
 
         /// <summary>
