@@ -120,6 +120,9 @@ namespace SJP.Fabulous.Colorspaces
                 throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
 
             var keywordName = keyword.GetName();
+            if (keywordName == null)
+                throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+
             return FromKeyword(keywordName);
         }
 
