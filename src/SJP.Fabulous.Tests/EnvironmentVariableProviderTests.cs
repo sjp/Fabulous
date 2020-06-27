@@ -46,7 +46,7 @@ namespace SJP.Fabulous.Tests
             Assert.IsNull(missingVar);
         }
 
-        [Test]
+        [Test, TestPlatform.Windows]
         public static void GetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
@@ -95,7 +95,7 @@ namespace SJP.Fabulous.Tests
             });
         }
 
-        [Test]
+        [Test, TestPlatform.Windows]
         public static void TryGetEnvironmentVariableT_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
         {
             var env = new EnvironmentVariableProvider();
@@ -137,7 +137,7 @@ namespace SJP.Fabulous.Tests
             });
         }
 
-        [Test]
+        [Test, TestPlatform.Windows]
         public static void TryGetEnvironmentVariableTWithFormatter_GivenExistingVariableAndCorrectType_ReturnsTrueAndCorrectValue()
         {
             var env = new EnvironmentVariableProvider();

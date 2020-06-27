@@ -199,7 +199,6 @@ namespace SJP.Fabulous.Tests
             var newEnv = new Mock<IEnvironmentVariableProvider>();
 
             var termProgram = "Hyper";
-            newEnv.Setup(_ => WindowsConsole.IsWindowsPlatform).Returns(false);
             newEnv.Setup(env => env.TryGetEnvironmentVariable("TERM_PROGRAM", out termProgram)).Returns(true);
 
             FabulousConsole.Environment = newEnv.Object;
