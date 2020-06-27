@@ -7,7 +7,7 @@
 
 > Easy terminal styling for .NET.
 
-[![License (MIT)](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build status](https://ci.appveyor.com/api/projects/status/h3dncugcr67opiy0?svg=true)](https://ci.appveyor.com/project/sjp/fabulous) [![NuGet](https://img.shields.io/nuget/v/SJP.Fabulous.svg)](https://www.nuget.org/packages/SJP.Fabulous/)
+[![License (MIT)](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) ![CI](https://github.com/sjp/Fabulous/workflows/CI/badge.svg) [![NuGet](https://img.shields.io/nuget/v/SJP.Fabulous.svg)](https://www.nuget.org/packages/SJP.Fabulous/)
 
 This project is largely inspired by [Chalk](https://github.com/chalk/chalk) and the API is very similar. Currently the only features missing are support for colorspaces beyond RGB, this may change in future.
 
