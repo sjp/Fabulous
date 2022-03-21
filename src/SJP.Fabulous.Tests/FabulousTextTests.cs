@@ -124,7 +124,7 @@ internal static class FabulousTextTests
 
         var result = a.Equals(b);
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 
     [Test]
@@ -136,7 +136,7 @@ internal static class FabulousTextTests
 
         var result = a.Equals(b);
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -147,7 +147,7 @@ internal static class FabulousTextTests
 
         var result = a.Equals(a);
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -159,7 +159,7 @@ internal static class FabulousTextTests
 
         var result = a == b;
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -171,7 +171,7 @@ internal static class FabulousTextTests
 
         var result = a == b;
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 
     [Test]
@@ -183,7 +183,7 @@ internal static class FabulousTextTests
 
         var result = a != b;
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -195,7 +195,7 @@ internal static class FabulousTextTests
 
         var result = a != b;
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 
     [Test]
@@ -206,7 +206,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = text.Rgb(12, 34, 56);
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -215,7 +215,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(12, 34, 56);
         var result = Fabulous.BgRgb(12, 34, 56);
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -224,7 +224,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.Hex("#8FBC8F");
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -233,7 +233,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.BgHex("#8FBC8F");
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -242,7 +242,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.Keyword(nameof(ColorKeyword.DarkSeaGreen));
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -251,7 +251,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -260,7 +260,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.BgKeyword(nameof(ColorKeyword.DarkSeaGreen));
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -269,7 +269,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(143, 188, 143);
         var result = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -280,7 +280,7 @@ internal static class FabulousTextTests
 
         var result = text.Black;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -291,7 +291,7 @@ internal static class FabulousTextTests
 
         var result = text.Red;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -302,7 +302,7 @@ internal static class FabulousTextTests
 
         var result = text.Green;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -313,7 +313,7 @@ internal static class FabulousTextTests
 
         var result = text.Yellow;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -322,7 +322,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(0, 0, 139);
         var result = Fabulous.Blue;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -333,7 +333,7 @@ internal static class FabulousTextTests
 
         var result = text.Magenta;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -342,7 +342,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(0, 139, 139);
         var result = Fabulous.Cyan;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -353,7 +353,7 @@ internal static class FabulousTextTests
 
         var result = text.White;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -364,7 +364,7 @@ internal static class FabulousTextTests
 
         var result = text.Gray;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -375,7 +375,7 @@ internal static class FabulousTextTests
 
         var result = text.Grey;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -386,7 +386,7 @@ internal static class FabulousTextTests
 
         var result = text.RedBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -397,7 +397,7 @@ internal static class FabulousTextTests
 
         var result = text.GreenBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -406,7 +406,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(255, 255, 0);
         var result = Fabulous.YellowBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -417,7 +417,7 @@ internal static class FabulousTextTests
 
         var result = text.BlueBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -428,7 +428,7 @@ internal static class FabulousTextTests
 
         var result = text.MagentaBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -439,7 +439,7 @@ internal static class FabulousTextTests
 
         var result = text.CyanBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -450,7 +450,7 @@ internal static class FabulousTextTests
 
         var result = text.WhiteBright;
 
-        Assert.AreEqual(expectedColor, result.ForegroundColor);
+        Assert.That(result.ForegroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -461,7 +461,7 @@ internal static class FabulousTextTests
 
         var result = text.Black;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -472,7 +472,7 @@ internal static class FabulousTextTests
 
         var result = text.BgRed;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -483,7 +483,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGreen;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -494,7 +494,7 @@ internal static class FabulousTextTests
 
         var result = text.BgYellow;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -505,7 +505,7 @@ internal static class FabulousTextTests
 
         var result = text.BgBlue;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -516,7 +516,7 @@ internal static class FabulousTextTests
 
         var result = text.BgMagenta;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -525,7 +525,7 @@ internal static class FabulousTextTests
         var expectedColor = new Rgb(0, 139, 139);
         var result = Fabulous.BgCyan;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -536,7 +536,7 @@ internal static class FabulousTextTests
 
         var result = text.BgWhite;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -547,7 +547,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGray;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -558,7 +558,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGrey;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -569,7 +569,7 @@ internal static class FabulousTextTests
 
         var result = text.BgRedBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -580,7 +580,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGreenBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -591,7 +591,7 @@ internal static class FabulousTextTests
 
         var result = text.BgYellowBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -602,7 +602,7 @@ internal static class FabulousTextTests
 
         var result = text.BgBlueBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -613,7 +613,7 @@ internal static class FabulousTextTests
 
         var result = text.BgMagentaBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -624,7 +624,7 @@ internal static class FabulousTextTests
 
         var result = text.BgCyanBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
@@ -635,14 +635,14 @@ internal static class FabulousTextTests
 
         var result = text.BgWhiteBright;
 
-        Assert.AreEqual(expectedColor, result.BackgroundColor);
+        Assert.That(result.BackgroundColor, Is.EqualTo(expectedColor));
     }
 
     [Test]
     public static void Reset_PropertyGet_ReturnsObjectWithConsoleResetTrue()
     {
         FabulousText text = string.Empty;
-        Assert.IsTrue(text.Reset.ConsoleReset);
+        Assert.That(text.Reset.ConsoleReset, Is.True);
     }
 
     [Test]
@@ -653,7 +653,7 @@ internal static class FabulousTextTests
 
         var result = text.Blink;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -662,7 +662,7 @@ internal static class FabulousTextTests
         const TextDecoration expected = TextDecoration.Bold;
         var result = Fabulous.Bold;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -673,7 +673,7 @@ internal static class FabulousTextTests
 
         var result = text.Dim;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -684,7 +684,7 @@ internal static class FabulousTextTests
 
         var result = text.Italic;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -695,7 +695,7 @@ internal static class FabulousTextTests
 
         var result = text.Underline;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -706,7 +706,7 @@ internal static class FabulousTextTests
 
         var result = text.Hidden;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -717,7 +717,7 @@ internal static class FabulousTextTests
 
         var result = text.Strikethrough;
 
-        Assert.AreEqual(expected, result.Decorations);
+        Assert.That(result.Decorations, Is.EqualTo(expected));
     }
 
     [Test]
@@ -726,7 +726,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = text.Rgb(12, 34, 56);
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -735,7 +735,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.BgRgb(12, 34, 56);
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -744,7 +744,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.Hex("#8FBC8F");
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -753,7 +753,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.BgHex("#8FBC8F");
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -762,7 +762,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.Keyword("DarkSeaGreen");
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -771,7 +771,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.Keyword(ColorKeyword.DarkSeaGreen);
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -780,7 +780,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.BgKeyword("DarkSeaGreen");
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -789,7 +789,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = Fabulous.BgKeyword(ColorKeyword.DarkSeaGreen);
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -799,7 +799,7 @@ internal static class FabulousTextTests
 
         var result = text.Black;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -809,7 +809,7 @@ internal static class FabulousTextTests
 
         var result = text.Red;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -819,7 +819,7 @@ internal static class FabulousTextTests
 
         var result = text.Green;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -829,7 +829,7 @@ internal static class FabulousTextTests
 
         var result = text.Yellow;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -839,7 +839,7 @@ internal static class FabulousTextTests
 
         var result = Fabulous.Blue;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -849,7 +849,7 @@ internal static class FabulousTextTests
 
         var result = text.Magenta;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -859,7 +859,7 @@ internal static class FabulousTextTests
 
         var result = Fabulous.Cyan;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -869,7 +869,7 @@ internal static class FabulousTextTests
 
         var result = text.White;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -879,7 +879,7 @@ internal static class FabulousTextTests
 
         var result = text.Gray;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -889,7 +889,7 @@ internal static class FabulousTextTests
 
         var result = text.Grey;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -899,7 +899,7 @@ internal static class FabulousTextTests
 
         var result = text.RedBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -909,7 +909,7 @@ internal static class FabulousTextTests
 
         var result = text.GreenBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -919,7 +919,7 @@ internal static class FabulousTextTests
 
         var result = Fabulous.YellowBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -929,7 +929,7 @@ internal static class FabulousTextTests
 
         var result = text.BlueBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -939,7 +939,7 @@ internal static class FabulousTextTests
 
         var result = text.MagentaBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -949,7 +949,7 @@ internal static class FabulousTextTests
 
         var result = text.CyanBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -959,7 +959,7 @@ internal static class FabulousTextTests
 
         var result = text.WhiteBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -968,7 +968,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = text.BgBlack;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -978,7 +978,7 @@ internal static class FabulousTextTests
 
         var result = text.BgRed;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -988,7 +988,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGreen;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -998,7 +998,7 @@ internal static class FabulousTextTests
 
         var result = text.BgYellow;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1008,7 +1008,7 @@ internal static class FabulousTextTests
 
         var result = text.BgBlue;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1018,7 +1018,7 @@ internal static class FabulousTextTests
 
         var result = text.BgMagenta;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1028,7 +1028,7 @@ internal static class FabulousTextTests
 
         var result = Fabulous.BgCyan;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1038,7 +1038,7 @@ internal static class FabulousTextTests
 
         var result = text.BgWhite;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1047,7 +1047,7 @@ internal static class FabulousTextTests
         FabulousText text = string.Empty;
         var result = text.BgGray;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1057,7 +1057,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGrey;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1067,7 +1067,7 @@ internal static class FabulousTextTests
 
         var result = text.BgRedBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1077,7 +1077,7 @@ internal static class FabulousTextTests
 
         var result = text.BgGreenBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1087,7 +1087,7 @@ internal static class FabulousTextTests
 
         var result = text.BgYellowBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1097,7 +1097,7 @@ internal static class FabulousTextTests
 
         var result = text.BgBlueBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1107,7 +1107,7 @@ internal static class FabulousTextTests
 
         var result = text.BgMagentaBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1117,7 +1117,7 @@ internal static class FabulousTextTests
 
         var result = text.BgCyanBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1127,7 +1127,7 @@ internal static class FabulousTextTests
 
         var result = text.BgWhiteBright;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1137,7 +1137,7 @@ internal static class FabulousTextTests
 
         var result = text.Reset;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1147,7 +1147,7 @@ internal static class FabulousTextTests
 
         var result = text.Blink;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1157,7 +1157,7 @@ internal static class FabulousTextTests
 
         var result = Fabulous.Bold;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1167,7 +1167,7 @@ internal static class FabulousTextTests
 
         var result = text.Dim;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1177,7 +1177,7 @@ internal static class FabulousTextTests
 
         var result = text.Italic;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1187,7 +1187,7 @@ internal static class FabulousTextTests
 
         var result = text.Underline;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1197,7 +1197,7 @@ internal static class FabulousTextTests
 
         var result = text.Hidden;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 
     [Test]
@@ -1207,6 +1207,6 @@ internal static class FabulousTextTests
 
         var result = text.Strikethrough;
 
-        Assert.AreNotSame(text, result);
+        Assert.That(result, Is.Not.SameAs(text));
     }
 }

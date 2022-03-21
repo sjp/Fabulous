@@ -13,7 +13,7 @@ internal static class EnvironmentVariableProviderTests
 
         var pathVarPresent = env.HasEnvironmentVariable("PATH");
 
-        Assert.IsTrue(pathVarPresent);
+        Assert.That(pathVarPresent, Is.True);
     }
 
     [Test]
@@ -23,7 +23,7 @@ internal static class EnvironmentVariableProviderTests
 
         var notFoundVarPresent = env.HasEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
 
-        Assert.IsFalse(notFoundVarPresent);
+        Assert.That(notFoundVarPresent, Is.False);
     }
 
     [Test]
@@ -34,7 +34,7 @@ internal static class EnvironmentVariableProviderTests
         var providerPath = env.GetEnvironmentVariable("PATH");
         var sysPath = Environment.GetEnvironmentVariable("PATH");
 
-        Assert.AreEqual(sysPath, providerPath);
+        Assert.That(providerPath, Is.EqualTo(sysPath));
     }
 
     [Test]
@@ -53,7 +53,7 @@ internal static class EnvironmentVariableProviderTests
 
         var numberOfProcessors = env.GetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS");
 
-        Assert.IsTrue(numberOfProcessors > 0);
+        Assert.That(numberOfProcessors > 0, Is.True);
     }
 
     [Test]
@@ -62,7 +62,7 @@ internal static class EnvironmentVariableProviderTests
         var env = new EnvironmentVariableProvider();
         var missingVar = env.GetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND");
 
-        Assert.AreEqual(missingVar, default(int));
+        Assert.That(missingVar, Is.EqualTo(default(int)));
     }
 
     [Test]
@@ -75,8 +75,8 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsTrue(isFound);
-            Assert.AreEqual(sysPath, providerPath);
+            Assert.That(isFound, Is.True);
+            Assert.That(providerPath, Is.EqualTo(sysPath));
         });
     }
 
@@ -90,7 +90,7 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsFalse(isFound);
+            Assert.That(isFound, Is.False);
             Assert.IsNull(notFoundVar);
         });
     }
@@ -106,9 +106,9 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsTrue(isFound);
-            Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            Assert.That(isFound, Is.True);
+            Assert.That(numberOfProcessors > 0, Is.True);
+            Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
         });
     }
 
@@ -119,8 +119,8 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("PATH", out var pathInt);
 
-        Assert.IsFalse(isFound);
-        Assert.AreEqual(default(int), pathInt);
+        Assert.That(isFound, Is.False);
+        Assert.That(pathInt, Is.EqualTo(default(int)));
     }
 
     [Test]
@@ -132,8 +132,8 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), notFoundVar);
+            Assert.That(isFound, Is.False);
+            Assert.That(notFoundVar, Is.EqualTo(default(int)));
         });
     }
 
@@ -148,9 +148,9 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsTrue(isFound);
-            Assert.IsTrue(numberOfProcessors > 0);
-            Assert.AreEqual(sysNumberOfProcs, numberOfProcessors.ToString());
+            Assert.That(isFound, Is.True);
+            Assert.That(numberOfProcessors > 0, Is.True);
+            Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
         });
     }
 
@@ -163,8 +163,8 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), pathInt);
+            Assert.That(isFound, Is.False);
+            Assert.That(pathInt, Is.EqualTo(default(int)));
         });
     }
 
@@ -177,8 +177,8 @@ internal static class EnvironmentVariableProviderTests
 
         Assert.Multiple(() =>
         {
-            Assert.IsFalse(isFound);
-            Assert.AreEqual(default(int), notFoundVar);
+            Assert.That(isFound, Is.False);
+            Assert.That(notFoundVar, Is.EqualTo(default(int)));
         });
     }
 }

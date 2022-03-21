@@ -30,7 +30,7 @@ internal static class FabulousTextExtensionsTests
         var newForeground = Mock.Of<IColor>();
         var result = text.Foreground(newForeground);
 
-        Assert.AreNotSame(result, text);
+        Assert.That(text, Is.Not.SameAs(result));
     }
 
     [Test]
@@ -55,7 +55,7 @@ internal static class FabulousTextExtensionsTests
         var newBackground = Mock.Of<IColor>();
         var result = text.Background(newBackground);
 
-        Assert.AreNotSame(result, text);
+        Assert.That(text, Is.Not.SameAs(result));
     }
 
     [Test]
@@ -72,6 +72,6 @@ internal static class FabulousTextExtensionsTests
         const string replacement = "abc";
         var result = text.Text(replacement);
 
-        Assert.AreEqual(replacement, result.Text);
+        Assert.That(result.Text, Is.EqualTo(replacement));
     }
 }

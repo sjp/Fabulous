@@ -13,7 +13,7 @@ internal static class AnsiStringCleanerTests
 
         var result = cleaner.ToAnsiCleanedString();
 
-        Assert.AreEqual(result, input);
+        Assert.That(result, Is.EqualTo(input));
     }
 
     [Test]
@@ -24,7 +24,7 @@ internal static class AnsiStringCleanerTests
 
         var result = cleaner.ToAnsiCleanedString();
 
-        Assert.AreEqual("this is a test", result);
+        Assert.That(result, Is.EqualTo("this is a test"));
     }
 
     [Test]
@@ -35,6 +35,6 @@ internal static class AnsiStringCleanerTests
 
         var result = cleaner.ToAnsiCleanedString();
 
-        Assert.AreEqual("\x1B[45this is a test\x1Bsdfb", result);
+        Assert.That(result, Is.EqualTo("\x1B[45this is a test\x1Bsdfb"));
     }
 }

@@ -18,7 +18,7 @@ internal static class FabulousConsoleTests
     public static void ColorLevel_OnDefaultPropertyGet_ReturnsStandardColorMode()
     {
         var colorLevel = FabulousConsole.ColorLevel;
-        Assert.AreEqual(ConsoleColorMode.Standard, colorLevel);
+        Assert.That(colorLevel, Is.EqualTo(ConsoleColorMode.Standard));
     }
 
     [Test]
@@ -32,7 +32,7 @@ internal static class FabulousConsoleTests
     public static void ColorLevel_OnPropertySetWithValidEnum_SetsCorrectly()
     {
         FabulousConsole.ColorLevel = ConsoleColorMode.Enhanced;
-        Assert.AreEqual(ConsoleColorMode.Enhanced, FabulousConsole.ColorLevel);
+        Assert.That(FabulousConsole.ColorLevel, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test]
@@ -48,7 +48,7 @@ internal static class FabulousConsoleTests
 
         FabulousConsole.Environment = newEnv;
 
-        Assert.AreSame(newEnv, FabulousConsole.Environment);
+        Assert.That(FabulousConsole.Environment, Is.SameAs(newEnv));
     }
 
     [Test]
@@ -62,7 +62,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test]
@@ -77,7 +77,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test]
@@ -92,7 +92,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test]
@@ -106,7 +106,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.None, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.None));
     }
 
     [Test]
@@ -120,7 +120,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test]
@@ -134,7 +134,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.None, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.None));
     }
 
     [Test]
@@ -148,7 +148,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.None, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.None));
     }
 
     [Test, TestPlatform.Windows]
@@ -162,7 +162,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.Windows]
@@ -176,7 +176,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.Windows]
@@ -190,7 +190,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(WindowsConsole.MaximumSupportedColorLevel, result);
+        Assert.That(result, Is.EqualTo(WindowsConsole.MaximumSupportedColorLevel));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -204,7 +204,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Full, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Full));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -218,7 +218,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -235,7 +235,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Full, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Full));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -251,7 +251,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -267,7 +267,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -281,7 +281,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -295,7 +295,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Enhanced, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Enhanced));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -309,7 +309,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -323,7 +323,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -337,7 +337,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -351,7 +351,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -365,7 +365,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -379,7 +379,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -393,7 +393,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -407,7 +407,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.None, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.None));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -420,7 +420,7 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.Basic, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.Basic));
     }
 
     [Test, TestPlatform.NonWindows]
@@ -435,6 +435,6 @@ internal static class FabulousConsoleTests
         FabulousConsole.Environment = newEnv.Object;
         var result = FabulousConsole.GetMaximumSupportedColorMode();
 
-        Assert.AreEqual(ConsoleColorMode.None, result);
+        Assert.That(result, Is.EqualTo(ConsoleColorMode.None));
     }
 }

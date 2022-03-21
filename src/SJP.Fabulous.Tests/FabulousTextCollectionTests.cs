@@ -29,7 +29,7 @@ internal static class FabulousTextCollectionTests
 
         var collection = new FabulousTextCollection(fragments);
 
-        Assert.AreSame(fragments, collection.Fragments);
+        Assert.That(collection.Fragments, Is.SameAs(fragments));
     }
 
     [Test]
@@ -42,7 +42,7 @@ internal static class FabulousTextCollectionTests
 
         var collectionText = collection.Fragments.Single();
 
-        Assert.AreEqual(text.Text, collectionText.Text);
+        Assert.That(collectionText.Text, Is.EqualTo(text.Text));
     }
 
     [Test]
@@ -53,7 +53,7 @@ internal static class FabulousTextCollectionTests
 
         var collectionText = collection.Fragments.Single();
 
-        Assert.AreEqual(text.Text, collectionText.Text);
+        Assert.That(collectionText.Text, Is.EqualTo(text.Text));
     }
 
     [Test]
@@ -69,7 +69,7 @@ internal static class FabulousTextCollectionTests
         var combinedText = string.Concat(combined.Fragments.Select(t => t.Text));
         var expected = abc.Text + def.Text + ghi.Text;
 
-        Assert.IsTrue(expected == combinedText);
+        Assert.That(expected, Is.EqualTo(combinedText));
     }
 
     [Test]
@@ -84,7 +84,7 @@ internal static class FabulousTextCollectionTests
         var combinedText = string.Concat(combined.Fragments.Select(t => t.Text));
         var expected = abc.Text + def.Text + ghi.Text;
 
-        Assert.IsTrue(expected == combinedText);
+        Assert.That(expected, Is.EqualTo(combinedText));
     }
 
     [Test]
@@ -97,7 +97,7 @@ internal static class FabulousTextCollectionTests
         var combinedText = string.Concat(combined.Fragments.Select(t => t.Text));
         var expected = abc.Fragments.Single().Text + def.Fragments.Single().Text;
 
-        Assert.IsTrue(expected == combinedText);
+        Assert.That(expected, Is.EqualTo(combinedText));
     }
 
     [Test]
@@ -166,7 +166,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a.Equals(b);
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 
     [Test]
@@ -181,7 +181,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a.Equals(b);
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -193,7 +193,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a.Equals(a);
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -208,7 +208,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a == b;
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -223,7 +223,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a == b;
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 
     [Test]
@@ -238,7 +238,7 @@ internal static class FabulousTextCollectionTests
 
         var result = a != b;
 
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -253,6 +253,6 @@ internal static class FabulousTextCollectionTests
 
         var result = a != b;
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 }

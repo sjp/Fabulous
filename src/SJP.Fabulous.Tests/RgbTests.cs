@@ -13,28 +13,28 @@ internal static class RgbTests
         var tuple = new Rgb((12, 34, 56));
         var expl = new Rgb(12, 34, 56);
 
-        Assert.IsTrue(tuple == expl);
+        Assert.That(tuple, Is.EqualTo(expl));
     }
 
     [Test]
     public static void Red_PropertyGet_MatchesCtorArg()
     {
         var rgb = new Rgb(12, 34, 56);
-        Assert.AreEqual(12, rgb.Red);
+        Assert.That(rgb.Red, Is.EqualTo(12));
     }
 
     [Test]
     public static void Green_PropertyGet_MatchesCtorArg()
     {
         var rgb = new Rgb(12, 34, 56);
-        Assert.AreEqual(34, rgb.Green);
+        Assert.That(rgb.Green, Is.EqualTo(34));
     }
 
     [Test]
     public static void Blue_PropertyGet_MatchesCtorArg()
     {
         var rgb = new Rgb(12, 34, 56);
-        Assert.AreEqual(56, rgb.Blue);
+        Assert.That(rgb.Blue, Is.EqualTo(56));
     }
 
     [Test]
@@ -42,15 +42,7 @@ internal static class RgbTests
     {
         var rgb = new Rgb(12, 34, 56);
         var newRgb = rgb.ToRgb();
-        Assert.AreEqual(rgb, newRgb);
-    }
-
-    [Test]
-    public static void ToRgb_WhenInvoked_ReturnsDifferentObject()
-    {
-        var rgb = new Rgb(12, 34, 56);
-        var newRgb = rgb.ToRgb();
-        Assert.AreNotSame(rgb, newRgb);
+        Assert.That(newRgb, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -58,7 +50,7 @@ internal static class RgbTests
     {
         var rgb = new Rgb(12, 34, 56);
         const string strRep = "Red = 12, Green = 34, Blue = 56";
-        Assert.AreEqual(strRep, rgb.ToString());
+        Assert.That(rgb.ToString(), Is.EqualTo(strRep));
     }
 
     [Test]
@@ -67,7 +59,7 @@ internal static class RgbTests
         var rgbHash = new Rgb(12, 34, 56).GetHashCode();
         var otherRgbHash = new Rgb(12, 34, 56).GetHashCode();
 
-        Assert.AreEqual(rgbHash, otherRgbHash);
+        Assert.That(otherRgbHash, Is.EqualTo(rgbHash));
     }
 
     [Test]
@@ -76,7 +68,7 @@ internal static class RgbTests
         var rgbHash = new Rgb(12, 34, 56).GetHashCode();
         var otherRgbHash = new Rgb(65, 43, 21).GetHashCode();
 
-        Assert.AreNotEqual(rgbHash, otherRgbHash);
+        Assert.That(otherRgbHash, Is.Not.EqualTo(rgbHash));
     }
 
     [Test]
@@ -85,7 +77,7 @@ internal static class RgbTests
         var rgb = new Rgb(12, 34, 56);
         var hexRgb = Rgb.FromHex("#0C2238");
 
-        Assert.AreEqual(rgb, hexRgb);
+        Assert.That(hexRgb, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -94,7 +86,7 @@ internal static class RgbTests
         var rgb = new Rgb(12, 34, 56);
         var hexRgb = Rgb.FromHex("0C2238");
 
-        Assert.AreEqual(rgb, hexRgb);
+        Assert.That(hexRgb, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -103,7 +95,7 @@ internal static class RgbTests
         var rgb = new Rgb(51, 68, 85);
         var hexRgb = Rgb.FromHex("#345");
 
-        Assert.AreEqual(rgb, hexRgb);
+        Assert.That(hexRgb, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -112,7 +104,7 @@ internal static class RgbTests
         var rgb = new Rgb(51, 68, 85);
         var hexRgb = Rgb.FromHex("345");
 
-        Assert.AreEqual(rgb, hexRgb);
+        Assert.That(hexRgb, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -174,7 +166,7 @@ internal static class RgbTests
         var rgb = new Rgb(255, 69, 0);
         var orangeRed = Rgb.FromKeyword("orangered");
 
-        Assert.AreEqual(rgb, orangeRed);
+        Assert.That(orangeRed, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -183,7 +175,7 @@ internal static class RgbTests
         var rgb = new Rgb(255, 69, 0);
         var orangeRed = Rgb.FromKeyword("orAnGeRed");
 
-        Assert.AreEqual(rgb, orangeRed);
+        Assert.That(orangeRed, Is.EqualTo(rgb));
     }
 
     [Test]
@@ -199,6 +191,6 @@ internal static class RgbTests
         var rgb = new Rgb(255, 69, 0);
         var orangeRed = Rgb.FromKeyword(ColorKeyword.OrangeRed);
 
-        Assert.AreEqual(rgb, orangeRed);
+        Assert.That(orangeRed, Is.EqualTo(rgb));
     }
 }

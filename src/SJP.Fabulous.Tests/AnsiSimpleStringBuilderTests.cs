@@ -22,7 +22,7 @@ internal static class AnsiSimpleStringBuilderTests
         var builder = new AnsiSimpleStringBuilder(text);
         var result = builder.ToAnsiString();
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
@@ -35,6 +35,6 @@ internal static class AnsiSimpleStringBuilderTests
         var builder = new AnsiSimpleStringBuilder(text);
         var result = builder.ToAnsiString();
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 }
