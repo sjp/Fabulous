@@ -1,23 +1,22 @@
-﻿namespace SJP.Fabulous.Colorspaces
+﻿namespace SJP.Fabulous.Colorspaces;
+
+/// <summary>
+/// Defines a color in the RGB colorspace.
+/// </summary>
+public interface IRgb : IColor
 {
     /// <summary>
-    /// Defines a color in the RGB colorspace.
+    /// The red component of the color.
     /// </summary>
-    public interface IRgb : IColor
-    {
-        /// <summary>
-        /// The red component of the color.
-        /// </summary>
-        byte Red { get; }
+    byte Red { get; }
 
-        /// <summary>
-        /// The green component of the color.
-        /// </summary>
-        byte Green { get; }
+    /// <summary>
+    /// The green component of the color.
+    /// </summary>
+    byte Green { get; }
 
-        /// <summary>
-        /// The blue component of the color.
-        /// </summary>
-        byte Blue { get; }
-    }
+    /// <summary>
+    /// The blue component of the color.
+    /// </summary>
+    byte Blue { get; }
 }

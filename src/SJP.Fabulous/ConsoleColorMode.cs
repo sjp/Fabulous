@@ -1,33 +1,32 @@
-﻿namespace SJP.Fabulous
+﻿namespace SJP.Fabulous;
+
+/// <summary>
+/// Represents the way in which the console will be styled. Order is important and goes from the least functionality to the most.
+/// </summary>
+public enum ConsoleColorMode
 {
     /// <summary>
-    /// Represents the way in which the console will be styled. Order is important and goes from the least functionality to the most.
+    /// No styling will be applied.
     /// </summary>
-    public enum ConsoleColorMode
-    {
-        /// <summary>
-        /// No styling will be applied.
-        /// </summary>
-        None,
+    None,
 
-        /// <summary>
-        /// The standard set of code styling will be applied. Equivalent in behaviour to using System.Console.
-        /// </summary>
-        Standard,
+    /// <summary>
+    /// The standard set of code styling will be applied. Equivalent in behaviour to using System.Console.
+    /// </summary>
+    Standard,
 
-        /// <summary>
-        /// ANSI styling will be applied using the basic 16 color set.
-        /// </summary>
-        Basic, // 16 colors
+    /// <summary>
+    /// ANSI styling will be applied using the basic 16 color set.
+    /// </summary>
+    Basic, // 16 colors
 
-        /// <summary>
-        /// ANSI styling will be applied with 256 colors available.
-        /// </summary>
-        Enhanced,
+    /// <summary>
+    /// ANSI styling will be applied with 256 colors available.
+    /// </summary>
+    Enhanced,
 
-        /// <summary>
-        /// ANSI styling will be applied with 24-bit color.
-        /// </summary>
-        Full
-    }
+    /// <summary>
+    /// ANSI styling will be applied with 24-bit color.
+    /// </summary>
+    Full
 }

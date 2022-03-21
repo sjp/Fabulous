@@ -3,42 +3,41 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
-namespace SJP.Fabulous.Tests
+namespace SJP.Fabulous.Tests;
+
+internal static class TestPlatform
 {
-    internal static class TestPlatform
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public sealed class WindowsAttribute : NUnitAttribute, IApplyToTest
     {
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-        public sealed class WindowsAttribute : NUnitAttribute, IApplyToTest
+        public void ApplyToTest(Test test)
         {
-            public void ApplyToTest(Test test)
-            {
-                if (test.RunState == RunState.NotRunnable || _isWindows)
-                    return;
+            if (test.RunState == RunState.NotRunnable || _isWindows)
+                return;
 
-                test.RunState = RunState.Ignored;
+            test.RunState = RunState.Ignored;
 
-                const string reason = "This test is ignored because the current platform is non-Windows and the test is for Windows platforms only.";
-                test.Properties.Set(PropertyNames.SkipReason, reason);
-            }
-
-            private readonly static bool _isWindows = WindowsConsole.IsWindowsPlatform;
+            const string reason = "This test is ignored because the current platform is non-Windows and the test is for Windows platforms only.";
+            test.Properties.Set(PropertyNames.SkipReason, reason);
         }
 
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-        public sealed class NonWindowsAttribute : NUnitAttribute, IApplyToTest
+        private readonly static bool _isWindows = WindowsConsole.IsWindowsPlatform;
+    }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public sealed class NonWindowsAttribute : NUnitAttribute, IApplyToTest
+    {
+        public void ApplyToTest(Test test)
         {
-            public void ApplyToTest(Test test)
-            {
-                if (test.RunState == RunState.NotRunnable || _isNotWindows)
-                    return;
+            if (test.RunState == RunState.NotRunnable || _isNotWindows)
+                return;
 
-                test.RunState = RunState.Ignored;
+            test.RunState = RunState.Ignored;
 
-                const string reason = "This test is ignored because the current platform is Windows and the test is for non-Windows platforms only.";
-                test.Properties.Set(PropertyNames.SkipReason, reason);
-            }
-
-            private readonly static bool _isNotWindows = !WindowsConsole.IsWindowsPlatform;
+            const string reason = "This test is ignored because the current platform is Windows and the test is for non-Windows platforms only.";
+            test.Properties.Set(PropertyNames.SkipReason, reason);
         }
+
+        private readonly static bool _isNotWindows = !WindowsConsole.IsWindowsPlatform;
     }
 }
