@@ -43,7 +43,7 @@ public static class Fabulous
     /// </summary>
     /// <param name="text">A string to be printed that may be styled.</param>
     /// <returns>A new text object that is the same as the current object, but with the provided string set as the printable text.</returns>
-    public static FabulousText Text(string text) => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.None, text);
+    public static FabulousText Text(string text) => new(DefaultForeground, DefaultBackground, TextDecoration.None, text);
 
     /// <summary>
     /// Styles the text with a foreground color in the RGB colorspace.
@@ -113,87 +113,87 @@ public static class Fabulous
     /// <summary>
     /// Initializes a new text object that has a black foreground color.
     /// </summary>
-    public static FabulousText Black => new FabulousText(RgbConsoleColor.Black, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Black => new(RgbConsoleColor.Black, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a red foreground color.
     /// </summary>
-    public static FabulousText Red => new FabulousText(RgbConsoleColor.DarkRed, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Red => new(RgbConsoleColor.DarkRed, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a green foreground color.
     /// </summary>
-    public static FabulousText Green => new FabulousText(RgbConsoleColor.DarkGreen, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Green => new(RgbConsoleColor.DarkGreen, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a yellow foreground color.
     /// </summary>
-    public static FabulousText Yellow => new FabulousText(RgbConsoleColor.DarkYellow, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Yellow => new(RgbConsoleColor.DarkYellow, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a blue foreground color.
     /// </summary>
-    public static FabulousText Blue => new FabulousText(RgbConsoleColor.DarkBlue, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Blue => new(RgbConsoleColor.DarkBlue, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a magenta foreground color.
     /// </summary>
-    public static FabulousText Magenta => new FabulousText(RgbConsoleColor.DarkMagenta, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Magenta => new(RgbConsoleColor.DarkMagenta, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a cyan foreground color.
     /// </summary>
-    public static FabulousText Cyan => new FabulousText(RgbConsoleColor.DarkCyan, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Cyan => new(RgbConsoleColor.DarkCyan, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a white foreground color.
     /// </summary>
-    public static FabulousText White => new FabulousText(RgbConsoleColor.White, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText White => new(RgbConsoleColor.White, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a gray foreground color.
     /// </summary>
-    public static FabulousText Gray => new FabulousText(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Gray => new(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a grey foreground color.
     /// </summary>
-    public static FabulousText Grey => new FabulousText(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText Grey => new(RgbConsoleColor.Grey, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright red foreground color.
     /// </summary>
-    public static FabulousText RedBright => new FabulousText(RgbConsoleColor.Red, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText RedBright => new(RgbConsoleColor.Red, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright green foreground color.
     /// </summary>
-    public static FabulousText GreenBright => new FabulousText(RgbConsoleColor.Green, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText GreenBright => new(RgbConsoleColor.Green, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright yellow foreground color.
     /// </summary>
-    public static FabulousText YellowBright => new FabulousText(RgbConsoleColor.Yellow, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText YellowBright => new(RgbConsoleColor.Yellow, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright blue foreground color.
     /// </summary>
-    public static FabulousText BlueBright => new FabulousText(RgbConsoleColor.Blue, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText BlueBright => new(RgbConsoleColor.Blue, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright magenta foreground color.
     /// </summary>
-    public static FabulousText MagentaBright => new FabulousText(RgbConsoleColor.Magenta, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText MagentaBright => new(RgbConsoleColor.Magenta, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright cyan foreground color.
     /// </summary>
-    public static FabulousText CyanBright => new FabulousText(RgbConsoleColor.Cyan, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText CyanBright => new(RgbConsoleColor.Cyan, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright white foreground color.
     /// </summary>
-    public static FabulousText WhiteBright => new FabulousText(RgbConsoleColor.WhiteBright, DefaultBackground, TextDecoration.None, null);
+    public static FabulousText WhiteBright => new(RgbConsoleColor.WhiteBright, DefaultBackground, TextDecoration.None, null);
 
     /// <summary>
     /// Styles the text with a background color in the RGB colorspace.
@@ -263,127 +263,127 @@ public static class Fabulous
     /// <summary>
     /// Initializes a new text object that has a black background color.
     /// </summary>
-    public static FabulousText BgBlack => new FabulousText(DefaultForeground, RgbConsoleColor.Black, TextDecoration.None, null);
+    public static FabulousText BgBlack => new(DefaultForeground, RgbConsoleColor.Black, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a red background color.
     /// </summary>
-    public static FabulousText BgRed => new FabulousText(DefaultForeground, RgbConsoleColor.DarkRed, TextDecoration.None, null);
+    public static FabulousText BgRed => new(DefaultForeground, RgbConsoleColor.DarkRed, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a green background color.
     /// </summary>
-    public static FabulousText BgGreen => new FabulousText(DefaultForeground, RgbConsoleColor.DarkGreen, TextDecoration.None, null);
+    public static FabulousText BgGreen => new(DefaultForeground, RgbConsoleColor.DarkGreen, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a yellow background color.
     /// </summary>
-    public static FabulousText BgYellow => new FabulousText(DefaultForeground, RgbConsoleColor.DarkYellow, TextDecoration.None, null);
+    public static FabulousText BgYellow => new(DefaultForeground, RgbConsoleColor.DarkYellow, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a blue background color.
     /// </summary>
-    public static FabulousText BgBlue => new FabulousText(DefaultForeground, RgbConsoleColor.DarkBlue, TextDecoration.None, null);
+    public static FabulousText BgBlue => new(DefaultForeground, RgbConsoleColor.DarkBlue, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a magenta background color.
     /// </summary>
-    public static FabulousText BgMagenta => new FabulousText(DefaultForeground, RgbConsoleColor.DarkMagenta, TextDecoration.None, null);
+    public static FabulousText BgMagenta => new(DefaultForeground, RgbConsoleColor.DarkMagenta, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a cyan background color.
     /// </summary>
-    public static FabulousText BgCyan => new FabulousText(DefaultForeground, RgbConsoleColor.DarkCyan, TextDecoration.None, null);
+    public static FabulousText BgCyan => new(DefaultForeground, RgbConsoleColor.DarkCyan, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a white background color.
     /// </summary>
-    public static FabulousText BgWhite => new FabulousText(DefaultForeground, RgbConsoleColor.White, TextDecoration.None, null);
+    public static FabulousText BgWhite => new(DefaultForeground, RgbConsoleColor.White, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a gray background color.
     /// </summary>
-    public static FabulousText BgGray => new FabulousText(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, null);
+    public static FabulousText BgGray => new(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a grey background color.
     /// </summary>
-    public static FabulousText BgGrey => new FabulousText(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, null);
+    public static FabulousText BgGrey => new(DefaultForeground, RgbConsoleColor.Grey, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright red background color.
     /// </summary>
-    public static FabulousText BgRedBright => new FabulousText(DefaultForeground, RgbConsoleColor.Red, TextDecoration.None, null);
+    public static FabulousText BgRedBright => new(DefaultForeground, RgbConsoleColor.Red, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright green background color.
     /// </summary>
-    public static FabulousText BgGreenBright => new FabulousText(DefaultForeground, RgbConsoleColor.Green, TextDecoration.None, null);
+    public static FabulousText BgGreenBright => new(DefaultForeground, RgbConsoleColor.Green, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright yellow background color.
     /// </summary>
-    public static FabulousText BgYellowBright => new FabulousText(DefaultForeground, RgbConsoleColor.Yellow, TextDecoration.None, null);
+    public static FabulousText BgYellowBright => new(DefaultForeground, RgbConsoleColor.Yellow, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright blue background color.
     /// </summary>
-    public static FabulousText BgBlueBright => new FabulousText(DefaultForeground, RgbConsoleColor.Blue, TextDecoration.None, null);
+    public static FabulousText BgBlueBright => new(DefaultForeground, RgbConsoleColor.Blue, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright magenta background color.
     /// </summary>
-    public static FabulousText BgMagentaBright => new FabulousText(DefaultForeground, RgbConsoleColor.Magenta, TextDecoration.None, null);
+    public static FabulousText BgMagentaBright => new(DefaultForeground, RgbConsoleColor.Magenta, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright cyan background color.
     /// </summary>
-    public static FabulousText BgCyanBright => new FabulousText(DefaultForeground, RgbConsoleColor.Cyan, TextDecoration.None, null);
+    public static FabulousText BgCyanBright => new(DefaultForeground, RgbConsoleColor.Cyan, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that has a bright white background color.
     /// </summary>
-    public static FabulousText BgWhiteBright => new FabulousText(DefaultForeground, RgbConsoleColor.WhiteBright, TextDecoration.None, null);
+    public static FabulousText BgWhiteBright => new(DefaultForeground, RgbConsoleColor.WhiteBright, TextDecoration.None, null);
 
     /// <summary>
     /// Initializes a new text object that resets the console to default styling before and after printing the text.
     /// </summary>
-    public static FabulousText Reset => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.None, null, true);
+    public static FabulousText Reset => new(DefaultForeground, DefaultBackground, TextDecoration.None, null, true);
 
     /// <summary>
     /// Initializes a new text object that will blink when printed.
     /// </summary>
-    public static FabulousText Blink => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Blink, null);
+    public static FabulousText Blink => new(DefaultForeground, DefaultBackground, TextDecoration.Blink, null);
 
     /// <summary>
     /// Initializes a new text object that will be styled with a bold font weight.
     /// </summary>
-    public static FabulousText Bold => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Bold, null);
+    public static FabulousText Bold => new(DefaultForeground, DefaultBackground, TextDecoration.Bold, null);
 
     /// <summary>
     /// Initializes a new text object that will be dimmed.
     /// </summary>
-    public static FabulousText Dim => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Dim, null);
+    public static FabulousText Dim => new(DefaultForeground, DefaultBackground, TextDecoration.Dim, null);
 
     /// <summary>
     /// Initializes a new text object that will be styled as italic.
     /// </summary>
-    public static FabulousText Italic => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Italic, null);
+    public static FabulousText Italic => new(DefaultForeground, DefaultBackground, TextDecoration.Italic, null);
 
     /// <summary>
     /// Initializes a new text object that will be underlined when printed.
     /// </summary>
-    public static FabulousText Underline => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Underline, null);
+    public static FabulousText Underline => new(DefaultForeground, DefaultBackground, TextDecoration.Underline, null);
 
     /// <summary>
     /// Initializes a new text object that will be concealed when printed.
     /// </summary>
-    public static FabulousText Hidden => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Hidden, null);
+    public static FabulousText Hidden => new(DefaultForeground, DefaultBackground, TextDecoration.Hidden, null);
 
     /// <summary>
     /// Initializes a new text object that will be styled with a horizontal strike through the middle of the text.
     /// </summary>
-    public static FabulousText Strikethrough => new FabulousText(DefaultForeground, DefaultBackground, TextDecoration.Strikethrough, null);
+    public static FabulousText Strikethrough => new(DefaultForeground, DefaultBackground, TextDecoration.Strikethrough, null);
 
     #region Writer methods
 

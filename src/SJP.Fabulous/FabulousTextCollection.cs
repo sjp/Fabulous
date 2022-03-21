@@ -49,7 +49,7 @@ public sealed class FabulousTextCollection : IConsoleWriter, IEnumerable<Fabulou
     /// Initializes a collection of styled text from a <see cref="FabulousText"/> object.
     /// </summary>
     /// <param name="fragment">A styled piece of text.</param>
-    public static implicit operator FabulousTextCollection(FabulousText fragment) => new FabulousTextCollection(fragment);
+    public static implicit operator FabulousTextCollection(FabulousText fragment) => new(fragment);
 
     /// <summary>
     /// Combines a collection of text with a styled text fragment.

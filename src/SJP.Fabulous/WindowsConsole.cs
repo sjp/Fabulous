@@ -143,5 +143,5 @@ public static class WindowsConsole
         return 0;
     }
 
-    private readonly static Lazy<long> _windowsBuildNumber = new Lazy<long>(GetWindowsBuildNumber);
+    private readonly static Lazy<long> _windowsBuildNumber = new(GetWindowsBuildNumber);
 }

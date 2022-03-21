@@ -73,7 +73,7 @@ public struct Rgb : IRgb, IEquatable<Rgb>
             throw new ArgumentException("Hex string does not have enough characters. Must be either 3 or 6 hexadecimal digits. Hex string is: " + hex, nameof(hex));
 
         if (hex.StartsWith("#"))
-            hex = hex.Substring(1);
+            hex = hex[1..];
 
         if (hex.Length != 3 && hex.Length != 6)
             throw new ArgumentException("Hex string is not the correct length. Must either be 3 or 6 hexadecimal characters. Hex string is: " + hex, nameof(hex));
@@ -92,7 +92,7 @@ public struct Rgb : IRgb, IEquatable<Rgb>
         }
         else if (inputLength == 6)
         {
-            rStr = hex.Substring(0, 2);
+            rStr = hex[..2];
             gStr = hex.Substring(2, 2);
             bStr = hex.Substring(4, 2);
         }

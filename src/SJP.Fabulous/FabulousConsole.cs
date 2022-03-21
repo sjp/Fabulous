@@ -118,7 +118,7 @@ public static class FabulousConsole
 
     private static bool IsConsoleApp => _isConsoleApp.Value;
 
-    private readonly static Lazy<bool> _isConsoleApp = new Lazy<bool>(() =>
+    private readonly static Lazy<bool> _isConsoleApp = new(() =>
     {
         using var stream = Console.OpenStandardInput();
         return (stream ?? Stream.Null) != Stream.Null;
