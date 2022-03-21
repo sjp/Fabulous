@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
-using SJP.Fabulous.Colorspaces;
-using EnumsNET;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using EnumsNET;
+using SJP.Fabulous.Colorspaces;
 
 namespace SJP.Fabulous;
 
@@ -64,7 +64,7 @@ public sealed class FabulousText : IConsoleWriter, IEquatable<FabulousText>
     /// </summary>
     /// <param name="values">A tuple containing RGB color components.</param>
     /// <returns>A new text object that is the same as the current object, but with the new foreground color.</returns>
-    public FabulousText Rgb((byte red, byte green, byte blue) values)=> Rgb(values.red, values.green, values.blue);
+    public FabulousText Rgb((byte red, byte green, byte blue) values) => Rgb(values.red, values.green, values.blue);
 
     /// <summary>
     /// Styles the text with a new foreground color in the RGB colorspace.

@@ -1,7 +1,7 @@
 using System;
-using NUnit.Framework;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 namespace SJP.Fabulous.Tests;
 

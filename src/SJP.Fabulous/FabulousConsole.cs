@@ -1,6 +1,6 @@
 ﻿using System;
-using EnumsNET;
 using System.IO;
+using EnumsNET;
 
 namespace SJP.Fabulous;
 
