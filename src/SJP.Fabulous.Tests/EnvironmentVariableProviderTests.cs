@@ -43,7 +43,7 @@ internal static class EnvironmentVariableProviderTests
         var env = new EnvironmentVariableProvider();
         var missingVar = env.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
 
-        Assert.IsNull(missingVar);
+        Assert.That(missingVar, Is.Null);
     }
 
     [Test, TestPlatform.Windows]
@@ -53,7 +53,7 @@ internal static class EnvironmentVariableProviderTests
 
         var numberOfProcessors = env.GetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS");
 
-        Assert.That(numberOfProcessors > 0, Is.True);
+        Assert.That(numberOfProcessors, Is.GreaterThan(0));
     }
 
     [Test]
@@ -91,7 +91,7 @@ internal static class EnvironmentVariableProviderTests
         Assert.Multiple(() =>
         {
             Assert.That(isFound, Is.False);
-            Assert.IsNull(notFoundVar);
+            Assert.That(notFoundVar, Is.Null);
         });
     }
 
@@ -107,7 +107,7 @@ internal static class EnvironmentVariableProviderTests
         Assert.Multiple(() =>
         {
             Assert.That(isFound, Is.True);
-            Assert.That(numberOfProcessors > 0, Is.True);
+            Assert.That(numberOfProcessors, Is.GreaterThan(0));
             Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
         });
     }
@@ -119,8 +119,11 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("PATH", out var pathInt);
 
-        Assert.That(isFound, Is.False);
-        Assert.That(pathInt, Is.EqualTo(default(int)));
+        Assert.Multiple(() =>
+        {
+            Assert.That(isFound, Is.False);
+            Assert.That(pathInt, Is.EqualTo(default(int)));
+        });
     }
 
     [Test]
@@ -149,7 +152,7 @@ internal static class EnvironmentVariableProviderTests
         Assert.Multiple(() =>
         {
             Assert.That(isFound, Is.True);
-            Assert.That(numberOfProcessors > 0, Is.True);
+            Assert.That(numberOfProcessors, Is.GreaterThan(0));
             Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
         });
     }
