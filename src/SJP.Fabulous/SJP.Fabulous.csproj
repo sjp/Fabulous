@@ -4,10 +4,9 @@
     <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <Description>Easy terminal styling for .NET</Description>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <PackageLicenseUrl>https://raw.github.com/sjp/Fabulous/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sjp/Fabulous</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sjp/Fabulous</RepositoryUrl>
-    <PackageIconUrl>https://raw.github.com/sjp/Fabulous/master/fabulous.png</PackageIconUrl>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <Version>1.0.1</Version>
