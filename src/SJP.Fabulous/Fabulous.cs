@@ -104,7 +104,7 @@ public static class Fabulous
     public static FabulousText Keyword(ColorKeyword keyword)
     {
         if (!keyword.IsValid())
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
         return new FabulousText(foreColor, DefaultBackground, TextDecoration.None, null);
@@ -254,7 +254,7 @@ public static class Fabulous
     public static FabulousText BgKeyword(ColorKeyword keyword)
     {
         if (!keyword.IsValid())
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
         return new FabulousText(DefaultForeground, bgColor, TextDecoration.None, null);

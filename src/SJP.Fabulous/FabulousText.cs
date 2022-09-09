@@ -27,7 +27,7 @@ public sealed class FabulousText : IConsoleWriter, IEquatable<FabulousText>
         BackgroundColor = backColor ?? throw new ArgumentNullException(nameof(backColor));
 
         if (!decorations.IsValid())
-            throw new ArgumentException($"The { nameof(TextDecoration) } provided must be a valid enum.", nameof(decorations));
+            throw new ArgumentException($"The {nameof(TextDecoration)} provided must be a valid enum.", nameof(decorations));
 
         Decorations = decorations;
         ConsoleReset = reset;
@@ -118,7 +118,7 @@ public sealed class FabulousText : IConsoleWriter, IEquatable<FabulousText>
     public FabulousText Keyword(ColorKeyword keyword)
     {
         if (!keyword.IsValid())
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         var foreColor = Colorspaces.Rgb.FromKeyword(keyword);
         return new FabulousText(foreColor, BackgroundColor, Decorations, Text, ConsoleReset);
@@ -268,7 +268,7 @@ public sealed class FabulousText : IConsoleWriter, IEquatable<FabulousText>
     public FabulousText BgKeyword(ColorKeyword keyword)
     {
         if (!keyword.IsValid())
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         var bgColor = Colorspaces.Rgb.FromKeyword(keyword);
         return new FabulousText(ForegroundColor, bgColor, Decorations, Text, ConsoleReset);

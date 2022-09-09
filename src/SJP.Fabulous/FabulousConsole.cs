@@ -19,7 +19,7 @@ public static class FabulousConsole
         set
         {
             if (!value.IsValid())
-                throw new ArgumentException($"The { nameof(ConsoleColorMode) } object is not set to a valid value.", nameof(value));
+                throw new ArgumentException($"The {nameof(ConsoleColorMode)} object is not set to a valid value.", nameof(value));
 
             _colorLevel = value;
         }

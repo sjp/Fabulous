@@ -117,11 +117,11 @@ public struct Rgb : IRgb, IEquatable<Rgb>
     public static IRgb FromKeyword(ColorKeyword keyword)
     {
         if (!keyword.IsValid())
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         var keywordName = keyword.GetName();
         if (keywordName == null)
-            throw new ArgumentException($"The { nameof(ColorKeyword) } object is not set to a valid value.", nameof(keyword));
+            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
         return FromKeyword(keywordName);
     }
