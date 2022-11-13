@@ -8,7 +8,7 @@ namespace SJP.Fabulous.Colorspaces;
 /// <summary>
 /// Represents a color in the RGB colorspace.
 /// </summary>
-public struct Rgb : IRgb, IEquatable<Rgb>
+public readonly struct Rgb : IRgb, IEquatable<Rgb>
 {
     /// <summary>
     /// Creates an RGB color using a tuple of each of its separate color components.
