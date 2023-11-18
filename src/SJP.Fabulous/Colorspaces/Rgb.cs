@@ -72,7 +72,7 @@ public readonly struct Rgb : IRgb, IEquatable<Rgb>
         if (hex.Length < 3)
             throw new ArgumentException("Hex string does not have enough characters. Must be either 3 or 6 hexadecimal digits. Hex string is: " + hex, nameof(hex));
 
-        if (hex.StartsWith("#"))
+        if (hex.StartsWith('#'))
             hex = hex[1..];
 
         if (hex.Length != 3 && hex.Length != 6)
