@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SJP.Fabulous;
 
@@ -7,6 +8,8 @@ namespace SJP.Fabulous;
 /// </summary>
 public class AnsiStringCleaner : IAnsiStringCleaner
 {
+    private static readonly Regex _ansiSequence = new Regex("\u001B\\[[0-9;:]+m", RegexOptions.Compiled, TimeSpan.FromMilliseconds(100));
+
     /// <summary>
     /// Creates an ANSI string cleaner that removes ANSI escapes.
     /// </summary>
@@ -27,6 +30,6 @@ public class AnsiStringCleaner : IAnsiStringCleaner
     /// <returns>A string without ANSI escape sequences.</returns>
     public string ToAnsiCleanedString()
     {
-        return Regex.Replace(AnsiText, "\u001B\\[[0-9;:]+m", string.Empty);
+        return _ansiSequence.Replace(AnsiText, string.Empty);
     }
 }
