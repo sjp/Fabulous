@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SJP.Fabulous.CoreConsoleTest/SJP.Fabulous.CoreConsoleTest.csproj" />
+  <Project Path="SJP.Fabulous.Tests/SJP.Fabulous.Tests.csproj" />
+  <Project Path="SJP.Fabulous/SJP.Fabulous.csproj" />
+</Solution>
