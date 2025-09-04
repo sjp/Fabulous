@@ -129,15 +129,13 @@ public static class WindowsConsole
 
     private static long GetWindowsBuildNumber()
     {
-        using (var hklmKey = Registry.LocalMachine)
-        using (var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
+        using var hklmKey = Registry.LocalMachine;
+        using var subKey = hklmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+        if (subKey != null)
         {
-            if (subKey != null)
-            {
-                var buildNumberStr = Convert.ToString(subKey.GetValue("CurrentBuildNumber"));
-                if (buildNumberStr != null && long.TryParse(buildNumberStr, out var buildNumber))
-                    return buildNumber;
-            }
+            var buildNumberStr = Convert.ToString(subKey.GetValue("CurrentBuildNumber"));
+            if (buildNumberStr != null && long.TryParse(buildNumberStr, out var buildNumber))
+                return buildNumber;
         }
 
         return 0;

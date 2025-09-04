@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// A console writer that only prints text and does not perform any styling.

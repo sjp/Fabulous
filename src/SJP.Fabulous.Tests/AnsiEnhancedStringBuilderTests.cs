@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using SJP.Fabulous.Writers;
 
 namespace SJP.Fabulous.Tests;
 

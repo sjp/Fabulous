@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using EnumsNET;
 using SJP.Fabulous.Colorspaces;
+using SJP.Fabulous.Writers;
 
 namespace SJP.Fabulous;
 

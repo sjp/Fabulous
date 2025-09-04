@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// Defines methods to print styled text to a console.

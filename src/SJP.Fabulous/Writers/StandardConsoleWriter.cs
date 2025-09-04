@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SJP.Fabulous.Colorspaces;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// A console writer that prints and styles text using the styling available in <see cref="Console"/>.
@@ -309,8 +309,8 @@ public class StandardConsoleWriter : IConsoleWriter
         var iRed = Convert.ToInt32(Math.Round(rgb.Red / 255d, MidpointRounding.AwayFromZero));
 
         var ansi = 30
-            + ((iBlue << 2)
-            | (iGreen << 1)
+            + (iBlue << 2
+            | iGreen << 1
             | iRed);
 
         return value >= 50
@@ -324,7 +324,7 @@ public class StandardConsoleWriter : IConsoleWriter
             throw new ArgumentNullException(nameof(rgb));
 
         var maxColor = Math.Max(Math.Max(rgb.Blue, rgb.Green), rgb.Red);
-        return (maxColor / 255d) * 100d;
+        return maxColor / 255d * 100d;
     }
 
     private readonly static IReadOnlyDictionary<int, ConsoleColor> _ansiToConsoleColor = new Dictionary<int, ConsoleColor>

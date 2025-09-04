@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using SJP.Fabulous.Colorspaces;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// An ANSI string builder that will style text using ANSI escapes with the basic ANSI 16 colors.
@@ -111,8 +111,8 @@ public class AnsiSimpleStringBuilder : IAnsiStringBuilder
         var iRed = Convert.ToInt32(Math.Round(rgb.Red / 255d, MidpointRounding.AwayFromZero));
 
         var ansi = 30
-            + ((iBlue << 2)
-            | (iGreen << 1)
+            + (iBlue << 2
+            | iGreen << 1
             | iRed);
 
         return value >= 50
@@ -131,7 +131,7 @@ public class AnsiSimpleStringBuilder : IAnsiStringBuilder
             throw new ArgumentNullException(nameof(rgb));
 
         var maxColor = Math.Max(Math.Max(rgb.Blue, rgb.Green), rgb.Red);
-        return (maxColor / 255d) * 100d;
+        return maxColor / 255d * 100d;
     }
 
     private const string Escape = "\x1B";

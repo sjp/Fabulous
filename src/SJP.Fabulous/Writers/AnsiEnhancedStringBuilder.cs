@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using SJP.Fabulous.Colorspaces;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// An ANSI string builder that will style text using ANSI escapes with the basic ANSI 256 colors.
@@ -101,7 +101,7 @@ public class AnsiEnhancedStringBuilder : IAnsiStringBuilder
             if (rgb.Red > 248)
                 return 231;
 
-            var dResult = ((rgb.Red - 8) / 247d) * 24;
+            var dResult = (rgb.Red - 8) / 247d * 24;
             return Convert.ToInt32(Math.Round(dResult, MidpointRounding.AwayFromZero) + 232);
         }
 
@@ -114,8 +114,8 @@ public class AnsiEnhancedStringBuilder : IAnsiStringBuilder
         var iBlue = Convert.ToInt32(Math.Round(dBlue, MidpointRounding.AwayFromZero));
 
         return 16
-            + (36 * iRed)
-            + (6 * iGreen)
+            + 36 * iRed
+            + 6 * iGreen
             + iBlue;
     }
 

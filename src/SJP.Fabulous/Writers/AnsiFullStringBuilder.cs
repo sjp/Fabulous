@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using SJP.Fabulous.Colorspaces;
 
-namespace SJP.Fabulous;
+namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// An ANSI string builder that will style text using ANSI escapes with 24-bit color.

@@ -1,4 +1,4 @@
-﻿namespace SJP.Fabulous;
+﻿namespace SJP.Fabulous.Writers;
 
 /// <summary>
 /// Defines methods used to create ANSI-compatible strings.
