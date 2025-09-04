@@ -52,12 +52,12 @@ internal static class FabulousTextTests
     {
         FabulousText text = string.Empty;
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => text.Hex(null));
             Assert.Throws<ArgumentNullException>(() => text.Hex(string.Empty));
             Assert.Throws<ArgumentNullException>(() => text.Hex("   "));
-        });
+        }
     }
 
     [Test]
@@ -65,12 +65,12 @@ internal static class FabulousTextTests
     {
         FabulousText text = string.Empty;
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => text.BgHex(null));
             Assert.Throws<ArgumentNullException>(() => text.BgHex(string.Empty));
             Assert.Throws<ArgumentNullException>(() => text.BgHex("   "));
-        });
+        }
     }
 
     [Test]
@@ -78,12 +78,12 @@ internal static class FabulousTextTests
     {
         FabulousText text = string.Empty;
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => text.Keyword(null));
             Assert.Throws<ArgumentNullException>(() => text.Keyword(string.Empty));
             Assert.Throws<ArgumentNullException>(() => text.Keyword("   "));
-        });
+        }
     }
 
     [Test]
@@ -100,12 +100,12 @@ internal static class FabulousTextTests
     {
         FabulousText text = string.Empty;
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => text.BgKeyword(null));
             Assert.Throws<ArgumentNullException>(() => text.BgKeyword(string.Empty));
             Assert.Throws<ArgumentNullException>(() => text.BgKeyword("   "));
-        });
+        }
     }
 
     [Test]

@@ -62,7 +62,7 @@ internal static class EnvironmentVariableProviderTests
         var env = new EnvironmentVariableProvider();
         var missingVar = env.GetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND");
 
-        Assert.That(missingVar, Is.EqualTo(default(int)));
+        Assert.That(missingVar, Is.Default);
     }
 
     [Test]
@@ -73,11 +73,11 @@ internal static class EnvironmentVariableProviderTests
         var isFound = env.TryGetEnvironmentVariable("PATH", out var providerPath);
         var sysPath = Environment.GetEnvironmentVariable("PATH");
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.True);
             Assert.That(providerPath, Is.EqualTo(sysPath));
-        });
+        }
     }
 
     [Test]
@@ -88,11 +88,11 @@ internal static class EnvironmentVariableProviderTests
         var isFound = env.TryGetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
         _ = Environment.GetEnvironmentVariable("THIS_WILL_NOT_BE_FOUND");
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.False);
             Assert.That(notFoundVar, Is.Null);
-        });
+        }
     }
 
     [Test, TestPlatform.Windows]
@@ -104,12 +104,12 @@ internal static class EnvironmentVariableProviderTests
         var isFound = env.TryGetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS", out var numberOfProcessors);
         var sysNumberOfProcs = Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS");
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.True);
             Assert.That(numberOfProcessors, Is.GreaterThan(0));
             Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
-        });
+        }
     }
 
     [Test]
@@ -119,11 +119,11 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("PATH", out var pathInt);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.False);
-            Assert.That(pathInt, Is.EqualTo(default(int)));
-        });
+            Assert.That(pathInt, Is.Default);
+        }
     }
 
     [Test]
@@ -133,11 +133,11 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", out var notFoundVar);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.False);
-            Assert.That(notFoundVar, Is.EqualTo(default(int)));
-        });
+            Assert.That(notFoundVar, Is.Default);
+        }
     }
 
     [Test, TestPlatform.Windows]
@@ -149,12 +149,12 @@ internal static class EnvironmentVariableProviderTests
         var isFound = env.TryGetEnvironmentVariable<int>("NUMBER_OF_PROCESSORS", null, out var numberOfProcessors);
         var sysNumberOfProcs = Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS");
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.True);
             Assert.That(numberOfProcessors, Is.GreaterThan(0));
             Assert.That(numberOfProcessors.ToString(), Is.EqualTo(sysNumberOfProcs));
-        });
+        }
     }
 
     [Test]
@@ -164,11 +164,11 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("PATH", null, out var pathInt);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.False);
-            Assert.That(pathInt, Is.EqualTo(default(int)));
-        });
+            Assert.That(pathInt, Is.Default);
+        }
     }
 
     [Test]
@@ -178,10 +178,10 @@ internal static class EnvironmentVariableProviderTests
 
         var isFound = env.TryGetEnvironmentVariable<int>("THIS_WILL_NOT_BE_FOUND", null, out var notFoundVar);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(isFound, Is.False);
-            Assert.That(notFoundVar, Is.EqualTo(default(int)));
-        });
+            Assert.That(notFoundVar, Is.Default);
+        }
     }
 }

@@ -110,28 +110,28 @@ internal static class RgbTests
     [Test]
     public static void FromHex_GivenEmptyHexString_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(null));
             Assert.Throws<ArgumentNullException>(() => Rgb.FromHex(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Rgb.FromHex("   "));
-        });
+        }
     }
 
     [Test]
     public static void FromHex_GivenTooShortString_ThrowsArgException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentException>(() => Rgb.FromHex("12"));
             Assert.Throws<ArgumentException>(() => Rgb.FromHex("#12"));
-        });
+        }
     }
 
     [Test]
     public static void FromHex_GivenIncorrectLengthString_ThrowsArgException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             // > 3 but < 6
             Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234"));
@@ -140,18 +140,18 @@ internal static class RgbTests
             // >6
             Assert.Throws<ArgumentException>(() => Rgb.FromHex("1234567"));
             Assert.Throws<ArgumentException>(() => Rgb.FromHex("#1234567"));
-        });
+        }
     }
 
     [Test]
     public static void FromKeyword_GivenEmptyKeywordString_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(null));
             Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Rgb.FromKeyword("   "));
-        });
+        }
     }
 
     [Test]

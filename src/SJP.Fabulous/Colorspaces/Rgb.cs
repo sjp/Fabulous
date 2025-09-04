@@ -119,10 +119,8 @@ public readonly struct Rgb : IRgb, IEquatable<Rgb>
         if (!keyword.IsValid())
             throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
 
-        var keywordName = keyword.GetName();
-        if (keywordName == null)
-            throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
-
+        var keywordName = keyword.GetName()
+            ?? throw new ArgumentException($"The {nameof(ColorKeyword)} object is not set to a valid value.", nameof(keyword));
         return FromKeyword(keywordName);
     }
 

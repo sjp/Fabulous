@@ -22,34 +22,34 @@ internal static class FabulousTests
     [Test]
     public static void Hex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.Hex(null));
             Assert.Throws<ArgumentNullException>(() => Fabulous.Hex(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Fabulous.Hex("   "));
-        });
+        }
     }
 
     [Test]
     public static void BgHex_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgHex(null));
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgHex(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgHex("   "));
-        });
+        }
     }
 
     [Test]
     public static void Keyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.Keyword(null));
             Assert.Throws<ArgumentNullException>(() => Fabulous.Keyword(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Fabulous.Keyword("   "));
-        });
+        }
     }
 
     [Test]
@@ -62,12 +62,12 @@ internal static class FabulousTests
     [Test]
     public static void BgKeyword_GivenNullEmptyOrWhiteSpace_ThrowsArgNullException()
     {
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgKeyword(null));
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgKeyword(string.Empty));
             Assert.Throws<ArgumentNullException>(() => Fabulous.BgKeyword("   "));
-        });
+        }
     }
 
     [Test]
